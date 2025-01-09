@@ -2,31 +2,82 @@
 This is a repository for the system-testing assignment of the Software Quality Engineering course at the [Ben-Gurion University](https://in.bgu.ac.il/), Israel.
 
 ## Assignment Description
-In this assignment, we tested an open-source software called [$$*TODO* software name$$](https://address-of-the-project.com).
+In this assignment, we tested an open-source software called [Moodle](https://address-of-the-project.com).
 
-$$*TODO* Add some general description about the software$$
+Moodle is the World's Open Source Learning Platform, widely used around the world by countless universities, schools, companies, and all manner of organisations and individuals.
+
+Moodle is designed to allow educators, administrators and learners to create personalised learning environments with a single robust, secure and integrated system.
 
 ## Installation
-$$*TODO* Write instructions on how to install the software and prepare the testing environment$$
+Preparing the Testing Environment
+
+Install Moodle:
+
+Use Docker for a quick setup:
+
+Run the following commands to set up Moodle and its database:
+
+docker network create moodle-network
+docker volume create --name mariadb_data
+docker run -d --name mariadb \
+--env ALLOW_EMPTY_PASSWORD=yes \
+--env MARIADB_USER=bn_moodle \
+--env MARIADB_PASSWORD=bitnami \
+--env MARIADB_DATABASE=bitnami_moodle \
+--network moodle-network \
+--volume mariadb_data:/bitnami/mariadb \
+bitnami/mariadb:latest
+docker run -d --name moodle \
+-p 8080:8080 -p 8443:8443 \
+--env ALLOW_EMPTY_PASSWORD=yes \
+--env MOODLE_DATABASE_USER=bn_moodle \
+--env MOODLE_DATABASE_PASSWORD=bitnami \
+--env MOODLE_DATABASE_NAME=bitnami_moodle \
+--network moodle-network \
+--volume moodle_data:/bitnami/moodle \
+--volume moodledata_data:/bitnami/moodledata \
+bitnami/moodle:latest
+
+Access Moodle at http://localhost:8080.
+
+Set Up Moodle:
+
+Complete the Moodle installation by following the on-screen setup instructions.
+
+Create a course, enroll a student, and set up a forum.
+
+Install Testing Tools:
+
+Install Selenium for browser automation:
+
+Download the Selenium server and ChromeDriver.
+
+Start the Selenium server.
 
 ## What we tested
-$$*TODO* Add a description of the module and the user stories that you chose to test.
-For example, in the case of the Moodle example, you can write something like this:
+User Story 1: A student searches for a comment in the forum and selects the result.
 
-We tested the quiz module that allows for creating and taking quizzes. We chose to test the following user stories: 
+Preconditions:
 
-*User story:* A teacher adds a new quiz to the course with two yes/no questions
+The student is logged in and enrolled in the course.
 
-*Preconditions:* There is a course with a teacher
+The forum contains at least one comment that matches the search query.
 
-*Expected outcome:* The quiz is added to the course.
+Expected outcome:
 
-*User story:* A students attempts a quiz and answers correctly.
+The search function returns the matching comment.
 
-*Preconditions:* There is a course with a quiz with two yes/no questions and the quiz grade is calculated automatically and the grade is visible to the students upon submission.
+The student can click on a result to navigate to the comment in the forum.
 
-*Expected outcome:* The student receives 100.
-$$
+User Story 2: A teacher deletes their comment from the forum.
+
+Preconditions:
+
+The teacher has already posted at least one comment in the forum.
+
+Expected outcome:
+
+The comment is successfully deleted.
 
 ## How we tested
 We used two different testing methods:

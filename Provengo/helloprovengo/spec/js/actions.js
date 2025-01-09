@@ -1,3 +1,5 @@
+/* @provengo summon selenium */
+
 function composeQuery(session, data) {
   session.writeText(xpaths.searchWindow.searchInput, data.text)
 }
