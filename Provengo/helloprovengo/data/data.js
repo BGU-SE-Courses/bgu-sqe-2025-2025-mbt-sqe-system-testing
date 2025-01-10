@@ -1,15 +1,22 @@
+/* @provengo summon selenium */
 /*
- *  This is a good place to put common test data, project-wide constants, etc.
+ *  Common test data, project-wide constants, etc.
  */
 
-const URL = 'https://www.google.com/?hl=en';
+const URL = 'http://localhost/opencartsite'; // Replace with your OpenCart URL
+const adminURL = 'http://localhost/opencartsite/admin';
 
 const xpaths = {
-  searchWindow: {
-    searchInput: '//textarea[@aria-label="Search"]',
-    searchButton: '//input[@aria-label="Google Search"]',
-    feelingLuckyButton: '//input[@aria-label="I\'m Feeling Lucky"]'
+  wishlist: {
+    quantityInput: '//input[@name="quantity"]',
+    addToWishlistButton: '//button[@id="add-to-wishlist"]'
+  },
+  admin: {
+    usernameField: '//input[@id="input-username"]',
+    passwordField: '//input[@id="input-password"]',
+    loginButton: '//button[@type="submit"]',
+    productEditLink: '//td[contains(text(), "{product}")]/following-sibling::td//a[contains(@href, "edit")]',
+    productQuantityField: '//input[@name="quantity"]',
+    saveButton: '//button[@type="submit"]'
   }
 }
-
-const searchTerm = 'pizza'
