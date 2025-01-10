@@ -1,19 +1,23 @@
 /* @provengo summon selenium */
 
+
+
 /**
  * This story opens a new browser window, goes to google.com, and searches for "Pizza".
  */
-bthread('Search', function () {
-  let s = new SeleniumSession('search').start(URL)
-  composeQuery(s, { text: 'Pizza' })
-  startSearch(s)
+bthread('Student attempts a change his choice', function () {
+  sync({waitFor:Event("End(create_choice)")})
+    interrupt( Event("Middle(disable_change_choice)"),function(){
+        let s1 = new SeleniumSession().start(URL)
+        navigate_to_login(s1);
+        enter_login_info(s1);
+        click_login(s1);
+        navigate_to_coursePage(s1);
+        select_choice(s1);
+        select_choice_option(s1);
+        submit_choice(s1);
+        change_choice_option(s1);
+        submit_choice(s1);
+    }) 
 })
 
-/**
- * This story opens a new browser window, goes to google.com, and searches for "Pasta" using the "I Feel Lucky" feature.
- */
-bthread('Feeling lucky', function () {
-  let s = new SeleniumSession('lucky').start(URL)
-  composeQuery(s, { text: 'Pasta' })
-  feelLucky(s)
-})
