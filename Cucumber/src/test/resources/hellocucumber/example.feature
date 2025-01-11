@@ -1,6 +1,7 @@
-Feature: A set of scenarios for testing the "example" module
+Feature: Product Management
 
-  Scenario: Testing how a case where a user adds a product to the cart
-    Given an example scenario
-    When all step definitions are implemented
-    Then the scenario passes
+  Scenario: Admin sets product quantity to zero
+    Given the admin is logged into the OpenCart admin panel
+    When the admin navigates to the product list
+    And the admin edits a product quantity to "0"
+    Then the product quantity should be updated successfully
