@@ -9,7 +9,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.JavascriptExecutor;
 
-public class StepDefinitions {
+public class adminSetQuantity {
     private WebDriver driver;
     private String expectedQuantity;
     private String originalQuantity;
@@ -162,104 +162,104 @@ public class StepDefinitions {
         driver.quit();
     }
 
-    @After
-    public void resetProductQuantity() {
-        driver = new ChromeDriver();
-        driver.get("http://localhost/opencartsite/admin-new");
+    // @After
+    // public void resetProductQuantity() {
+    //     driver = new ChromeDriver();
+    //     driver.get("http://localhost/opencartsite/admin-new");
         
-        // Fill username
-        WebElement username = driver.findElement(By.xpath("//*[@id='input-username']"));
-        username.sendKeys("admin");
+    //     // Fill username
+    //     WebElement username = driver.findElement(By.xpath("//*[@id='input-username']"));
+    //     username.sendKeys("admin");
         
-        // Fill password
-        WebElement password = driver.findElement(By.xpath("//*[@id='input-password']"));
-        password.sendKeys("1234");
+    //     // Fill password
+    //     WebElement password = driver.findElement(By.xpath("//*[@id='input-password']"));
+    //     password.sendKeys("1234");
 
-        try {
-            // Wait for 1 seconds
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+    //     try {
+    //         // Wait for 1 seconds
+    //         Thread.sleep(1000);
+    //     } catch (InterruptedException e) {
+    //         e.printStackTrace();
+    //     }
         
-        // Click login button
-        driver.findElement(By.xpath("//button[1]")).click();
+    //     // Click login button
+    //     driver.findElement(By.xpath("//button[1]")).click();
 
-        try {
-            // Wait for 1 seconds
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+    //     try {
+    //         // Wait for 1 seconds
+    //         Thread.sleep(1000);
+    //     } catch (InterruptedException e) {
+    //         e.printStackTrace();
+    //     }
         
-        // Click catalog to open the menu
-        driver.findElement(By.xpath("//*[@id='menu-catalog']/a[1]")).click();
+    //     // Click catalog to open the menu
+    //     driver.findElement(By.xpath("//*[@id='menu-catalog']/a[1]")).click();
 
-        try {
-            // Wait for 2 seconds
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+    //     try {
+    //         // Wait for 2 seconds
+    //         Thread.sleep(1000);
+    //     } catch (InterruptedException e) {
+    //         e.printStackTrace();
+    //     }
 
-        // Click products button
-        driver.findElement(By.xpath("//*[@id='collapse-1']/li[2]/a[1]")).click();
+    //     // Click products button
+    //     driver.findElement(By.xpath("//*[@id='collapse-1']/li[2]/a[1]")).click();
 
-        // Click the edit icon
-        driver.findElement(By.xpath("//tr[1]/td[7]/div[1]/a[1]/i[1]")).click();
+    //     // Click the edit icon
+    //     driver.findElement(By.xpath("//tr[1]/td[7]/div[1]/a[1]/i[1]")).click();
         
-        try {
-            // Wait for 2 seconds
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+    //     try {
+    //         // Wait for 2 seconds
+    //         Thread.sleep(1000);
+    //     } catch (InterruptedException e) {
+    //         e.printStackTrace();
+    //     }
         
-        // Click on the "Data" tab
-        driver.findElement(By.xpath("//form[1]/ul[1]/li[2]/a[1]")).click();
+    //     // Click on the "Data" tab
+    //     driver.findElement(By.xpath("//form[1]/ul[1]/li[2]/a[1]")).click();
         
-        try {
-            // Wait for 1.5 seconds
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+    //     try {
+    //         // Wait for 1.5 seconds
+    //         Thread.sleep(1000);
+    //     } catch (InterruptedException e) {
+    //         e.printStackTrace();
+    //     }
         
-        // Scroll down until the quantity field visible
-        WebElement quantityField = driver.findElement(By.xpath("//*[@id='input-quantity']"));
-        ((JavascriptExecutor) driver).executeScript("window.scrollBy(0, 350);");
+    //     // Scroll down until the quantity field visible
+    //     WebElement quantityField = driver.findElement(By.xpath("//*[@id='input-quantity']"));
+    //     ((JavascriptExecutor) driver).executeScript("window.scrollBy(0, 350);");
         
-        try {
-            // Wait for 1 second
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+    //     try {
+    //         // Wait for 1 second
+    //         Thread.sleep(1000);
+    //     } catch (InterruptedException e) {
+    //         e.printStackTrace();
+    //     }
 
-        // Edit the quantity back to the original value
-        quantityField.clear();
-        quantityField.sendKeys(originalQuantity);
+    //     // Edit the quantity back to the original value
+    //     quantityField.clear();
+    //     quantityField.sendKeys(originalQuantity);
         
-        try {
-            // Wait for 1 second
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+    //     try {
+    //         // Wait for 1 second
+    //         Thread.sleep(1000);
+    //     } catch (InterruptedException e) {
+    //         e.printStackTrace();
+    //     }
 
-        // Scroll to the top of the page
-        ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, 0);");
+    //     // Scroll to the top of the page
+    //     ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, 0);");
         
-        try {
-            // Wait for 1 second
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+    //     try {
+    //         // Wait for 1 second
+    //         Thread.sleep(1000);
+    //     } catch (InterruptedException e) {
+    //         e.printStackTrace();
+    //     }
         
-        // Click the save button
-        driver.findElement(By.xpath("//button[@type='submit']")).click();
+    //     // Click the save button
+    //     driver.findElement(By.xpath("//button[@type='submit']")).click();
 
-        driver.quit();
-    }
+    //     driver.quit();
+    // }
 }
