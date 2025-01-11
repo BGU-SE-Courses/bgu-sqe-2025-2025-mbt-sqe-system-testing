@@ -1,21 +1,12 @@
 /* @provengo summon selenium */
 
 /**
- * This story opens a new browser window, goes to google.com, and searches for "Pizza".
+ * This story simulates the admin setting product quantity to 0.
  */
-bthread('Search', function () {
-  let s = new SeleniumSession('search')
-  s.start(URL)
-  composeQuery(s, { text: 'Pizza' })
-  startSearch(s)
-})
-
-/**
- * This story opens a new browser window, goes to google.com, and searches for "Pasta" using the "I Feel Lucky" feature.
- */
-bthread('Feeling lucky', function () {
-  let s = new SeleniumSession('lucky')
-  s.start(URL)
-  composeQuery(s, { text: 'Pasta' })
-  feelLucky(s)
+bthread('Admin sets product quantity to 0', function () {
+  let s = new SeleniumSession('admin')
+  s.start(adminURL) // Update with your actual admin URL
+  adminLogin(s)
+  setProductQuantity(s, { product: 'Product Name', quantity: '0' })
+  s.close()
 })
