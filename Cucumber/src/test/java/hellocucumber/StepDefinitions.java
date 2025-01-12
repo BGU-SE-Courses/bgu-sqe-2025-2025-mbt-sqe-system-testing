@@ -72,4 +72,17 @@ public class StepDefinitions {
         moodleUser.goToLogin();
         moodleUser.enterLoginInfo(username, password);
     }
+
+    @And("I create a new course named {string}")
+    public void iCreateANewCourse(String courseName) {
+        moodleUser.goToCreateCourse();
+        moodleUser.enterNewCourseInfo(courseName, "Test");
+
+    }
+
+    @And("I create a new assignment named {string} with submission type set to group")
+    public void iCreateANewAssignment(String assignmentName) {
+        moodleUser.goToCreateAssignment();
+        moodleUser.enterNewAssignmentInfo(assignmentName);
+    }
 }
