@@ -12,5 +12,5 @@ Feature: A set of scenarios for testing the "example" module
 
     Examples:
       | Username   | Password  | Course_Name | Choice_Title | Choice_Option1 | Choice_Option2 |
-      | moodleuser | Password1! | course1     | choice1      | option1        | option2        |
+      | moodleuser | Password1! | course1     | choice1      | choice_1      | choice_2       |
 
