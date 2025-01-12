@@ -64,13 +64,9 @@ public class Moodle {
 
     public void goToCoursePage(String courseName){
         // choose My courses in the menu in the higher part of the page
-        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(
+        WebElement myCoursesButton = webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(
             By.xpath("//*[contains(text(),'My courses') " +
                                     "and @role='menuitem']"))
-        );
-        WebElement myCoursesButton = webDriver.findElement(
-            By.xpath("//*[contains(text(),'My courses') " +
-                                    "and @role='menuitem']")
         );
         myCoursesButton.click();
         webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(

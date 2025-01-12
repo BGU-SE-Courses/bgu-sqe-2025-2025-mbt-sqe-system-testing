@@ -39,7 +39,7 @@
             <artifactId>cucumber-java</artifactId>
             <scope>test</scope>
         </dependency>
-                <dependency>
+        <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
             <version>4.18.1</version> <!-- Ensure this version is up-to-date -->
