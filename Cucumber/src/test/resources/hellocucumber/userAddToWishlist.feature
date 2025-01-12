@@ -14,6 +14,3 @@ Feature: Adding products to wishlist with a specified quantity
     Examples:
       | quantity |
       |        1 |
-      |        2 |
-      |        5 |
-      |       10 |

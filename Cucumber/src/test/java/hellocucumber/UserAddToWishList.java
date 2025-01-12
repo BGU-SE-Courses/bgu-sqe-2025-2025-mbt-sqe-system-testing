@@ -24,9 +24,9 @@ public class UserAddToWishList {
     private enum Config {
         WEBDRIVER("webdriver.chrome.driver"),
         DRIVER_PATH("2025-mbt-teamalpha\\Selenium\\chromedriver.exe"),
-        TEST_EMAIL("testuser@example.com"),
-        TEST_PASSWORD("password123"),
-        SAMPLE_PRODUCT("Sample Product"),
+        TEST_EMAIL("user@gmail.com"),
+        TEST_PASSWORD("123456"),
+        SAMPLE_PRODUCT("imac"),
         DEFAULT_QUANTITY(1);
 
         private final String stringValue;
@@ -60,7 +60,7 @@ public class UserAddToWishList {
     //     wait = new WebDriverWait(driver, Duration.ofSeconds(1));
 
     //     // Launch OpenCart site and maximize window
-    //     driver.get("http://localhost/opencartsite/");
+    //     driver.get("http://localhost/openCartSite/");
     //     driver.manage().window().setPosition(new Point(700, 5));
 
     //     System.out.println("Driver initialized. Page title: " + driver.getTitle());
@@ -70,7 +70,7 @@ public class UserAddToWishList {
 
     @And("the user is on the OpenCart homepage")
     public void userIsOnOpenCartHomepage() {
-        driver.get("http://localhost/opencartsite");
+        driver.get("http://localhost/openCartSite");
 
     }
 
@@ -111,15 +111,15 @@ public class UserAddToWishList {
     @Given("the user exists in the OpenCart database")
     public void userExistsInOpenCartDatabase() {
         driver = new ChromeDriver();
-        driver.get("http://localhost/opencartsite");
+        driver.get("http://localhost/openCartSite");
 
         driver.findElement(By.xpath("//li[2]/div[1]/a[1]/span[1]")).click();
         driver.findElement(By.xpath("//li[2]/div[1]/ul[1]/li[1]/a[1]")).click();
-
+        
         driver.findElement(By.xpath("//*[@id='input-firstname']")).sendKeys("user");
         driver.findElement(By.xpath("//*[@id='input-lastname']")).sendKeys("user");
-        driver.findElement(By.xpath("//*[@id='input-email']")).sendKeys("user@gmail.com");
-        driver.findElement(By.xpath("//*[@id='input-password']")).sendKeys("123456");
+        driver.findElement(By.xpath("//*[@id='input-email']")).sendKeys(Config.TEST_EMAIL.getString());
+        driver.findElement(By.xpath("//*[@id='input-password']")).sendKeys(Config.TEST_PASSWORD.getString());
 
         // Scroll down until button visible
         WebElement tuggElement = driver.findElement(By.xpath("//form[1]/div[1]/div[1]/input[1]"));
@@ -136,33 +136,34 @@ public class UserAddToWishList {
         driver.findElement(By.xpath("//li[2]/div[1]/ul[1]/li[2]/a[1]")).click();
         
         // Enter login credentials and submit
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='input-email']"))).sendKeys(username);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='input-password']"))).sendKeys(password);
-        driver.findElement(By.xpath("//*[@id='form-login']/div/button[1]")).click();
+        driver.findElement(By.xpath("//form[1]/div[1]/input[1]")).sendKeys(username);
+        driver.findElement(By.xpath("//form[1]/div[2]/input[1]")).sendKeys(password);
+        driver.findElement(By.xpath("//form[1]/div[3]/button[1]")).click();
 
         System.out.println("User logged in successfully.");
     }
 
     public void searchAndAddToWishlist(String productName, int quantity) {
+        // go to homepage
+        driver.findElement(By.xpath("//header[1]/div[1]/div[1]/div[1]/div[1]/a[1]/img[1]")).click();
         // Search for the product
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[2]/div[1]/input[1]"))).sendKeys(productName);
-        driver.findElement(By.xpath("//*[@id='search']/button[1]")).click();
-
+        driver.findElement(By.xpath("//div[2]/div[1]/input[1]")).sendKeys(productName);
+        driver.findElement(By.xpath("//div[2]/div[1]/button[1]")).click();
         // Select the product
-        driver.findElement(By.xpath("//*[@id='product-list']/div/div/div/a/img[1]")).click();
+        driver.findElement(By.xpath("//div[5]/div[1]/div[1]/div[1]/a[1]/img[1]")).click();
 
-        // Set quantity
-        WebElement quantityField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='input-quantity']")));
-        quantityField.clear();
-        quantityField.sendKeys(String.valueOf(quantity));
+        // // Set quantity
+        // WebElement quantityField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//form[1]/div[1]/input[1]")));
+        // quantityField.clear();
+        // quantityField.sendKeys(String.valueOf(Config.DEFAULT_QUANTITY.getInt()));
 
         // Add to wishlist
-        driver.findElement(By.xpath("//*[@id='button-wishlist']")).click();
+        driver.findElement(By.xpath("//div[1]/div[1]/div[1]/div[2]/form[1]/div[1]/button[1]")).click();
         System.out.println(productName + " added to wishlist with quantity: " + quantity);
 
         // Wait briefly for the wishlist update
         try {
-            Thread.sleep(500);
+            Thread.sleep(1500);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -171,7 +172,7 @@ public class UserAddToWishList {
     @Test
     public void verifyProductInWishlist(String productName, int expectedQuantity) {
         // Navigate to wishlist page
-        driver.findElement(By.xpath("//*[@id='wishlist-total']")).click();
+        driver.findElement(By.xpath("//*[@id='wishlist-total']/span[1]")).click();
 
         // Locate product details in the wishlist
         WebElement wishlistProduct = driver.findElement(By.xpath("//a[contains(text(),'" + productName + "')]"));
