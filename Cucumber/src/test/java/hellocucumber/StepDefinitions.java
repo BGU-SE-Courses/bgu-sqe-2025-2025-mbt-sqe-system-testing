@@ -2,66 +2,59 @@ package hellocucumber;
 
 import io.cucumber.java.en.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class StepDefinitions {
-    private Moodle moodle;
+    private final Map<String,Moodle> actorToMoodle = new HashMap<>();
 
-    public void OpenMoodleInit(){
-        moodle = new Moodle();
+    @Given("{string} is on home page")
+    public void userIsOnHomePage(String actor) {
+        Moodle moodle = new Moodle();
         moodle.initSession();
+        actorToMoodle.put(actor,moodle);
     }
 
-    @Given("User is on Home page")
-    public void user_is_on_home_page() {
-        OpenMoodleInit();
-    }
-
-    @When("Student is logged in with {string} and {string}")
-    public void userIsLoggedIn(String userName, String password) {
+    @When("{string} is logged in with {string} and {string}")
+    public void userIsLoggedIn(String actor, String userName, String password) {
+        Moodle moodle = actorToMoodle.get(actor);
         moodle.goToLogIn();
         moodle.enterLoginInfo(userName,password);
     }
 
-    @And("the student navigates to the {string} course page")
-    public void theStudentNavigatesToTheCoursePage(String courseName) {
+    @And("the {string} navigates to the {string} course page")
+    public void navigateToTheCoursePage(String actor, String courseName) {
+        Moodle moodle = actorToMoodle.get(actor);
         moodle.goToCoursePage(courseName);
     }
 
-    @And("the student clicks on the choice titled {string}")
-    public void theStudentClicksOnTheChoiceTitled(String choiceName) {
-        moodle.goToChoice(choiceName);
+    @And("the {string} clicks on the choice test titled {string}")
+    public void clickOnTheChoiceTestTitled(String actor, String choiceTestName) {
+        Moodle moodle = actorToMoodle.get(actor);
+        moodle.goToChoice(choiceTestName);
     }
 
-    @And("the student clicks on the choice option titled {string}")
-    public void theStudentClicksOnTheChoiceOptionTitled(String choiceOption) {
+    @And("the {string} clicks on the choice option titled {string}")
+    public void clickOnTheChoiceOptionTitled(String actor, String choiceOption) {
+        Moodle moodle = actorToMoodle.get(actor);
         moodle.chooseOption(choiceOption);
     }
 
-    @Then("the student should be able to change his choice to {string}")
-    public void theStudentShouldBeAbleToChangeHisChoiceTo(String choiceOption) {
+    @Then("the {string} should be able to change his choice to {string}")
+    public void changeChoiceTo(String actor, String choiceOption) {
+        Moodle moodle = actorToMoodle.get(actor);
         moodle.chooseOption(choiceOption);
     }
 
-    @And("the student should be able to save the choice")
-    public void theStudentShouldBeAbleToSaveTheChoice() {
+    @And("the {string} should be able to save the choice")
+    public void saveTheChoice(String actor) {
+        Moodle moodle = actorToMoodle.get(actor);
         moodle.saveChoice();
     }
 
-    // // $$*TODO* explain what this step does$$
-    // @Given("an example scenario")
-    // public void anExampleScenario() {
-    // }
-
-    // // $$*TODO* explain what this step does$$
-    // @When("all step definitions are implemented")
-    // public void allStepDefinitionsAreImplemented() {
-    // }
-
-    // // $$*TODO* explain what this step does$$
-    // @Then("the scenario passes")
-    // public void theScenarioPasses() {
-    // }
-
+    @Given("the {string} disables updates for the choice test")
+    public void disableUpdatesForTheChoiceTest(String actor) {
+        Moodle moodle = actorToMoodle.get(actor);
+        moodle.disableUpdatesForChoiceTest();
+    }
 }

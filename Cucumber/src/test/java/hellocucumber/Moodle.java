@@ -98,4 +98,14 @@ public class Moodle {
         );
         submitButton.click();
     }
+
+    public void disableUpdatesForChoiceTest() {
+        // find the setting button and click on it
+        WebElement settingButton = webDriver.findElement(
+                // by name "Settings"
+                By.xpath("//*[@id='Settings']")
+        );
+        settingButton.click();
+
+    }
 }
