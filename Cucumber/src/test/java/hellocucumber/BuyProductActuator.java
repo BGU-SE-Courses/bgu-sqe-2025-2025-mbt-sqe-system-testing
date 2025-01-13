@@ -31,7 +31,7 @@ public class BuyProductActuator {
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(40));
 
         // Launch PrestaShop website
-        driver.get("http://localhost/prestashop/");
+        driver.get("http://localhost/my_shop/");
 
         // Maximize window to ensure proper display
         driver.manage().window().setPosition(new Point(700, 5));
@@ -41,7 +41,7 @@ public class BuyProductActuator {
 
     public void goToLogin() {
         // Navigate to the login page by clicking the login link
-        driver.findElement(By.xpath("/html/body/main/header/nav/div/div/div[1]/div[2]/div[2]/div/a")).click();
+        driver.findElement(By.xpath("//a[@href=\"http://localhost/my_shop/login?back=http%3A%2F%2Flocalhost%2Fmy_shop%2F\"]")).click();
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/main/section/div/div/div/section/div/section/form/div/div[1]/label")));
     }
 

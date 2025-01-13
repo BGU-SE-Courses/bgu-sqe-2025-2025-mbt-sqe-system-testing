@@ -1,5 +1,6 @@
 package hellocucumber;
 
+import io.cucumber.java.Before;
 import io.cucumber.java.en.*;
 
 import org.junit.jupiter.api.Assertions;
@@ -10,14 +11,16 @@ public class StepDefinitions {
     private static BuyProductActuator buyProductActuator;
     private String webDriver = "webdriver.chrome.driver";
     //TODO: change this path
-    private String path = "C:\\sq_assignment4\\2025-mbt-m\\Selenium\\chromedriver.exe";
+    private String path = "..\\Selenium\\chromedriver.exe";
 
     // Initialize the user session
+    @Before
     public void OpenCartInitUser() {
         System.out.println("--------------- INITIALIZING TEST - OPENING WEBPAGE ---------------");
         if (buyProductActuator == null) {
             buyProductActuator = new BuyProductActuator();
         }
+        System.out.println("Current working directory: " + System.getProperty("user.dir"));
         buyProductActuator.initSessionAsUser(webDriver, path);
     }
 
