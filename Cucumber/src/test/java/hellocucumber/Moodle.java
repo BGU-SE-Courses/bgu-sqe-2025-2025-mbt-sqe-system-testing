@@ -100,12 +100,32 @@ public class Moodle {
     }
 
     public void disableUpdatesForChoiceTest() {
-        // find the setting button and click on it
-        WebElement settingButton = webDriver.findElement(
-                // by name "Settings"
-                By.xpath("//*[@id='Settings']")
+        WebElement settings = webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(
+            By.xpath("//a[contains(@href, 'update')]")
+        ));
+        settings.click();
+        WebElement selector = webDriver.findElement(
+            By.xpath("//*[@id=\"id_allowupdate\"]/option[1]")
         );
-        settingButton.click();
+        selector.click();
+        WebElement saveChanges = webDriver.findElement(
+            By.xpath("//*[@id=\"id_submitbutton2\"]")
+        );
+        saveChanges.click();
+    }
 
+    public void allowUpdatesForChoiceTest() {
+        WebElement settings = webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(
+                By.xpath("//a[contains(@href, 'update')]")
+        ));
+        settings.click();
+        WebElement selector = webDriver.findElement(
+                By.xpath("//*[@id=\"id_allowupdate\"]/option[2]")
+        );
+        selector.click();
+        WebElement saveChanges = webDriver.findElement(
+                By.xpath("//*[@id=\"id_submitbutton2\"]")
+        );
+        saveChanges.click();
     }
 }

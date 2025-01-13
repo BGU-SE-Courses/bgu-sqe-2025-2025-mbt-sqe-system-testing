@@ -57,4 +57,21 @@ public class StepDefinitions {
         Moodle moodle = actorToMoodle.get(actor);
         moodle.disableUpdatesForChoiceTest();
     }
+
+    @And("the {string} should not be able to change his choice to {string}")
+    public void notBeAbleToChangeChoiceTo(String actor, String choiceOption) {
+        Moodle moodle = actorToMoodle.get(actor);
+        try{
+            moodle.chooseOption(choiceOption);
+        } catch (Exception e){
+            // the exception is expected
+        }
+    }
+
+    @And("the {string} enables updates for the choice test {string}")
+    public void enableUpdatesForTheChoiceTest(String actor, String choiceTestTitle) {
+        Moodle moodle = actorToMoodle.get(actor);
+        clickOnTheChoiceTestTitled(actor,choiceTestTitle);
+        moodle.allowUpdatesForChoiceTest();
+    }
 }
