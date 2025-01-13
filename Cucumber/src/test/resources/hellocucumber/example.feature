@@ -1,6 +1,16 @@
-Feature: A set of scenarios for testing the "example" module
+Feature: Cancel coupon
 
-  Scenario: Testing how a case where a user adds a product to the cart
-    Given an example scenario
-    When all step definitions are implemented
-    Then the scenario passes
+  Scenario Outline: Admin cancel coupon
+    Given User is on log in page
+    When Admin is logged in with "<Username>" and "<Password>"
+    And Admin click on marketing button
+    And Admin navigates to Coupon button
+    And Admin watch Coupon page
+    And Admin click on edit button
+    And Admin click on status button
+    And Admin click on the save button
+    Then the Coupon is disable
+
+    Examples:
+      | Username | Password|
+      | admin    | 1234|

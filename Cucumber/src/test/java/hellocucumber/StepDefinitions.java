@@ -4,20 +4,70 @@ import io.cucumber.java.en.*;
 
 import org.junit.jupiter.api.Assertions.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class StepDefinitions {
-
-    // $$*TODO* explain what this step does$$
-    @Given("an example scenario")
-    public void anExampleScenario() {
+    private static opencartActuator opencartUser;
+    private static opencartActuatorAdmin opencartManager;
+    private static List<opencartActuator> allopenCarts;
+    private static List<opencartActuatorAdmin> allopenCartsA;
+    private String webDriver = "webdriver.chrome.driver";
+    private String path = "C:\\ass4\\Selenium\\chromedriver.exe";
+    public void OpenCartInitUser() {
+        System.out.println("--------------- INITIALIZING MOODLE TEST - OPENING WEBPAGE ---------------");
+        if(allopenCarts == null){
+            allopenCarts = new ArrayList<>();
+        }
+        opencartUser = new opencartActuator();
+        allopenCarts.add(opencartUser);
+        opencartUser.initSessionAsUser(webDriver, path);
+    }
+    public void OpenCartInitAdmin() {
+        System.out.println("--------------- INITIALIZING MOODLE TEST - OPENING WEBPAGE ---------------");
+        if(allopenCartsA == null){
+            allopenCartsA = new ArrayList<>();
+        }
+        opencartManager = new opencartActuatorAdmin();
+        allopenCartsA.add(opencartManager);
+        opencartManager.initSessionAsAdmin(webDriver, path);
     }
 
     // $$*TODO* explain what this step does$$
-    @When("all step definitions are implemented")
-    public void allStepDefinitionsAreImplemented() {
+    @Given("User is on log in page")
+    public void userIsOnHomePage() {
+        OpenCartInitAdmin();
     }
 
     // $$*TODO* explain what this step does$$
-    @Then("the scenario passes")
+    @When("Admin is logged in with {string} and {string}")
+    public void user_is_logged_in_with_and(String email, String password) {
+        opencartManager.enterLoginInfoAdmin(email, password);
+    }
+
+    @And("Admin click on marketing button")
+    public void AdminClickMarketingButton() {
+        opencartManager.clickMarketingButton();
+    }
+
+    @And("Admin watch Coupon page")
+    public void AdminClickCouponButton() {
+        opencartManager.clickCouponsButton();
+    }
+
+    @And("Admin click on edit button")
+    public void allStepDefinitionsAreImplemented5() {
+    }
+
+    @And("Admin click on status button")
+    public void allStepDefinitionsAreImplemented6() {
+    }
+
+    @And("Admin click on the save button")
+    public void allStepDefinitionsAreImplemented7() {
+    }
+    // $$*TODO* explain what this step does$$
+    @Then("the Coupon is disable")
     public void theScenarioPasses() {
     }
 
