@@ -63,7 +63,8 @@ public class StepDefinitions {
         Moodle moodle = actorToMoodle.get(actor);
         try{
             moodle.chooseOption(choiceOption);
-        } catch (Exception e){
+            throw new RuntimeException("The choice option should not be clickable");
+        } catch (org.openqa.selenium.NoSuchElementException e){
             // the exception is expected
         }
     }
