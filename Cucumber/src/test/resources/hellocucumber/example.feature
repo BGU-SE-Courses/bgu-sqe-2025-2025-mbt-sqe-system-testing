@@ -16,5 +16,5 @@ Feature: A set of scenarios for testing the "PrestaShop" application
 
     Examples:
       | Email           | Password  |
-      | nitzan861999@gmail.com | 123456kk  |
+      | tomas@gmail.com | TomasNano123  |
 #      | gor@gmail.com | 123456kk  |
