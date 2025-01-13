@@ -30,41 +30,19 @@ public class StepDefinitions {
 
     @And("I navigate to the assignment settings page")
     public void iNavigateToTheAssignmentSettingsPage() {
+        moodleUser.goToAssignmentSettings();
+    }
+
+    @When("I select individual submission in the submission type dropdown making sure to save")
+    public void iSelectInTheSubmissionTypeDropdown() {
+        moodleUser.enterIndividualAssignmentSettings();
         
     }
 
-    @When("I select {string} in the submission type dropdown")
-    public void iSelectInTheSubmissionTypeDropdown(String arg0) {
+    @Then("the system should confirm the submission type is set to individual")
+    public void theSystemShouldConfirmTheSubmissionTypeIsSetTo() {
+        moodleUser.confirmSubmissionType();
         
-    }
-
-    @And("I save the changes")
-    public void iSaveTheChanges() {
-        
-    }
-
-    @Then("the system should confirm the submission type is set to {string}")
-    public void theSystemShouldConfirmTheSubmissionTypeIsSetTo(String arg0) {
-        
-    }
-
-    @When("I attempt to change the submission type to {string}")
-    public void iAttemptToChangeTheSubmissionTypeTo(String arg0) {
-        
-    }
-
-    @Given("I am logged in as a teacher without editing permissions")
-    public void iAmLoggedInAsATeacherWithoutEditingPermissions() {
-        
-    }
-
-    @Then("I should see an error message stating {string}")
-    public void iShouldSeeAnErrorMessageStating(String arg0) {
-        
-    }
-
-    @And("the backend service fails")
-    public void theBackendServiceFails() {
     }
 
     @When("I am logged in with {string} and {string}")

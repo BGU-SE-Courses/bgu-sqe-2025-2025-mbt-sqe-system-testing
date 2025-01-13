@@ -10,9 +10,8 @@ Feature: Change assignment submission type
     And I create a new course named "New Course"
     And I create a new assignment named "Assignment 1" with submission type set to group
     And I navigate to the assignment settings page
-    When I select "Individual submission" in the submission type dropdown
-    And I save the changes
-    Then the system should confirm the submission type is set to "Individual"
+    When I select individual submission in the submission type dropdown making sure to save
+    Then the system should confirm the submission type is set to individual
 
 
 #  Scenario: Fail to change submission type without permissions
