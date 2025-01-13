@@ -10,12 +10,11 @@ public class StepDefinitions {
 
     private static BuyProductActuator buyProductActuator;
     private String webDriver = "webdriver.chrome.driver";
-    //TODO: change this path
     private String path = "..\\Selenium\\chromedriver.exe";
 
     // Initialize the user session
     @Before
-    public void OpenCartInitUser() {
+    public void BuyProductInitUser() {
         System.out.println("--------------- INITIALIZING TEST - OPENING WEBPAGE ---------------");
         if (buyProductActuator == null) {
             buyProductActuator = new BuyProductActuator();
@@ -24,8 +23,48 @@ public class StepDefinitions {
         buyProductActuator.initSessionAsUser(webDriver, path);
     }
 
+    // Scenario 1: User buys an item from the store
 
-    // Scenario 1: Admin deletes an item from the store
+    // Simulate user login to the store
+    @Given("a user is logged into the PrestaShop store with {string} and {string}")
+    public void aUserIsLoggedIntoThePrestaShopStore(String email, String password) {
+        buyProductActuator.goToLogin();
+        buyProductActuator.enterLoginInfo(email, password);
+    }
+
+    // Simulate user adding an item to the shopping cart
+    @Given("the user adds an item to their shopping cart")
+    public void theUserAddsTheItemToTheirShoppingCart() {
+        buyProductActuator.addProductToCart();
+    }
+
+    // Simulate user buy the item through the checkout and payment process
+    @When("the user buy the item")
+    public void theUserProceedsToCheckoutAndCompletesPayment() {
+        buyProductActuator.proceedToCheckout();
+        buyProductActuator.enterAddressDetailsAndContinue();
+        buyProductActuator.confirmShippingMethodAndContinue();
+        buyProductActuator.enterPaymentDetailsAndConfirm();
+    }
+
+    //verify that the product purchase successfully confirmed
+    @Then("the product purchase successfully confirmed")
+    public void theOrderConfirmationPageIsDisplayed() {
+        buyProductActuator.verifySuccessfulProductBuy();
+    }
+
+    /*
+    // $$*TODO* explain what this step does$$
+    @Then("the item is marked as \"sold\" in the store's inventory")
+    public void theItemIsMarkedAsSoldInTheStoresInventory() {
+        // Verify that the item is marked as "sold" in the inventory
+        System.out.println("Item is marked as \"sold\" in the store's inventory.");
+        // Assert that the item is marked as sold (simulated)
+        Assertions.assertTrue(true, "Item should be marked as sold.");
+    }
+    */
+
+    // Scenario 2: Admin deletes an item from the store
 
     // $$*TODO* explain what this step does$$
     @Given("an admin is logged into the PrestaShop admin panel")
@@ -65,48 +104,4 @@ public class StepDefinitions {
         // Assert that the item is no longer in the store (simulated)
         Assertions.assertTrue(true, "Item should no longer be available for purchase.");
     }
-
-    // Scenario 2: User buys an item from the store
-
-    // $$*TODO* explain what this step does$$
-    @Given("a user is logged into the PrestaShop store with {string} and {string}")
-    public void aUserIsLoggedIntoThePrestaShopStore(String email, String password) {
-        // Simulate user login to the store
-        buyProductActuator.goToLogin();
-        buyProductActuator.enterLoginInfo(email, password);
-    }
-
-    // $$*TODO* explain what this step does$$
-    @Given("the user adds an item to their shopping cart")
-    public void theUserAddsTheItemToTheirShoppingCart() {
-        // Simulate user adding the item to the shopping cart
-        buyProductActuator.addProductToCart();
-    }
-
-    // $$*TODO* explain what this step does$$
-    @When("the user buy the item")
-    public void theUserProceedsToCheckoutAndCompletesPayment() {
-        // Simulate the checkout and payment process
-        buyProductActuator.proceedToCheckout();
-        buyProductActuator.enterAddressDetailsAndContinue();
-        buyProductActuator.confirmShippingMethodAndContinue();
-        buyProductActuator.enterPaymentDetailsAndConfirm();
-    }
-
-    // $$*TODO* explain what this step does$$
-    @Then("the product successfully bought")
-    public void theOrderConfirmationPageIsDisplayed() {
-        buyProductActuator.verifySuccessfulProductBuy();
-    }
-
-    /*
-    // $$*TODO* explain what this step does$$
-    @Then("the item is marked as \"sold\" in the store's inventory")
-    public void theItemIsMarkedAsSoldInTheStoresInventory() {
-        // Verify that the item is marked as "sold" in the inventory
-        System.out.println("Item is marked as \"sold\" in the store's inventory.");
-        // Assert that the item is marked as sold (simulated)
-        Assertions.assertTrue(true, "Item should be marked as sold.");
-    }
-    */
 }

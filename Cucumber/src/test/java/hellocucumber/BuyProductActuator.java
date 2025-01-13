@@ -52,7 +52,7 @@ public class BuyProductActuator {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"field-password\"]"))).sendKeys(password);
         // locate sign in button and press
         driver.findElement(By.xpath("//*[@id=\"submit-login\"]")).click();
-        // Wait for a moment
+        // Wait for the dashboard to load
         try {
             Thread.sleep(500);
         } catch (InterruptedException e) {
@@ -68,20 +68,15 @@ public class BuyProductActuator {
          * This method performs the following actions:
          * 1. Locates the search bar and enters the product name.
          * 2. Clicks on the first product from the search results.
-         * 3. Retrieves the number of items in the cart before adding the product, and prints it.
-         * 4. Clicks the 'Add to Cart' button.
+         * 3. Clicks the 'Add to Cart' button.
          *
          * @throws InterruptedException If the Thread.sleep is interrupted.
          */
         // Search for a product (e.g., "T-Shirt")
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/main/header/div[2]/div/div[1]/div[2]/div[2]/form/input[2]"))).sendKeys("T-Shirt");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/main/header/div[2]/div/div[1]/div[2]/div[2]/form/input[2]"))).sendKeys("T-Shirt" + Keys.RETURN);
 
         // Click on the first product in the search results
-        driver.findElement(By.xpath("/html/body/main/section/div/div/div/section/section/div[3]/div[1]/div")).click();
-
-        // Save current cart number of products
-        WebElement cartButton = driver.findElement(By.xpath("/html/body/main/header/nav/div/div/div[1]/div[2]/div[3]/div"));
-        String cartText = cartButton.getText();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/main/section/div/div/div/section/section/div[3]/div[1]/div"))).click();
 
         // Add the product to the cart
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/main/section/div/div/div/section/div[1]/div[2]/div[2]/div[2]/form/div[2]/div/div[2]/button"))).click();
@@ -125,26 +120,33 @@ public class BuyProductActuator {
         // Wait for the personal details section to load
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='checkout-addresses-step']/h1[1]")));
 
-        // Enter personal details
-        driver.findElement(By.xpath("//input[@name=\"firstname\"]")).sendKeys(firstName);
-        driver.findElement(By.xpath("//input[@name=\"lastname\"]\n")).sendKeys(lastName);
-        driver.findElement(By.xpath("//input[@name=\"address1\"]")).sendKeys(address);
-        driver.findElement(By.xpath("//input[@name=\"city\"]")).sendKeys(city);
+        //check if the address details are already filled in the past, if not fill them
+        try {
+            driver.findElement(By.xpath("//*[@id='delivery-addresses']/article[1]"));
+        } catch (NoSuchElementException e) {
 
-        //select state from dropdown
-        WebElement dropdown_state = driver.findElement(By.xpath("//select[@name='id_state']"));
-        Select select_state = new Select(dropdown_state);
-        select_state.selectByValue(state);
+            // Enter personal details
+            //driver.findElement(By.xpath("//input[@name=\"firstname\"]")).sendKeys(firstName);
+            //driver.findElement(By.xpath("//input[@name=\"lastname\"]\n")).sendKeys(lastName);
+            driver.findElement(By.xpath("//input[@name=\"address1\"]")).sendKeys(address);
+            driver.findElement(By.xpath("//input[@name=\"city\"]")).sendKeys(city);
 
-        driver.findElement(By.xpath("//input[@name=\"postcode\"]")).sendKeys(zipCode);
+            //select state from dropdown
+            WebElement dropdown_state = driver.findElement(By.xpath("//select[@name='id_state']"));
+            Select select_state = new Select(dropdown_state);
+            select_state.selectByVisibleText(state);
 
-        //select country from dropdown
-        WebElement dropdown_country = driver.findElement(By.xpath("//select[@name=\"id_country\"]"));
-        Select select_country = new Select(dropdown_country);
-        select_country.selectByValue(country);
+            driver.findElement(By.xpath("//input[@name=\"postcode\"]")).sendKeys(zipCode);
 
-        // Click on the continue button
-        driver.findElement(By.xpath("//button[@name=\"confirm-addresses\"]")).click();
+            //select country from dropdown
+            WebElement dropdown_country = driver.findElement(By.xpath("//select[@name=\"id_country\"]"));
+            Select select_country = new Select(dropdown_country);
+            select_country.selectByVisibleText(country);
+        }
+        finally {
+            // Click on the continue button
+            driver.findElement(By.xpath("//button[@name=\"confirm-addresses\"]")).click();
+        }
     }
 
     public void confirmShippingMethodAndContinue() {
@@ -160,10 +162,7 @@ public class BuyProductActuator {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='checkout-payment-step']/h1[1]")));
 
         // Select a payment method (e.g., "Pay by Cash on Delivery")
-        driver.findElement(By.xpath("//*[@id='payment-option-1-container']/span[1]/span[1]")).click();
-
-        // Confirm the payment
-        driver.findElement(By.xpath("//button[@class='btn btn-primary center-block']")).click();
+        driver.findElement(By.xpath("//*[@id=\"payment-option-1\"]")).click();
 
         // agree to terms and conditions
         driver.findElement(By.xpath("//*[@id='conditions-to-approve']/ul[1]/li[1]/div[1]/span[1]/input[1]")).click();
@@ -179,8 +178,15 @@ public class BuyProductActuator {
          * Verifies that the product is successfully bought.
          * Check that the order confirmation page is displayed.
          */
-        WebElement successMessage = driver.findElement(By.xpath("//*[@id='content-hook_order_confirmation']/div[1]/div[1]/div[1]/h3[1]\n"));
+
+        WebElement successMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='content-hook_order_confirmation']/div[1]/div[1]/div[1]/h3[1]")));
         String messageText = successMessage.getText();
+        //extract only the letters in the message using regex
+        Pattern pattern = Pattern.compile("[a-zA-Z ]+");
+        Matcher matcher = pattern.matcher(messageText);
+        if (matcher.find()) {
+            messageText = matcher.group();
+        }
         Assert.assertEquals("YOUR ORDER IS CONFIRMED", messageText);
     }
 }
