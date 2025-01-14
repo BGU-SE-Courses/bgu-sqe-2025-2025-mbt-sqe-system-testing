@@ -1,8 +1,5 @@
 // @provengo summon ctrl
 
-/**
- * List of events "of interest" that we want test suites to cover.
- */
 const GOALS = [
     // Student flow events
     any(/Start\(student_login\)/),
@@ -17,9 +14,7 @@ const GOALS = [
     any(/End\(teacher_login\)/),
     any(/Start\(delete_comment\)/),
     any(/ReadyToDelete/),
-    any(/End\(delete_comment\)/),
-    any(/Start\(restore_comment\)/),
-    any(/End\(restore_comment\)/)
+    any(/End\(delete_comment\)/)
 ];
 
 /**
@@ -34,7 +29,6 @@ const makeGoals = function(){
         // Teacher critical sequences
         [any(/End\(teacher_login\)/), any(/Start\(delete_comment\)/)],
         [any(/ReadyToDelete/), any(/End\(delete_comment\)/)],
-        [any(/End\(delete_comment\)/), any(/Start\(restore_comment\)/)],
 
         // Student-Teacher interactions
         [any(/End\(navigate_to_comment\)/), any(/ReadyToDelete/)],

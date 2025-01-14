@@ -112,23 +112,6 @@ function delete_comment(session, data) {
   }
 }
 
-function restore_comment(session, data) {
-  bp.sync({ request: bp.Event("Start(restore_comment)") });
-
-  try {
-    session.click("//a[@href='http://localhost:8080/my/courses.php']");
-    session.click("//span[3]/span[2]");
-    session.click("//div[1]/div[2]/div[2]/div[1]/div[1]/a[1]");
-    session.click("//div[1]/div[1]/div[2]/a[1]");
-    session.writeText("//div[2]/div[2]/input[1]", data.commentText, true);
-    session.writeText("//textarea[@id='id_message']", "This is the restored message");
-    session.click("//div[1]/span[1]/input[1]");
-  } catch (e) {
-    throw new Error("Restore comment failed: " + e.message);
-  }
-
-  bp.sync({ request: bp.Event("End(restore_comment)") });
-}
 
 
 

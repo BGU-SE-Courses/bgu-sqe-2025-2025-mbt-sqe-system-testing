@@ -20,5 +20,5 @@ const teacherCredentials = {
 // Test data
 const testData = {
     courseName: "course1",
-    comments: ["hey1", "hey2", "hey3", "hey4", "hey5"]
+    comment: "hey1"
 };
