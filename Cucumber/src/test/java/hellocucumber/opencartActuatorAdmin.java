@@ -1,9 +1,6 @@
 package hellocucumber;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.Point;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -46,24 +43,45 @@ public class opencartActuatorAdmin {
     }
 
     public void clickCouponsButton(){
-        //  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//nav[1]/ul[1]/li[7]/ul[1]/li[2]/a[1]"))).click();
-
-//        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[contains(@href, 'route=marketing/coupon')]"))).click();
-//        wait.until(ExpectedConditions.titleContains("Coupons"));
-//        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[contains(@href, 'route=marketing/coupon')]"))).click();
-        //wait.until(ExpectedConditions.titleContains("Coupons"));
-
-//        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body/div[1]/nav[1]/ul[1]/li[7]/ul[1]/li[3]/a[1]"))).click();
-//        wait.until(ExpectedConditions.titleContains("Coupons"));
-
-//        // Wait for the "Coupon" link with class="active" to be clickable and click it
-//        WebDriverWait longWait = new WebDriverWait(driver, Duration.ofSeconds(3));
-//        longWait.until(ExpectedConditions.elementToBeClickable(By.xpath("//li[@class='active']/a[contains(@href, 'route=marketing/coupon')]"))).click();
-
-        // Verify that the "Coupons" page is loaded
-//        longWait.until(ExpectedConditions.titleContains("Coupons"));
-//        WebElement element = driver.findElement(By.linkText("Coupons"));
-//        element.click();
+         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//nav[1]/ul[1]/li[7]/ul[1]/li[3]/a[1]"))).click();
+        wait.until(ExpectedConditions.titleContains("Coupons"));
     }
 
+    public void clickEditCouponsButton(){
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//tr[1]/td[8]/a[1]"))).click();
+    }
+
+    public void scrollDownUntilFindStatus(){
+        ((JavascriptExecutor)driver).executeScript("window,scrollTo(0,document.body.scrollHeight);");
+        try{
+            Thread.sleep(500);
+        } catch (InterruptedException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    public void ClickOnStatusButton(){
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='input-status']"))).click();
+        try{
+            Thread.sleep(500);
+        } catch (InterruptedException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    public void scrollUpUntilFindSave(){
+        ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, 0);");
+        try{
+            Thread.sleep(500);
+        } catch (InterruptedException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    public void ClickOnSaveButton(){
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[1]/div[1]/button[1]"))).click();
+    }
 }

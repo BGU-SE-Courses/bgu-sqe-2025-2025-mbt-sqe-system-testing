@@ -50,21 +50,32 @@ public class StepDefinitions {
         opencartManager.clickMarketingButton();
     }
 
-    @And("Admin watch Coupon page")
+    @And("Admin navigates to Coupon button")
     public void AdminClickCouponButton() {
         opencartManager.clickCouponsButton();
     }
 
     @And("Admin click on edit button")
-    public void allStepDefinitionsAreImplemented5() {
+    public void AdminClickOnEditCoupon() {
+        opencartManager.clickEditCouponsButton();
+    }
+    @And("Admin scroll down")
+    public void AdminScrollDownUntilFindStatus() {
+        opencartManager.scrollDownUntilFindStatus();
+    }
+    @And("Admin click on status button")
+    public void AdminClickOnStatusButton() {
+        opencartManager.ClickOnStatusButton();
     }
 
-    @And("Admin click on status button")
-    public void allStepDefinitionsAreImplemented6() {
+    @And("Admin scroll up")
+    public void AdminScrollUpUntilFindSave() {
+        opencartManager.scrollUpUntilFindSave();
     }
 
     @And("Admin click on the save button")
-    public void allStepDefinitionsAreImplemented7() {
+    public void AdminClickOnSaveButton() {
+        opencartManager.ClickOnSaveButton();
     }
     // $$*TODO* explain what this step does$$
     @Then("the Coupon is disable")
