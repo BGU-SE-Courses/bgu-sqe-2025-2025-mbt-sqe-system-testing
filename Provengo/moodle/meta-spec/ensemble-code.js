@@ -20,18 +20,40 @@ const GOALS = [
 /**
  * Creates goals for two-way testing coverage
  */
+// const makeGoals = function(){
+//     return [
+//         // Student critical sequences
+//         [any(/End\(student_login\)/), any(/Start\(search_comment\)/)],
+//         [any(/End\(search_comment\)/), any(/Start\(navigate_to_comment\)/)],
+//
+//         // Teacher critical sequences
+//         [any(/End\(teacher_login\)/), any(/Start\(delete_comment\)/)],
+//         [any(/ReadyToDelete/), any(/End\(delete_comment\)/)],
+//
+//         // Student-Teacher interactions
+//         [any(/End\(navigate_to_comment\)/), any(/ReadyToDelete/)],
+//         [any(/End\(search_comment\)/), any(/Start\(delete_comment\)/)]
+//     ];
+// }
+
 const makeGoals = function(){
     return [
-        // Student critical sequences
+        // Student flow pairs
+        [any(/Start\(student_login\)/), any(/End\(student_login\)/)],
         [any(/End\(student_login\)/), any(/Start\(search_comment\)/)],
+        [any(/Start\(search_comment\)/), any(/End\(search_comment\)/)],
         [any(/End\(search_comment\)/), any(/Start\(navigate_to_comment\)/)],
+        [any(/Start\(navigate_to_comment\)/), any(/End\(navigate_to_comment\)/)],
 
-        // Teacher critical sequences
+        // Teacher flow pairs
+        [any(/Start\(teacher_login\)/), any(/End\(teacher_login\)/)],
         [any(/End\(teacher_login\)/), any(/Start\(delete_comment\)/)],
+        [any(/Start\(delete_comment\)/), any(/ReadyToDelete/)],
         [any(/ReadyToDelete/), any(/End\(delete_comment\)/)],
 
-        // Student-Teacher interactions
+        // Cross-flow pairs (Student-Teacher interactions)
         [any(/End\(navigate_to_comment\)/), any(/ReadyToDelete/)],
+        [any(/End\(student_login\)/), any(/Start\(teacher_login\)/)],
         [any(/End\(search_comment\)/), any(/Start\(delete_comment\)/)]
     ];
 }
