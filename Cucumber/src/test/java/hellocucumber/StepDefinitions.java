@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Assertions.*;
 public class StepDefinitions {
 
     private static BuyProductActuator buyProductActuator;
+    private static DeleteProductActuatorAdmin deleteProductActuatorAdmin;
     private String webDriver = "webdriver.chrome.driver";
     private String path = "..\\Selenium\\chromedriver.exe";
 
@@ -19,8 +20,17 @@ public class StepDefinitions {
         if (buyProductActuator == null) {
             buyProductActuator = new BuyProductActuator();
         }
-        System.out.println("Current working directory: " + System.getProperty("user.dir"));
         buyProductActuator.initSessionAsUser(webDriver, path);
+    }
+
+    // Initialize the admin session
+    @Before
+    public void DeleteProductInitAdmin() {
+        System.out.println("--------------- INITIALIZING TEST - OPENING WEBPAGE ---------------");
+        if (deleteProductActuatorAdmin == null) {
+            deleteProductActuatorAdmin = new DeleteProductActuatorAdmin();
+        }
+        deleteProductActuatorAdmin.initSessionAsAdmin(webDriver, path);
     }
 
     // Scenario 1: User buys an item from the store
@@ -66,42 +76,37 @@ public class StepDefinitions {
 
     // Scenario 2: Admin deletes an item from the store
 
-    // $$*TODO* explain what this step does$$
-    @Given("an admin is logged into the PrestaShop admin panel")
-    public void anAdminIsLoggedIntoThePrestaShopAdminPanel() {
-        // Simulate admin login to the admin panel
+    // Simulate admin login to the admin panel
+    @Given("an admin is logged in with <string> and <string>")
+    public void anAdminIsLoggedIntoThePrestaShopAdminPanel(String email, String password) {
         System.out.println("Admin is logged into the PrestaShop admin panel.");
     }
 
-    // $$*TODO* explain what this step does$$
-    @Given("the admin navigates to the product catalog")
-    public void theAdminNavigatesToTheProductCatalog() {
-        // Simulate navigation to the product catalog in the admin panel
+    //simulate user login to the store
+    @And("a user is logged in with {string} and {string}")
+    public void aUserIsLoggedIntoTheStore(String email, String password) {
+        buyProductActuator.goToLogin();
+        buyProductActuator.enterLoginInfo(email, password);
+    }
+
+    // simulate user adding an item to the shopping cart
+    @And("the user has added an item to their shopping cart")
+    public void theUserAddedItemToCart() {
         System.out.println("Admin navigates to the product catalog.");
     }
 
-    // $$*TODO* explain what this step does$$
-    @When("the admin deletes an item from the store")
-    public void theAdminDeletesAnItemFromTheStore() {
-        // Simulate admin deleting a product from the store
+    // Simulate admin deleting the item from the store
+    @When("the admin deletes the item from the store")
+    public void theAdminDeletesTheItemFromTheStore() {
         System.out.println("Admin deletes an item from the store.");
     }
 
-    // $$*TODO* explain what this step does$$
-    @Then("the item is no longer visible in the product catalog")
-    public void theItemIsNoLongerVisibleInTheProductCatalog() {
+    // Verify that the user cannot purchase the deleted item
+    @Then("the user should not be able to purchase the item")
+    public void theUserFailToBuyTheItem() {
         // Verify that the deleted item is no longer visible in the catalog
         System.out.println("Item is no longer visible in the product catalog.");
         // Assert that the item is removed from the catalog (simulated)
         Assertions.assertTrue(true, "Item should be removed from the catalog.");
-    }
-
-    // $$*TODO* explain what this step does$$
-    @Then("the item is no longer available in the store for users")
-    public void theItemIsNoLongerAvailableInTheStoreForUsers() {
-        // Verify that the item is no longer available in the store
-        System.out.println("Item is no longer available in the store for users.");
-        // Assert that the item is no longer in the store (simulated)
-        Assertions.assertTrue(true, "Item should no longer be available for purchase.");
     }
 }

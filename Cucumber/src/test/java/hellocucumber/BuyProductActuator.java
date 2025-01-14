@@ -18,8 +18,6 @@ public class BuyProductActuator {
     private static WebDriver driver;
     private static WebDriverWait wait;
 
-    int numberInCart;
-
     public void initSessionAsUser(String webDriver, String path) {
         // Set up WebDriver for Chrome
         System.setProperty(webDriver, path);
@@ -59,6 +57,37 @@ public class BuyProductActuator {
             e.printStackTrace();
         }
 
+        // Check if login was successful
+        try {
+            // Wait for a dashboard-specific element (e.g., user name)
+            driver.findElement((By.xpath("//*[@id='_desktop_user_info']/div[1]/a[2]/span[1]")));
+            System.out.println("Login successful.");
+        } catch (Exception e) {
+            System.out.println("Login failed. Redirecting to registration.");
+            registerUser(username, password);
+        }
+
+    }
+
+    // Function to register the user
+    public void registerUser(String username, String password) {
+        String firstName = "John";
+        String lastName = "Levi";
+        String birthday = "1990-01-01";
+        // Navigate to the registration page
+        driver.findElement(By.xpath("//*[@id='content']/div[1]/a[1]")).click();
+
+        // Enter personal information
+        driver.findElement(By.xpath("//*[@id='field-id_gender-1']")).click();
+        driver.findElement(By.xpath("//*[@id='field-firstname']")).sendKeys(firstName);
+        driver.findElement(By.xpath("//*[@id='field-lastname']\n")).sendKeys(lastName);
+        driver.findElement(By.xpath("//*[@id='customer-form']/div[1]/div[4]/div[1]/input[1]")).sendKeys(username);
+        driver.findElement(By.xpath("//*[@id='customer-form']/div[1]/div[5]/div[1]/div[1]/div[1]/input[1]")).sendKeys(password);
+        driver.findElement(By.xpath("//input[@name=\"birthday\"]")).sendKeys(birthday);
+        driver.findElement(By.xpath("//input[@name=\"psgdpr\"]")).click();
+        driver.findElement(By.xpath("//input[@name=\"customer_privacy\"]")).click();
+        // Click on the continue button
+        driver.findElement(By.xpath("//*[@id='customer-form']/footer[1]/button[1]")).click();
     }
 
     public void addProductToCart() {
@@ -109,8 +138,8 @@ public class BuyProductActuator {
     }
 
     public void enterAddressDetailsAndContinue() {
-        String firstName = "Tomas";
-        String lastName = "nano";
+        String firstName = "John";
+        String lastName = "Levi";
         String address = "3171 David Mission";
         String city = "West Emilytown";
         String state = "Michigan";

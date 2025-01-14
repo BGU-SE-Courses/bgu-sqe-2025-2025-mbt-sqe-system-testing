@@ -9,7 +9,7 @@ Feature: A set of scenarios for testing the "PrestaShop" application
 
     Examples:
       | Email           | Password  |
-      | tomas@gmail.com | TomasNano123  |
+      | john@gmail.com | JohnLevi456  |
 #      | gor@gmail.com | 123456kk  |
 
   Scenario Outline: admin deletes an item from the store and user can't buy it
@@ -21,5 +21,5 @@ Feature: A set of scenarios for testing the "PrestaShop" application
 
     Examples:
       | Email_user           | Password_user  | Email_admin | Password_admin |
-      | tomas@gmail.com | TomasNano123  | nitzan861999@gmail.com | 123456kk  |
+      | rona@gmail.com | ronaRon567  | tomas@gmail.com | TomasNono123  |
 
