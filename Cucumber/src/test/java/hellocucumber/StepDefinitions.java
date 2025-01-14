@@ -2,10 +2,6 @@ package hellocucumber;
 
 import io.cucumber.java.en.*;
 
-import org.junit.jupiter.api.Assertions.*;
-
-import io.cucumber.java.en.*;
-
 public class StepDefinitions {
 
     AddComment actuator = new AddComment();
@@ -27,22 +23,22 @@ public class StepDefinitions {
     public void userNavigatesToProductPage(String productName) {
         actuator.NavigateToProduct(productName);
     }
-
-    @When("The user writes a comment {string}")
-    public void userWritesComment(String comment) {
-        actuator.WriteComment(comment);
+    @When("The user writes a comment with title {string} and body {string}")
+    public void userWritesComment(String title, String body) throws InterruptedException {
+        actuator.WriteComment(title, body);
     }
 
-    @Then("The comment {string} is visible under the product {string}")
-    public void verifyCommentIsVisible(String comment, String productName) {
-        actuator.VerifyCommentVisible(productName, comment);
+    @Then("The comment with title {string} and body {string} is visible under the product {string}")
+    public void verifyCommentIsVisible(String title, String body, String productName) {
+        actuator.VerifyCommentVisible(productName, title, body);
     }
 
-    @Given("A product {string} exists in the store with a comment {string}")
-    public void productExistsWithComment(String productName, String comment) {
+    @Given("A product {string} exists in the store with a comment with title {string} and body {string}")
+    public void productExistsWithComment(String productName, String title, String body) {
         actuator.VerifyProductExists(productName);
-        actuator.VerifyCommentVisible(productName, comment);
+        actuator.VerifyCommentVisible(productName, title, body);
     }
+
 
     @Given("The admin is logged in with username {string} and password {string}")
     public void adminLogsIn(String username, String password) {
@@ -62,10 +58,11 @@ public class StepDefinitions {
         actuator.VerifyLogin();
     }
 
-    @Then("The product {string} and the comment {string} are no longer visible")
-    public void verifyProductAndCommentNotVisible(String productName, String comment) {
+    @Then("The product {string} and the comment with title {string} and body {string} are no longer visible")
+    public void verifyProductAndCommentNotVisible(String productName, String title, String body) {
         actuator.VerifyProductDeleted(productName);
-        actuator.VerifyCommentNotVisible(productName, comment);
+        actuator.VerifyCommentNotVisible(productName, title, body);
         actuator.Close();
     }
+
 }
