@@ -21,3 +21,8 @@ Best practices followed in the step definitions:
 - Proper use of WebDriver's explicit waits to ensure reliable test execution.
 - Avoidance of magic numbers, making the code maintainable.
 - See the [StepDefinitions.java](src/test/java/hellocucumber/StepDefinitions.java) file for an example of a well-documented and well-implemented step file.
+
+## Important note
+- if this the first time that you run the test it may fail because all of the pop up tutorials (i mentioned it in the bug section).
+- make sure before running the Cucumber tests they is exactly one comment in the fourm with the name "hey1".
+- after the deletion of the comment i wrote a script that will add a new comment with the same name so i dont have to add it manually every time (this is for this part only not provengo).

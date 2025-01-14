@@ -11,7 +11,8 @@ import java.time.Duration;
 
 public class StepDefinitions {
 
-    private static final String CHROME_DRIVER_PATH = "C:\\Users\\Ali\\Desktop\\Ae5ot\\2025-mbt-b\\Selenium\\chromedriver.exe";
+    //private static final String CHROME_DRIVER_PATH = "../../../Selenium/chromedriver.exe";
+    private static final String CHROME_DRIVER_PATH = System.getProperty("user.dir") + "/../Selenium/chromedriver.exe";
     private WebDriver driver;
     private WebDriverWait wait;
 
