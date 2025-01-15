@@ -5,21 +5,19 @@ Feature: A set of scenarios for testing the "PrestaShop" application
     And the user adds an item to their shopping cart
     When the user buy the item
     Then the product purchase successfully confirmed
-    #And the item is marked as "sold" in the store's inventory
 
     Examples:
       | Email           | Password  |
       | john@gmail.com | JohnLevi456  |
-#      | gor@gmail.com | 123456kk  |
+
 
   Scenario Outline: admin deletes an item from the store and user can't buy it
-    Given an admin is logged in with <Email_admin> and <Password_admin>
-    And a user is logged in with <Email_user> and <Password_user>
+    Given an admin is logged in with "<Email_admin>" and "<Password_admin>"
+    And a user is logged in with "<Email_user>" and "<Password_user>"
     And the user has added an item to their shopping cart
     When the admin deletes the item from the store
-    Then the user should not be able to purchase the item
+    Then the user should not be able to purchase the deleted item
 
     Examples:
       | Email_user           | Password_user  | Email_admin | Password_admin |
-      | rona@gmail.com | ronaRon567  | tomas@gmail.com | TomasNono123  |
-
+      | john@gmail.com | JohnLevi456  | example@gmail.com | S1212025E  |

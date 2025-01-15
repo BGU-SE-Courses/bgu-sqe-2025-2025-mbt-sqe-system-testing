@@ -218,4 +218,20 @@ public class BuyProductActuator {
         }
         Assert.assertEquals("YOUR ORDER IS CONFIRMED", messageText);
     }
+
+    public void verifyUnsuccessfulProductBuy() {
+        // User is proceeding to checkout
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='blockcart-modal']/div[1]/div[1]/div[2]/div[1]/div[2]/div[1]/div[1]/a[1]"))).click();
+
+        // Wait for the element to be visible
+        WebElement subtotalLabel = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(@class, 'label js-subtotal')]")));
+
+        // Get the text of the element
+        String actualText = subtotalLabel.getText();
+
+        // Define the expected text
+        String expectedText = "0 items";
+
+        Assert.assertEquals(expectedText, actualText);
+    }
 }
