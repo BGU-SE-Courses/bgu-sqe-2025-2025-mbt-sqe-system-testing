@@ -187,3 +187,5 @@ buildNumber.properties
 .ionide
 
 # End of https://www.toptal.com/developers/gitignore/api/intellij+all,maven,java,visualstudiocode,macos
+
+chrome-win64/*

@@ -1,82 +1,78 @@
 package hellocucumber;
 
-import io.cucumber.java.bs.A;
 import io.cucumber.java.en.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.junit.jupiter.api.Assertions.*;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import java.util.HashMap;
+import java.util.Map;
 
 public class StepDefinitions {
-    private  static List<Moodle> allOpenMoodle;
-    private static  Moodle moodleUser;
-    private String webDriver = "webdriver.chrome.driver";
-    private WebDriver driver;
-    private final int homePageNumber=1;
+    private final Map<String,Moodle> actorToMoodle = new HashMap<>();
 
-
-//    private String path = "C:\\Users\\saada\\Desktop\\OrStudys\\שנה ג\\סמסטר א\\הנדסת איכות תוכנה\\פרויקט\\chromedriver-win32\\chromedriver-win32\\chromedriver.exe";
-    private String path = "C:\\Users\\idana\\OneDrive\\Desktop\\לימודים\\איכות תוכנה\\assignment4\\2025-mbt-r\\Selenium\\operadriver.exe";
-    public void OpenMoodleInit(int windowFlag){
-    System.out.println("--------------- INITIALIZING MOODLE TEST - OPENING WEBPAGE ---------------");
-        if(allOpenMoodle == null)
-             allOpenMoodle = new ArrayList<>();
-        moodleUser = new Moodle();
-        allOpenMoodle.add(moodleUser);
-        moodleUser.initSession(webDriver,path);
+    @Given("{string} is on home page")
+    public void userIsOnHomePage(String actor) {
+        Moodle moodle = new Moodle();
+        moodle.initSession();
+        actorToMoodle.put(actor,moodle);
     }
 
-    @Given("User is on Home page")
-    public void user_is_on_home_page() {
-        OpenMoodleInit(homePageNumber);
-    }
-    @When("Student is logged in with {string} and {string}")
-    public void userIsLoggedIn(String userName, String password) {
-        moodleUser.goToLogIn();
-        moodleUser.enterLoginInfo(userName,password);
-    }
-    @And("the student navigates to the {string} course page")
-    public void theStudentNavigatesToTheCoursePage(String courseName) {
-        moodleUser.goToCoursePage(courseName);
+    @When("{string} is logged in with {string} and {string}")
+    public void userIsLoggedIn(String actor, String userName, String password) {
+        Moodle moodle = actorToMoodle.get(actor);
+        moodle.goToLogIn();
+        moodle.enterLoginInfo(userName,password);
     }
 
-    @And("the student clicks on the choice titled {string}")
-    public void theStudentClicksOnTheChoiceTitled(String choiceName) {
-        moodleUser.goToChoice(choiceName);
+    @And("the {string} navigates to the {string} course page")
+    public void navigateToTheCoursePage(String actor, String courseName) {
+        Moodle moodle = actorToMoodle.get(actor);
+        moodle.goToCoursePage(courseName);
     }
-    @And("the student clicks on the choice option titled {string}")
-    public void theStudentClicksOnTheChoiceOptionTitled(String choiceOption) {
-        moodleUser.chooseOption(choiceOption);
+
+    @And("the {string} clicks on the choice test titled {string}")
+    public void clickOnTheChoiceTestTitled(String actor, String choiceTestName) {
+        Moodle moodle = actorToMoodle.get(actor);
+        moodle.goToChoice(choiceTestName);
     }
-    @Then("the student should be able to change his choice to {string}")
-    public void theStudentShouldBeAbleToChangeHisChoiceTo(String choiceOption) {
-        moodleUser.chooseOption(choiceOption);
+
+    @And("the {string} clicks on the choice option titled {string}")
+    public void clickOnTheChoiceOptionTitled(String actor, String choiceOption) {
+        Moodle moodle = actorToMoodle.get(actor);
+        moodle.chooseOption(choiceOption);
     }
-    @And("the student should be able to save the choice")
-    public void theStudentShouldBeAbleToSaveTheChoice() {
-        moodleUser.saveChoice();
+
+    @Then("the {string} should be able to change his choice to {string}")
+    public void changeChoiceTo(String actor, String choiceOption) {
+        Moodle moodle = actorToMoodle.get(actor);
+        moodle.chooseOption(choiceOption);
     }
-    
 
-    // // $$*TODO* explain what this step does$$
-    // @Given("an example scenario")
-    // public void anExampleScenario() {
-    // }
+    @And("the {string} should be able to save the choice")
+    public void saveTheChoice(String actor) {
+        Moodle moodle = actorToMoodle.get(actor);
+        moodle.saveChoice();
+    }
 
-    // // $$*TODO* explain what this step does$$
-    // @When("all step definitions are implemented")
-    // public void allStepDefinitionsAreImplemented() {
-    // }
+    @Given("the {string} disables updates for the choice test")
+    public void disableUpdatesForTheChoiceTest(String actor) {
+        Moodle moodle = actorToMoodle.get(actor);
+        moodle.disableUpdatesForChoiceTest();
+    }
 
-    // // $$*TODO* explain what this step does$$
-    // @Then("the scenario passes")
-    // public void theScenarioPasses() {
-    // }
+    @And("the {string} should not be able to change his choice to {string}")
+    public void notBeAbleToChangeChoiceTo(String actor, String choiceOption) {
+        Moodle moodle = actorToMoodle.get(actor);
+        try{
+            moodle.chooseOption(choiceOption);
+            throw new RuntimeException("The choice option should not be clickable");
+        } catch (org.openqa.selenium.NoSuchElementException e){
+            // the exception is expected
+        }
+    }
 
+    @And("the {string} enables updates for the choice test {string}")
+    public void enableUpdatesForTheChoiceTest(String actor, String choiceTestTitle) {
+        Moodle moodle = actorToMoodle.get(actor);
+        clickOnTheChoiceTestTitled(actor,choiceTestTitle);
+        moodle.allowUpdatesForChoiceTest();
+    }
 }
