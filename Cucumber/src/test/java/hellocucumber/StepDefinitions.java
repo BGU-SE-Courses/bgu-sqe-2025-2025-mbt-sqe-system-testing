@@ -15,7 +15,7 @@ public class StepDefinitions {
     private String webDriver = "webdriver.chrome.driver";
     private String path = "C:\\ass4\\Selenium\\chromedriver.exe";
     public void OpenCartInitUser() {
-        System.out.println("--------------- INITIALIZING MOODLE TEST - OPENING WEBPAGE ---------------");
+        System.out.println("--------------- INITIALIZING OPENCART TEST - OPENING WEBPAGE ---------------");
         if(allopenCarts == null){
             allopenCarts = new ArrayList<>();
         }
@@ -24,7 +24,7 @@ public class StepDefinitions {
         opencartUser.initSessionAsUser(webDriver, path);
     }
     public void OpenCartInitAdmin() {
-        System.out.println("--------------- INITIALIZING MOODLE TEST - OPENING WEBPAGE ---------------");
+        System.out.println("--------------- INITIALIZING OPENCART TEST - OPENING WEBPAGE ---------------");
         if(allopenCartsA == null){
             allopenCartsA = new ArrayList<>();
         }
@@ -82,4 +82,67 @@ public class StepDefinitions {
     public void theScenarioPasses() {
     }
 
+    // Customer Scenario Steps
+    @Given("User is on home page")
+    public void CustomerIsOnHomePage() {
+        OpenCartInitUser();
+    }
+
+    @When("User logs in with {string} and {string}")
+    public void userLogsInWith(String email, String password) {
+        OpenCartInitUser();
+        opencartUser.goToLogin();
+        opencartUser.enterLoginInfoUser(email, password);
+    }
+
+    @And("User clicks on the homepage")
+    public void userClicksOnHomepage() {
+        opencartUser.clickHomepage();
+    }
+
+    @And("User scrolls down to see a product")
+    public void userScrollsDownToSeeProduct() {
+        opencartUser.scrollDownToProduct();
+    }
+
+    @And("User clicks on add to cart for the product")
+    public void userClicksAddToCart() {
+        opencartUser.addToCart();
+    }
+
+    @And("User scrolls up")
+    public void userScrollsUp() {
+        opencartUser.scrollUp();
+    }
+
+    @And("User clicks on shopping cart")
+    public void userClicksOnShoppingCart() {
+        opencartUser.clickShoppingCart();
+    }
+
+    @And("User scrolls down")
+    public void userScrollsDown() {
+        opencartUser.scrollDown();
+    }
+
+    @And("User clicks on use a coupon")
+    public void userClicksOnUseCoupon() {
+        opencartUser.clickUseCoupon();
+    }
+
+    @And("User enters the coupon code {string}")
+    public void userEntersCouponCode(String couponCode) {
+        opencartUser.enterCouponCode(couponCode);
+    }
+
+    @And("User clicks apply coupon")
+    public void userClicksApplyCoupon() {
+        opencartUser.clickApplyCoupon();
+    }
+
+    @Then("The discount is applied to the total price")
+    public void discountAppliedToTotal() {
+        opencartUser.verifyDiscountAppliedTest();
+    }
 }
+
