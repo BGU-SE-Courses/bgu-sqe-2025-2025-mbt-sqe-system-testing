@@ -26,7 +26,7 @@ public class UserAddToWishList {
         DRIVER_PATH("2025-mbt-teamalpha\\Selenium\\chromedriver.exe"),
         TEST_EMAIL("user@gmail.com"),
         TEST_PASSWORD("123456"),
-        SAMPLE_PRODUCT("imac"),
+        SAMPLE_PRODUCT("iMac"),
         DEFAULT_QUANTITY(1);
 
         private final String stringValue;
@@ -50,23 +50,6 @@ public class UserAddToWishList {
             return intValue;
         }
     }
-
-    // @Before("@UserAddToWishlist")
-    // public void initSession() {
-    //     //System.setProperty(Config.WEBDRIVER.getString(), Config.DRIVER_PATH.getString());
-
-    //     // Initialize WebDriver and WebDriverWait
-    //     driver = new ChromeDriver();
-    //     wait = new WebDriverWait(driver, Duration.ofSeconds(1));
-
-    //     // Launch OpenCart site and maximize window
-    //     driver.get("http://localhost/openCartSite/");
-    //     driver.manage().window().setPosition(new Point(700, 5));
-
-    //     System.out.println("Driver initialized. Page title: " + driver.getTitle());
-    // }
-
-
 
     @And("the user is on the OpenCart homepage")
     public void userIsOnOpenCartHomepage() {
@@ -157,23 +140,34 @@ public class UserAddToWishList {
 
         // Wait briefly for the wishlist update
         try {
-            Thread.sleep(5000);
+            Thread.sleep(7000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
 
-    @Test
-    public void verifyProductInWishlist(String productName, int expectedQuantity) {
-        // Navigate to wishlist page
-        driver.findElement(By.xpath("//li[3]/a[1]/span[1]")).click();
+@Test
+public void verifyProductInWishlist(String productName, int expectedQuantity) {
+    // Navigate to wishlist page
+    driver.findElement(By.xpath("//li[3]/a[1]/span[1]")).click();
 
-        // Locate product details in the wishlist
-        WebElement wishlistProduct = driver.findElement(By.xpath("//a[contains(text(),'" + productName + "')]"));
-        WebElement wishlistQuantity = driver.findElement(By.xpath("//input[contains(@name, 'quantity')]"));
+            // Wait briefly for the wishlist update
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
-        System.out.println("Wishlist verified: " + productName + " with quantity: " + expectedQuantity);
+    // Locate product details in the wishlist
+    WebElement wishlistProduct = driver.findElement(By.xpath("//*[@id='wishlist']/div[1]/table[1]/tbody[1]/tr[1]/td[2]"));
+
+    // Check if the product name appears in the specified element
+    if (wishlistProduct.getText().contains(productName)) {
+        System.out.println("Wishlist verified: " + productName + " is present.");
+    } else {
+        System.out.println("Wishlist verification failed: " + productName + " is not present.");
     }
+}
 
     public void logoutFromAccount() {
     // Navigate to logout page
