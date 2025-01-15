@@ -65,7 +65,6 @@ public class UserAddToWishList {
     @When("the user navigates to a product page")
     public void userNavigatesToProductPage() {
         System.out.println("Navigating to product page...");
-        // Assuming specific product name is not yet provided here
     }
 
     @When("the user selects a quantity of {string}")
@@ -95,10 +94,10 @@ public class UserAddToWishList {
     public void userExistsInOpenCartDatabase() {
         driver = new ChromeDriver();
         driver.get("http://localhost/openCartSite");
-
+        // Register a new user
         driver.findElement(By.xpath("//li[2]/div[1]/a[1]/span[1]")).click();
         driver.findElement(By.xpath("//li[2]/div[1]/ul[1]/li[1]/a[1]")).click();
-        
+        //fill in the registration form
         driver.findElement(By.xpath("//*[@id='input-firstname']")).sendKeys("user");
         driver.findElement(By.xpath("//*[@id='input-lastname']")).sendKeys("user");
         driver.findElement(By.xpath("//*[@id='input-email']")).sendKeys(Config.TEST_EMAIL.getString());
@@ -109,7 +108,7 @@ public class UserAddToWishList {
         ((JavascriptExecutor) driver).executeScript("window.scrollBy(0, 350);");
 
         tuggElement.click();
-
+    
         driver.findElement(By.xpath("//form[1]/div[1]/button[1]")).click();
     }
 
@@ -172,7 +171,7 @@ public void verifyProductInWishlist(String productName, int expectedQuantity) {
     public void logoutFromAccount() {
     // Navigate to logout page
     driver.findElement(By.xpath("//li[2]/div[1]/a[1]/span[1]")).click();
-    driver.findElement(By.xpath("//li[2]/div[1]/ul[1]/li[5]/a[1]")).click(); // Assuming this is the logout link
+    driver.findElement(By.xpath("//li[2]/div[1]/ul[1]/li[5]/a[1]")).click(); 
     System.out.println("User logged out successfully.");
     }
 
