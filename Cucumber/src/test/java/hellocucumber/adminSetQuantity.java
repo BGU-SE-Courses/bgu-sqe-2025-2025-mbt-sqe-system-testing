@@ -9,7 +9,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.JavascriptExecutor;
 
-public class StepDefinitions {
+public class adminSetQuantity {
     private WebDriver driver;
     private String expectedQuantity;
     private String originalQuantity;
