@@ -31,11 +31,6 @@ public class MoodleChangeSubmissionType {
         driver.get("http://localhost/");
         // maximize the window - some web apps look different in different sizes
         //driver.manage().window().setPosition(new Point(700, 5));
-        OpenCourseAndSetWorkGroupSubmission();
-    }
-
-    private void OpenCourseAndSetWorkGroupSubmission() {
-
     }
 
 
