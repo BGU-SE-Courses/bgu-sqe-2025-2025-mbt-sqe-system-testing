@@ -15,28 +15,33 @@ Install Moodle:
 
 Use Docker for a quick setup:
 
-Run the following commands to set up Moodle and its database:
+Run the following commands line by line to set up Moodle and its database:
 
-docker network create moodle-network
-docker volume create --name mariadb_data
-docker run -d --name mariadb \
---env ALLOW_EMPTY_PASSWORD=yes \
---env MARIADB_USER=bn_moodle \
---env MARIADB_PASSWORD=bitnami \
---env MARIADB_DATABASE=bitnami_moodle \
---network moodle-network \
---volume mariadb_data:/bitnami/mariadb \
-bitnami/mariadb:latest
-docker run -d --name moodle \
--p 8080:8080 -p 8443:8443 \
---env ALLOW_EMPTY_PASSWORD=yes \
---env MOODLE_DATABASE_USER=bn_moodle \
---env MOODLE_DATABASE_PASSWORD=bitnami \
---env MOODLE_DATABASE_NAME=bitnami_moodle \
---network moodle-network \
---volume moodle_data:/bitnami/moodle \
---volume moodledata_data:/bitnami/moodledata \
-bitnami/moodle:latest
+**Create Docker network**
+
+`docker network create moodle-network`
+
+**Create volume for MariaDB data**
+
+`docker volume create --name mariadb_data`
+
+**Run the MariaDB container in one line**
+
+`docker run -d --name mariadb --env ALLOW_EMPTY_PASSWORD=yes --env MARIADB_USER=bn_moodle --env MARIADB_PASSWORD=bitnami --env MARIADB_DATABASE=bitnami_moodle --network moodle-network --volume mariadb_data:/bitnami/mariadb bitnami/mariadb:latest`
+
+**Create volumes for Moodle**
+
+`docker volume create --name moodle_data`
+
+`docker volume create --name moodledata_data`
+
+**Run the Moodle container in one line**
+
+`docker run -d --name moodle -p 8080:8080 -p 8443:8443 --env ALLOW_EMPTY_PASSWORD=yes --env MOODLE_DATABASE_USER=bn_moodle --env MOODLE_DATABASE_PASSWORD=bitnami --env MOODLE_DATABASE_NAME=bitnami_moodle --network moodle-network --volume moodle_data:/bitnami/moodle --volume moodledata_data:/bitnami/moodledata bitnami/moodle:latest`
+
+
+
+**wait 3-4 minutes so the installation is complete**
 
 Access Moodle at http://localhost:8080.
 
