@@ -1,0 +1,4 @@
+Expected condition failed: waiting for element to be clickable: [[RemoteWebDriver: chrome on Windows 11 (90f53ecae528d9fae22b34634e46c8df)] -> xpath: //*[@id="subtab-AdminCatalog"]] (tried for 10 second(s) with 200 milliseconds interval)
+Build info: version: '4.25.0', revision: '8a8aea2337'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.10'
+Driver info: driver.version: unknown
