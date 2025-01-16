@@ -39,7 +39,7 @@ public class BuyProductActuator {
 
     public void goToLogin() {
         // Navigate to the login page by clicking the login link
-        driver.findElement(By.xpath("//a[@href=\"http://localhost/my_shop/login?back=http%3A%2F%2Flocalhost%2Fmy_shop%2F\"]")).click();
+        driver.findElement(By.xpath("//body/main[1]/header[1]/nav[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/a[1]")).click();
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/main/section/div/div/div/section/div/section/form/div/div[1]/label")));
     }
 
@@ -217,5 +217,21 @@ public class BuyProductActuator {
             messageText = matcher.group();
         }
         Assert.assertEquals("YOUR ORDER IS CONFIRMED", messageText);
+    }
+
+    public void verifyUnsuccessfulProductBuy() {
+        // User is proceeding to checkout
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='blockcart-modal']/div[1]/div[1]/div[2]/div[1]/div[2]/div[1]/div[1]/a[1]"))).click();
+
+        // Wait for the element to be visible
+        WebElement subtotalLabel = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(@class, 'label js-subtotal')]")));
+
+        // Get the text of the element
+        String actualText = subtotalLabel.getText();
+
+        // Define the expected text
+        String expectedText = "0 items";
+
+        Assert.assertEquals(expectedText, actualText);
     }
 }

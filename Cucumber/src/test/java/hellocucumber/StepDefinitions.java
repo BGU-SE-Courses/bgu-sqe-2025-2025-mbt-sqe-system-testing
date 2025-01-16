@@ -5,6 +5,7 @@ import io.cucumber.java.en.*;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.BeforeAll;
 
 public class StepDefinitions {
 
@@ -77,8 +78,9 @@ public class StepDefinitions {
     // Scenario 2: Admin deletes an item from the store
 
     // Simulate admin login to the admin panel
-    @Given("an admin is logged in with <string> and <string>")
+    @Given("an admin is logged in with {string} and {string}")
     public void anAdminIsLoggedIntoThePrestaShopAdminPanel(String email, String password) {
+        deleteProductActuatorAdmin.enterLoginInfoAdmin(email, password);
         System.out.println("Admin is logged into the PrestaShop admin panel.");
     }
 
@@ -92,21 +94,19 @@ public class StepDefinitions {
     // simulate user adding an item to the shopping cart
     @And("the user has added an item to their shopping cart")
     public void theUserAddedItemToCart() {
-        System.out.println("Admin navigates to the product catalog.");
+        buyProductActuator.addProductToCart();
     }
 
     // Simulate admin deleting the item from the store
     @When("the admin deletes the item from the store")
     public void theAdminDeletesTheItemFromTheStore() {
-        System.out.println("Admin deletes an item from the store.");
+        deleteProductActuatorAdmin.deleteProduct();
     }
 
     // Verify that the user cannot purchase the deleted item
-    @Then("the user should not be able to purchase the item")
+    @Then("the user should not be able to purchase the deleted item")
     public void theUserFailToBuyTheItem() {
-        // Verify that the deleted item is no longer visible in the catalog
-        System.out.println("Item is no longer visible in the product catalog.");
-        // Assert that the item is removed from the catalog (simulated)
-        Assertions.assertTrue(true, "Item should be removed from the catalog.");
+        // Verify that the user cannot purchase the item
+        buyProductActuator.verifyUnsuccessfulProductBuy();
     }
 }
