@@ -7,6 +7,12 @@ bthread('User buys an item from the store', function () {
   // User logs in
   userSession.start(URL)
   goToLogin(userSession)
-  login(userSession, credentials.user.email, credentials.user.password)
+  login(userSession, userDetails.user.email, userDetails.user.password)
   addItemToCart(userSession)
+  proceedToCheckout(userSession)
+  // personalInformation(userSession, userDetails.user.firstName, userDetails.user.lastName, userDetails.user.email, userDetails.user.password, userDetails.user.birthdate)
+  addresses(userSession, userDetails.user.address, userDetails.user.city, userDetails.user.state, userDetails.user.zipCode, userDetails.user.country)
+  shippingMethod(userSession)
+  payment(userSession)
+  orderConfirmation(userSession)
 });
