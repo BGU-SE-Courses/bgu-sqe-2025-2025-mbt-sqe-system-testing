@@ -1,0 +1,9 @@
+element click intercepted: Element <li class="link-levelone has_submenu" data-submenu="9" id="subtab-AdminCatalog">...</li> is not clickable at point (226, 339). Other element would receive the click: <div class="puik-card puik-card--default px-7 py-6 gap-2 h-fit">...</div>
+  (Session info: chrome=131.0.6778.266)
+Build info: version: '4.25.0', revision: '8a8aea2337'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.10'
+Driver info: org.openqa.selenium.remote.RemoteWebDriver
+Command: [59d7cb05c443dd4b8ed228c9b7e27325, clickElement {id=f.BA0A5A9FA895882BE6A5AC8016947850.d.CC6958010CBDE3023F4D34895E2E9AAF.e.44}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 131.0.6778.266, chrome: {chromedriverVersion: 131.0.6778.266 (b25b66d9738..., userDataDir: C:\Users\ktnad\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:51030}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: Windows 11, proxy: Proxy(), se:bidiEnabled: false, se:cdp: ws://10.100.102.6:4444/sess..., se:cdpVersion: 131.0.6778.266, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Element: [[RemoteWebDriver: chrome on Windows 11 (59d7cb05c443dd4b8ed228c9b7e27325)] -> xpath: //*[@id="subtab-AdminCatalog"]]
+Session ID: 59d7cb05c443dd4b8ed228c9b7e27325

@@ -1,0 +1,9 @@
+element click intercepted: Element <a href="#collapse-9" class="link collapsed" data-toggle="collapse" aria-expanded="false">...</a> is not clickable at point (1015, 416). Other element would receive the click: <div class="content-div  ">...</div>
+  (Session info: chrome=131.0.6778.266)
+Build info: version: '4.25.0', revision: '8a8aea2337'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.10'
+Driver info: org.openqa.selenium.remote.RemoteWebDriver
+Command: [1d7d1cd3f81d25cd5cceeb4ceee8b7f7, clickElement {id=f.D68566F76B9EEC826A0652C5BACD6676.d.C460CE827745E342B23E0B508E302E0E.e.21}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 131.0.6778.266, chrome: {chromedriverVersion: 131.0.6778.266 (b25b66d9738..., userDataDir: C:\Users\ktnad\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:65455}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: Windows 11, proxy: Proxy(), se:bidiEnabled: false, se:cdp: ws://10.100.102.6:4444/sess..., se:cdpVersion: 131.0.6778.266, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Element: [[RemoteWebDriver: chrome on Windows 11 (1d7d1cd3f81d25cd5cceeb4ceee8b7f7)] -> xpath: //*[@id='subtab-AdminCatalog']/a]
+Session ID: 1d7d1cd3f81d25cd5cceeb4ceee8b7f7
