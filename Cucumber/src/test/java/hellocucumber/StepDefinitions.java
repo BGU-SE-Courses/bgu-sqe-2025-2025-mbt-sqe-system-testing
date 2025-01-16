@@ -33,7 +33,7 @@ public class StepDefinitions {
         opencartManager.initSessionAsAdmin(webDriver, path);
     }
 
-    // $$*TODO* explain what this step does$$
+     //$$*TODO* explain what this step does$$
     @Given("User is on log in page")
     public void userIsOnHomePage() {
         OpenCartInitAdmin();

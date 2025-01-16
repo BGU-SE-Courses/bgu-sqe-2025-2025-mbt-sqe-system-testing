@@ -17,7 +17,6 @@ Feature: Cancel coupon
       | Username | Password|
       | admin    | 1234|
 
-Feature: apply coupon
 
   Scenario Outline: Customer applies a coupon at checkout
     Given User is on home page

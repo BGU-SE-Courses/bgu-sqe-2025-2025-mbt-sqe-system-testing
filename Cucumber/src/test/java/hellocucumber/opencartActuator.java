@@ -82,7 +82,7 @@ public class opencartActuator {
 
     public void clickShoppingCart() {
         // Locate and click the shopping cart button
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//li[4]/a[1]/span[1]"))).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//header[1]/div[1]/div[1]/div[3]/div[1]/button[1]"))).click();
     }
 
     public void scrollDown() {
