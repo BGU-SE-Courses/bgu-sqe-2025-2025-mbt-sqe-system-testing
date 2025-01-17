@@ -1,6 +1,11 @@
 Feature: A set of scenarios for testing the "example" module
 
-  Scenario: Testing how a case where a user adds a product to the cart
-    Given an example scenario
-    When all step definitions are implemented
-    Then the scenario passes
+  Scenario: Testing student posts comment
+    Given Forum is opened
+    And Student is logged in
+    When User posts a discussion with subject "<subject>" and body "<body>" on forum
+    Then The discussion was posted successfully
+
+    Examples:
+      | subject | body  |
+      | subject | body  |
