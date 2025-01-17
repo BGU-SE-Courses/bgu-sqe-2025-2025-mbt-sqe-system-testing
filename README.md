@@ -56,6 +56,9 @@ $$*TODO* Add some general description about the software$$
 9. From the **Assign role** dropdown menu select **Student**
 10. Click **Enrol users**
 
+
+After performing all these steps, you should have 2 users - a student and a teacher, both enrolled to the same course.
+
 ## What we tested
 $$*TODO* Add a description of the module and the user stories that you chose to test.
 For example, in the case of the Moodle example, you can write something like this:
