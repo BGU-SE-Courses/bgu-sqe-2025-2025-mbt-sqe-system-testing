@@ -56,6 +56,13 @@ $$*TODO* Add some general description about the software$$
 9. From the **Assign role** dropdown menu select **Student**
 10. Click **Enrol users**
 
+## Disabling tours
+1. Login as **admin** (with the details provided during the setup)
+2. Navigate to **Site Administration** from the top toolbar
+3. Click **Appearence**
+4. Click **User tours**
+5. Deactivate all tours (click on the eye icon)
+
 ### Making sure moodle is ready for the tests
 1. Log out from the admin account (tests precondition)
 
