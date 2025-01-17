@@ -56,6 +56,8 @@ $$*TODO* Add some general description about the software$$
 9. From the **Assign role** dropdown menu select **Student**
 10. Click **Enrol users**
 
+### Making sure moodle is ready for the tests
+1. Log out from the admin account (tests precondition)
 
 After performing all these steps, you should have 2 users - a student and a teacher, both enrolled to the same course.
 
