@@ -7,7 +7,54 @@ In this assignment, we tested an open-source software called [$$*TODO* software 
 $$*TODO* Add some general description about the software$$
 
 ## Installation
-$$*TODO* Write instructions on how to install the software and prepare the testing environment$$
+
+### Initial setup
+1. Download the [moodle packages for windows](https://download.moodle.org/windows/?utm_source=chatgpt.com)
+2. Extract the contents of the zip folder and run `Start Moodle.exe`
+3. Open your browser and navigate to `localhost`
+4. Follow the instructions to setup the project and database. Use the MySQL port configured on your machine (default is 3306).
+
+### Adding student and teacher users
+1. Login as **admin** (with the details provided during the setup)
+2. Navigate to **Site Administration** from the top toolbar
+3. Click **Users**
+4. Inside **Accounts**, click **Browse list of users**
+5. Click **Add a new user**
+6. Create a users for the student and the teacher:
+
+| Username | Password | First Name | Last Name | Email Address    |
+| -------- | -------- | ---------- | --------- | -------------    |
+| student  | P4$$w0rd | Student    | Sam       | student@test.com |
+| teacher  | P4$$w0rd | Teacher    | Tom       | teacher@test.com |
+
+### Adding Course
+1. Login as **admin** (with the details provided during the setup)
+2. Navigate to **Site Administration** from the top toolbar
+3. Click **Courses**
+4. Inside **Courses**, click **Manage courses and categories**
+5. Inside the right panel, click **Create new course**:
+
+| Course full name | Course short name | Course category |
+| ---------------- | ----------------- | --------------- |
+| Software Quality Engineering | SQE | Category 1 (create if does not exist) |
+
+6. Make sure you select an appropriate course start and end dates
+
+### Registring teacher and student to the course
+1. Login as **admin** (with the details provided during the setup)
+2. Navigate to **Site Administration** from the top toolbar
+3. Click **Courses**
+4. Inside **Courses**, click **Manage courses and categories**
+5. Inside the right panel, select **Software Quality Engineering**
+6. Scroll down, and then inside the course panel select **Enrolled users**
+7. Click the **Enrol users** button
+8. Select *Teacher Tom*
+9. From the **Assign role** dropdown menu select **Teacher**
+10. Click **Enrol users**
+7. Click the **Enrol users** button again
+8. Select *Student Sam*
+9. From the **Assign role** dropdown menu select **Student**
+10. Click **Enrol users**
 
 ## What we tested
 $$*TODO* Add a description of the module and the user stories that you chose to test.
