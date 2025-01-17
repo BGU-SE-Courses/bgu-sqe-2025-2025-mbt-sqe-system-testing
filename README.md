@@ -61,6 +61,10 @@ $$*TODO* Add some general description about the software$$
 
 After performing all these steps, you should have 2 users - a student and a teacher, both enrolled to the same course.
 
+### Troubleshooting
+
+* If you get an error that the chromedriver version is not compatible for your chrome version, lookup your chrome version in [this json](https://googlechromelabs.github.io/chrome-for-testing/known-good-versions-with-downloads.json) and replace the chromedriver located in `Selenium/chromedriver.exe` with the appropriate chrome driver for your system.
+
 ## What we tested
 $$*TODO* Add a description of the module and the user stories that you chose to test.
 For example, in the case of the Moodle example, you can write something like this:
