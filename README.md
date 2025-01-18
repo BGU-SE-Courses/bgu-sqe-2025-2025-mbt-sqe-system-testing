@@ -60,8 +60,11 @@ Follow these steps to install PrestaShop locally using XAMPP.
    - **Password**: Leave blank (default for XAMPP).
 
 4. **Complete Installation**:  
-   After installation, you will receive links to:
-   - Admin Panel: `http://localhost/prestashop/admin`
+   - In the directory: C:\xampp\htdocs\prestashop you will find the directory named "admin".
+   - change the name of the directory as you wish e.g: "im_the_admin".
+   - After installation, you will receive links to the Back Office and the Front Office.
+   **the correct links are:**
+   - Admin Panel: `http://localhost/prestashop/im_the_admin`
    - Front Store: `http://localhost/prestashop`
 
 ### Step 5: Secure Installation
@@ -70,10 +73,6 @@ Follow these steps to install PrestaShop locally using XAMPP.
 
 2. **Access the Admin Panel**:  
    Use the admin link and login credentials to access your store backend.
-
-### Step 6: Prepare the Testing Environment
-- **Enable Debug Mode (Optional)**:  
-  In the admin panel, go to **Advanced Parameters > Performance** and enable Debug Mode for testing purposes.
 
 ---
 
@@ -112,7 +111,7 @@ An admin removes a product from the store's inventory.
 3. The admin confirms the deletion action.
 
 **Expected Outcome:**  
-The selected product is removed from the store catalog and is no longer visible to users in the product listings or search results.
+The selected product is removed from the store catalog and is no longer visible to users in the product listings (and in particular in their wishlist) or search results.
 
 ---
 
@@ -125,16 +124,3 @@ Each of the testing methods is elaborated in its own directory.
 
 ## Results
 Update all README.md files (except for d-e, see Section 1). Specifically, replace all $$*TODO*…$$ according to the instructions inside the $$.
-
-## Detected Bugs
-We detected the following bugs:
-
-1. Bug 1: 
-   1. General description: ...
-   2. Steps to reproduce: ...
-   3. Expected result: ...
-   4. Actual result: ...
-   5. Link to the bug report: (you are encouraged to report the bug to the developers of the software)
-2. Bug 2: ...
-
-$$*TODO* if you did not detect the bug, you should delete this section$$  
