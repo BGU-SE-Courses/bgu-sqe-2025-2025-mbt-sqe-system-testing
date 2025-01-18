@@ -19,6 +19,7 @@ public class StepDefinitions {
     // $$*TODO* explain what this step does$$
     @Then("the scenario passes")
     public void theScenarioPasses() {
+        
     }
 
 }
