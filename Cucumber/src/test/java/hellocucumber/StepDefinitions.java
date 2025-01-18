@@ -83,11 +83,25 @@ public class StepDefinitions {
         seleniumClick(xSQECourse);
     }
 
-    private void logout() {
+    private void teacherLogout() {
         // xPaths
         String xOpenDropDown = "//*[@id=\"user-menu-toggle\"]";
         String xLogoutButton = "//*[@id=\"carousel-item-main\"]/a[8]";
 
+        //String xLogoutButton = "//*[@id=\"carousel-item-main\"]/a[7]";
+        
+        // Open the dropdown menu
+        seleniumClick(xOpenDropDown);
+
+        // Click the logout button
+        seleniumClick(xLogoutButton);
+    }
+
+    private void studentLogout(){
+        // xPaths
+        String xOpenDropDown = "//*[@id=\"user-menu-toggle\"]";
+        String xLogoutButton = "//*[@id=\"carousel-item-main\"]/a[7]";
+        
         // Open the dropdown menu
         seleniumClick(xOpenDropDown);
 
@@ -106,6 +120,7 @@ public class StepDefinitions {
         wait = new WebDriverWait(driver, Duration.ofSeconds(60));
         driver.manage().window().maximize();
         driver.get("http://localhost/");
+
     }
 
 
@@ -117,7 +132,7 @@ public class StepDefinitions {
      {
         // XPaths
         String xAddActivity = "//*[@id=\"coursecontentcollapse0\"]/div[2]/div/button/div/span";
-        String xForumActivity = "/html/body/div[6]/div[2]/div/div/div[2]/div/div/div[1]/div/div[2]/div[2]/div[2]/div/div[8]/div/a";
+        String xForumActivity = "//*[@id=\"all-5\"]/div/div[8]/div/a";
         String xForumName = "//*[@id=\"id_name\"]";
         String xCreateForum = "//*[@id=\"id_submitbutton2\"]";
 
@@ -136,7 +151,7 @@ public class StepDefinitions {
         seleniumClick(xCreateForum); // Create the forum
 
         // Logout
-        logout();
+        teacherLogout();
      }
 
 
@@ -188,10 +203,57 @@ public class StepDefinitions {
         if (driver.findElements(By.xpath(xPost)).size() == 0) {
             fail("Post not found");
         }
+
+        studentLogout();
     }
 
 
     /**
      * TODO: teacher deletes forum
      */
+
+
+    @Given("The forum Exists")
+    public void forumExists(){
+        String xForum = "/html/body/div[2]/div[4]/div/div[3]/div/section/div/div/div/ul/li[1]/div/div[2]/ul/li[2]/div/div[2]/div[2]/div/div/a/div/a";
+        
+        userLogin(teacherUsername, teacherPassword);
+
+        enterSQE();
+        
+        // Check that the forum exists
+        // if (driver.findElements(By.xpath(xForum)).size() == 0) {
+        //     fail("Forum not found");
+        // }
+    }
+
+    @When("The teacher deletes the forum")
+    public void deleteForum(){
+        String xThreePoints = "/html/body/div[4]/div[5]/div/div[3]/div/section/div/div/div/ul/li[1]/div[1]/div[2]/ul/li[2]/div[2]/div[2]/div[4]/div/div/div/div/a/i";
+        String xDelete = "/html/body/div[4]/div[5]/div/div[3]/div/section/div/div/div/ul/li[1]/div[1]/div[2]/ul/li[2]/div[2]/div[2]/div[4]/div/div/div/div/div/a[8]";
+        String xSureDelete = "//*[@id=\"page-course-view-topics\"]/div[7]/div[2]/div/div/div[3]/button[2]";
+       
+        enterEditMode();
+
+        seleniumClick(xThreePoints);
+
+        seleniumClick(xDelete);
+
+        seleniumClick(xSureDelete);
+
+    }
+
+    @Then("The forum is deleted successfully")
+    public void checkForumIsDeleted(){
+        String xForum = "*[@id=\"module-2\"]/div/div[2]/div[2]/div/div/a";
+
+        // Check that the forum does not exist after deletion
+        if (driver.findElements(By.xpath(xForum)).size() > 0) {
+            fail("Forum is not deleted");
+        }
+
+        teacherLogout(); //Logout to allow for another testing
+    }
+
+
 }

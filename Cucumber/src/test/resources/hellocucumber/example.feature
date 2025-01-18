@@ -9,3 +9,8 @@ Feature: A set of scenarios for testing the "example" module
     Examples:
       | subject | body  |
       | subject | body  |
+  
+  Scenario: Testing teacher deletes the forum
+    Given The forum Exists
+    When The teacher deletes the forum
+    Then The forum is deleted successfully
