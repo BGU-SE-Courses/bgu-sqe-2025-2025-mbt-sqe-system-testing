@@ -2,9 +2,10 @@
 This is a repository for the system-testing assignment of the Software Quality Engineering course at the [Ben-Gurion University](https://in.bgu.ac.il/), Israel.
 
 ## Assignment Description
-In this assignment, we tested an open-source software called [$$*TODO* software name$$](https://address-of-the-project.com).
+In this assignment, we tested an open-source software called Moodle(https://moodle.org).
 
-$$*TODO* Add some general description about the software$$
+Moodle is a free and open-source learning management system written in PHP.
+Moodle is used to create custom websites with online courses, for online learning projects in schools, universities, workplaces and other sectors.
 
 ## Installation
 
@@ -73,23 +74,19 @@ After performing all these steps, you should have 2 users - a student and a teac
 * If you get an error that the chromedriver version is not compatible for your chrome version, lookup your chrome version in [this json](https://googlechromelabs.github.io/chrome-for-testing/known-good-versions-with-downloads.json) and replace the chromedriver located in `Selenium/chromedriver.exe` with the appropriate chrome driver for your system.
 
 ## What we tested
-$$*TODO* Add a description of the module and the user stories that you chose to test.
-For example, in the case of the Moodle example, you can write something like this:
+We tested the forum module that allows for creating forums and publishing discussions. We chose to test the following user stories: 
 
-We tested the quiz module that allows for creating and taking quizzes. We chose to test the following user stories: 
+*User story:* A student comments on a forum.
 
-*User story:* A teacher adds a new quiz to the course with two yes/no questions
+*Preconditions:* There is a course with a teacher, and the forum exists.
 
-*Preconditions:* There is a course with a teacher
+*Expected outcome:* The comment is added to the forum.
 
-*Expected outcome:* The quiz is added to the course.
+*User story:* The teacher deletes the forum.
 
-*User story:* A students attempts a quiz and answers correctly.
+*Preconditions:* There is a course with a teacher, and the forum exists.
 
-*Preconditions:* There is a course with a quiz with two yes/no questions and the quiz grade is calculated automatically and the grade is visible to the students upon submission.
-
-*Expected outcome:* The student receives 100.
-$$
+*Expected outcome:* The forum is deleted successfully.
 
 ## How we tested
 We used two different testing methods:
