@@ -132,7 +132,7 @@ public class StepDefinitions {
      {
         // XPaths
         String xAddActivity = "//*[@id=\"coursecontentcollapse0\"]/div[2]/div/button/div/span";
-        String xForumActivity = "//*[@id=\"all-5\"]/div/div[8]/div/a";
+        String xForumActivity = "/html/body/div[6]/div[2]/div/div/div[2]/div/div/div[1]/div/div[2]/div[2]/div[2]/div/div[8]/div/a";
         String xForumName = "//*[@id=\"id_name\"]";
         String xCreateForum = "//*[@id=\"id_submitbutton2\"]";
 
@@ -231,8 +231,8 @@ public class StepDefinitions {
     public void deleteForum(){
         String xThreePoints = "/html/body/div[4]/div[5]/div/div[3]/div/section/div/div/div/ul/li[1]/div[1]/div[2]/ul/li[2]/div[2]/div[2]/div[4]/div/div/div/div/a/i";
         String xDelete = "/html/body/div[4]/div[5]/div/div[3]/div/section/div/div/div/ul/li[1]/div[1]/div[2]/ul/li[2]/div[2]/div[2]/div[4]/div/div/div/div/div/a[8]";
-        String xSureDelete = "//*[@id=\"page-course-view-topics\"]/div[7]/div[2]/div/div/div[3]/button[2]";
-       
+        String xSureDelete = "/html/body/div[6]/div[2]/div/div/div[3]/button[2]";
+
         enterEditMode();
 
         seleniumClick(xThreePoints);
