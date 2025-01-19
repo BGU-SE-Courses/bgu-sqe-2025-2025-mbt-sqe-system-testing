@@ -15,24 +15,32 @@ function adminLogin(session) {
   session.click(xpaths.admin.loginButton);
 }
 
+// Function to set product quantity
 function setProductQuantity(session, data) {
-  bp.log.info("Navigating to Catalog > Products...");
+  try {
+    bp.log.info("Navigating to Catalog > Products...");
 
-  session.click(xpaths.admin.catalogMenu);
-  session.click(xpaths.admin.productsSubmenu); // Navigate to Products
-  bp.log.info("Navigated to Products page.");
+    session.waitForClickability(xpaths.admin.catalogMenu, 5000);
+    session.click(xpaths.admin.catalogMenu);
+    session.waitForClickability(xpaths.admin.productsSubmenu, 5000);
+    session.click(xpaths.admin.productsSubmenu); // Navigate to Products
 
-  bp.log.info("Opening first product for editing...");
-  session.click(xpaths.admin.firstProductEdit); // Click Edit for the first product
+    bp.log.info("Navigated to Products page.");
 
-  bp.log.info("Switching to Data tab...");
-  session.click(xpaths.admin.dataTab); // Navigate to Data
+    bp.log.info("Opening first product for editing...");
+    session.waitForClickability(xpaths.admin.firstProductEdit, 5000);
+    session.click(xpaths.admin.firstProductEdit); // Click Edit for the first product
 
-  bp.log.info("Setting product quantity to: " + data.quantity);
-  session.writeText(xpaths.admin.productQuantityField, data.quantity);
+    bp.log.info("Switching to Data tab...");
+    session.waitForClickability(xpaths.admin.dataTab, 5000);
+    session.click(xpaths.admin.dataTab); // Navigate to Data
 
-  session.waitForVisibility(xpaths.admin.saveButton, 5000); // Wait for the button to appear
-  bp.log.info("Saving changes...");
-  session.click(xpaths.admin.saveButton); // Save changes
-  bp.log.info("Product quantity updated successfully.");
+    bp.log.info("Setting product quantity to: " + data.quantity);
+    session.writeText(xpaths.admin.productQuantityField, data.quantity, true); // Clear before writing
+    session.writeText(xpaths.admin.productQuantityField, "\n"); // Press Enter key - save the value
+    bp.log.info("Product quantity updated successfully.");
+  } catch (error) {
+    bp.log.warn("Failed to update product quantity: " + error.message);
+    throw error;
+  }
 }
