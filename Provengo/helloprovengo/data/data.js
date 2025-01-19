@@ -7,10 +7,6 @@ const URL = 'http://localhost/opencartsite'; // Replace with your OpenCart URL
 const adminURL = 'http://localhost/opencartsite/admin-new';
 
 const xpaths = {
-  wishlist: {
-    quantityInput: '//input[@name="quantity"]',
-    addToWishlistButton: '//button[@id="add-to-wishlist"]'
-  },
   admin: {
     usernameField: '//*[@id="input-username"]',
     passwordField: '//*[@id="input-password"]',
@@ -38,7 +34,10 @@ const xpaths = {
   wishlist: {
     DesktopButton: '//nav[1]/div[2]/ul[1]/li[1]/a[1]',
     macButton: '//li[1]/div[1]/div[1]/ul[1]/li[2]/a[1]',
-    addTowishListButton: '//form[1]/div[1]/button[2]/i[1]',
-    seeWishList: '//li[3]/a[1]/span[1]'
+    macEnterToProductButton: '//*[@id="product-list"]/div/div/div[1]/a/img',
+    addTowishListButton: '//*[@id="content"]/div[1]/div[2]/form/div/button[1]',
+    seeWishList: '//li[3]/a[1]/span[1]',
+    productQuantityField: '//*[@id="input-quantity"]',
+    amount: '10'
   }
 };

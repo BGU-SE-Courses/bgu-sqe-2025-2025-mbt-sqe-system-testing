@@ -4,10 +4,10 @@
 /**
  * This story simulates the admin setting product quantity to 0.
  */
-const session = new SeleniumSession('testSession',  'chrome' ); // or 'firefox'
-
+//
 bthread('Admin sets product quantity to 0', function () {
   try {
+    let session = new SeleniumSession('testSession',  'chrome' ); // or 'firefox'
     bp.log.info('Starting admin session...');
     session.start(adminURL); // Update with your actual admin URL
 
@@ -20,9 +20,10 @@ bthread('Admin sets product quantity to 0', function () {
     bp.log.warn(`An error occurred: ${error.message}`);
   } finally {
     bp.log.info('Closing admin session...');
-    session.close();
+    // session.close();
   }
 });
+
 
 /**
  * This story registers a new user, logs in, and adds a product to the wishlist.
@@ -30,16 +31,18 @@ bthread('Admin sets product quantity to 0', function () {
 bthread('Register, Login, and Add Product to Wishlist', function () {
     let s = new SeleniumSession('user');
     s.start(URL);
-
     const userData = {
         firstname: 'Test',
         lastname: 'User',
-        email: 'testuser@example.com',
+        email: 'testuse553r2@example.com',
         password: 'password123',
     };
-
+    const prodData = {
+        amount: '10'
+    }
     registerUser(s, userData); // Register a new user
-    addToWishlist(s); // Replace '{{PRODUCT_NAME}}' with the actual product name
+    addToWishlist(s, prodData); // Replace '{{PRODUCT_NAME}}' with the actual product name
 
     s.close();
 });
+

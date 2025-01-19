@@ -30,6 +30,7 @@ function setProductQuantity(session, data) {
     session.writeText(xpaths.admin.productQuantityField, data.quantity, true); // Clear before writing
     session.writeText(xpaths.admin.productQuantityField, "\n"); // Press Enter key - save the value
     bp.log.info("Product quantity updated successfully.");
+
   } catch (error) {
     bp.log.warn("Failed to update product quantity: " + error.message);
     throw error;
@@ -82,7 +83,7 @@ function registerUser(session, userData) {
   bp.log.info("User registration successful!");
 }
 
-function addToWishlist(session) {
+function addToWishlist(session, data) {
   bp.log.info("Adding product to wishlist...");
 
   // Press the Desktop category button
@@ -93,16 +94,10 @@ function addToWishlist(session) {
   bp.log.info("Navigating to the Mac category...");
   session.click(xpaths.wishlist.macButton);
 
-  session.waitForVisibility(xpaths.wishlist.addTowishListButton, 5000); // Wait for the button to appear
+  bp.log.info("Enter to the Mac product...");
+  session.click(xpaths.wishlist.macEnterToProductButton);
 
-  // Press the Add to Wishlist button
-  bp.log.info("Adding the product to the wishlist...");
   session.click(xpaths.wishlist.addTowishListButton);
-
-//   // Press the See Wishlist button
-//   bp.log.info("Navigating to the wishlist...");
-//   session.click(xpaths.wishlist.seeWishList);
-
-//   bp.log.info("Product successfully added to the wishlist!");
+  bp.log.info("Product successfully added to the wishlist!");
 
 }
