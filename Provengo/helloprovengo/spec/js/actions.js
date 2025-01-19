@@ -1,4 +1,13 @@
 /* @provengo summon selenium */
+//@provengo summon textassertion
+// @provengo summon ctrl
+
+
+SeleniumSession.prototype.runScript = function (script) {
+  bp.log.info("Driver object: " + this.driver);
+  return this.driver.executeScript(script);
+};
+
 
 function adminLogin(session) {
   session.writeText(xpaths.admin.usernameField, 'admin'); // Adjust for your admin credentials
@@ -8,14 +17,6 @@ function adminLogin(session) {
 
 function setProductQuantity(session, data) {
   bp.log.info("Navigating to Catalog > Products...");
-
-  // Handle the modal pop-up
-  try {
-    session.click(xpaths.admin.modalCloseButton);
-    bp.log.info("Modal closed successfully.");
-  } catch (e) {
-    bp.log.info("No modal appeared.");
-  }
 
   session.click(xpaths.admin.catalogMenu);
   session.click(xpaths.admin.productsSubmenu); // Navigate to Products
@@ -30,6 +31,7 @@ function setProductQuantity(session, data) {
   bp.log.info("Setting product quantity to: " + data.quantity);
   session.writeText(xpaths.admin.productQuantityField, data.quantity);
 
+  session.waitForVisibility(xpaths.admin.saveButton, 5000); // Wait for the button to appear
   bp.log.info("Saving changes...");
   session.click(xpaths.admin.saveButton); // Save changes
   bp.log.info("Product quantity updated successfully.");

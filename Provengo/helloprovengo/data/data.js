@@ -4,13 +4,9 @@
  */
 // Export constants and paths for reuse
 const URL = 'http://localhost/opencartsite'; // Replace with your OpenCart URL
-const adminURL = 'http://localhost/opencartsite/admin';
+const adminURL = 'http://localhost/opencartsite/admin-new';
 
 const xpaths = {
-  wishlist: {
-    quantityInput: '//input[@name="quantity"]',
-    addToWishlistButton: '//button[@id="add-to-wishlist"]'
-  },
   admin: {
     usernameField: '//*[@id="input-username"]',
     passwordField: '//*[@id="input-password"]',
