@@ -9,7 +9,8 @@ public class StepDefinitions {
 
     private static List<MoodleChangeSubmissionType> allOpenCarts;
     private static MoodleChangeSubmissionType moodleUser;
-   // private static List<MoodleChangeSubmissionType> allopenCarts;
+    private static GroupSubmission moodleStudent;
+    // private static List<MoodleChangeSubmissionType> allopenCarts;
     private String webDriver = "webdriver.chrome.driver";
     private String path = "C:\\Users\\Daniel\\Documents\\University\\QA\\2025-mbt-ag\\Selenium\\chromedriver.exe";
 
@@ -21,6 +22,12 @@ public class StepDefinitions {
         moodleUser = new MoodleChangeSubmissionType();
         //allopenCarts.add(moodleUser);
         moodleUser.initSessionAsUser(webDriver, path);
+    }
+
+    public void MoodleInitStudent(){
+        System.out.println("--------------- INITIALIZING MOODLE TEST - OPENING WEBPAGE ---------------");
+        moodleStudent = new GroupSubmission();
+        moodleStudent.initSessionAsUser(webDriver, path);
     }
 
     @Given("I am logged in as a teacher")
@@ -63,4 +70,58 @@ public class StepDefinitions {
         moodleUser.goToCreateAssignment();
         moodleUser.enterNewAssignmentInfo(assignmentName);
     }
+
+    // -------------------------------------------------------
+
+    @Given("I am logged in as a student")
+   public void iAmLoggedInAsAStudent() {
+      this.MoodleInitStudent();
+   }
+
+   @When("I am logged in as a student with {string} and {string}")
+   public void iAmLoggedInAsAStudentWithAnd(String username, String password) {
+       moodleStudent.goToLogin();
+       moodleStudent.enterLoginInfo(username, password);
+   }
+
+   @And("I navigate to the course {string}")
+   public void iNavigateToTheCourse(String courseName) {
+        moodleStudent.goToCourse(courseName);
+    }
+
+   @And("I navigate to the assignment {string}")
+   public void iNavigateToTheAssignment(String assignmentName) {
+      moodleStudent.goToAssignment(assignmentName);
+   }
+
+   @And("I upload a file named {string}")
+   public void iUploadAFile(String fileName) {
+      moodleStudent.uploadFile(fileName);
+   }
+
+   @And("I click the submit button")
+   public void iClickTheSubmitButton() {
+      moodleStudent.submitAssignment();
+   }
+
+   @Then("the system should confirm the submission was successful")
+   public void theSystemShouldConfirmTheSubmissionWasSuccessful() {
+      moodleStudent.confirmSubmissionSuccess();
+   }
+
+   @And("the submission should be visible for all group members of {GroupName}")
+   public void theSubmissionShouldBeVisibleForAllGroupMembers(String groupName) {
+      moodleStudent.confirmGroupSubmissionVisibility(groupName);
+   }
+
+//    @Then("the group submission option should no longer be available")
+//    public void theGroupSubmissionOptionShouldNoLongerBeAvailable() {
+//       moodleUser.confirmGroupSubmissionUnavailable();
+//    }
+
+//    @Then("the system should display an error or message indicating individual submission is required")
+//    public void theSystemShouldDisplayAnErrorOrMessageIndicatingIndividualSubmissionIsRequired() {
+//       moodleUser.confirmIndividualSubmissionMessage();
+//    }
+
 }

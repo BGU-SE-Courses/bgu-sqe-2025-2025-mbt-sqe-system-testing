@@ -1,5 +1,6 @@
 package hellocucumber;
 
+import io.cucumber.cucumberexpressions.Group;
 import io.cucumber.java.Before;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.support.ui.Select;
@@ -16,7 +17,7 @@ import java.util.regex.Pattern;
 public class MoodleChangeSubmissionType {
     private static WebDriver driver;
     private static WebDriverWait wait;
-
+    
     public void initSessionAsUser(String webDriver, String path) {
         // webDriver = "webdriver.chrome.driver"
         System.setProperty(webDriver, path);
@@ -38,6 +39,9 @@ public class MoodleChangeSubmissionType {
 
     }
 
+    public WebDriver getDriver() {
+        return driver;
+    }
 
     public void goToLogin() {
         driver.findElement(By.xpath("//*[@id='usernavigation']/div/div/span/a")).click();
