@@ -1,74 +1,104 @@
-// function navigate_to_login(session) {
-//   sync({request: Event("Start(navigate_to_login)")});
-//   session.click(xpaths.loginPage.loginLink);
-//   sync({request: Event("End(navigate_to_login)")});
-// }
-//
-// function enter_login_info(session) {
-//   sync({request: Event("Start(enter_login_info)")});
-//   let textFieldUserName = xpaths.loginPage.usernameInput;
-//   let textFieldPassword = xpaths.loginPage.passwordInput;
-//   session.clear(textFieldUserName);
-//   session.writeText(textFieldUserName, student.UserName);
-//   session.clear(textFieldPassword);
-//   session.writeText(textFieldPassword, student.Password);
-//   sync({request: Event("End(enter_login_info)")});
-// }
-//
-// function click_login(session) {
-//   sync({request: Event("Start(click_login)")});
-//   session.click(xpaths.loginPage.submitButton);
-//   sync({request: Event("End(click_login)")});
-// }
-//
-// function navigate_to_coursePage(session) {
-//   sync({request: Event("Start(navigate_to_coursePage)")});
-//   session.waitForVisibility(xpaths.coursePage.myCoursesLink);
-//   session.click(xpaths.coursePage.myCoursesLink.replace('${courseId}', courseId));
-//   session.click(xpaths.coursePage.courseLink);
-//   sync({request: Event("End(navigate_to_coursePage)")});
-// }
-//
-// function select_choice(session) {
-//   sync({request: Event("Start(select_choice)")});
-//   let xpathExpression = xpaths.coursePage.choiceLink;
-//   session.click(xpathExpression);
-//   sync({request: Event("End(select_choice)")});
-// }
-//
-// function select_choice_option(session) {
-//   sync({request: Event("Start(select_choice_option)")});
-//   let xpathExpression = xpaths.coursePage.choiceOptionLink.replace('${choiceOptionId}', choiceOptionId1);
-//   session.click(xpathExpression);
-//   sync({request: Event("End(select_choice_option)")});
-// }
-//
-// function change_choice_option(session, data) {
-//   sync({request: Event("Start(select_choice_option)"),block:[Event("Start(disable_change_choice_option)"),Event("End(disable_change_choice_option)")]});
-//   let xpathExpression = xpaths.coursePage.choiceOptionLink.replace('${choiceOptionId}', choiceOptionId2);
-//   session.click(xpathExpression);
-//   sync({request: Event("End(select_choice_option)")});
-// }
-//
-// function submit_choice(session) {
-//   sync({request: Event("Start(submit_choice)")});
-//   session.click(xpaths.coursePage.submitButton);
-//   sync({request: Event("End(submit_choice)")});
-// }
-//
-//
-function composeQuery(session, data) {
-  session.writeText(xpaths.searchWindow.searchInput, data.text)
+function login(session, username, password) {
+    session.click("/html/body/div[2]/nav/div/div[2]/div/div/span/a");
+    session.clear("//*[@id=\"username\"]");
+    session.writeText("//*[@id=\"username\"]", username);
+    session.writeText("//*[@id=\"password\"]", password);
+    session.click( "//*[@id=\"loginbtn\"]");
 }
 
-function startSearch(session) {
-  with(session) {
-    click(xpaths.searchWindow.searchButton)
-  }
+function loginStudent(session) {
+    login(session, "shavit", "Aa!123456");
 }
 
-function feelLucky(session) {
-  with(session) {
-    click(xpaths.searchWindow.feelingLuckyButton)
-  }
+function loginTeacher(session) {
+    login(session,"admin","Aa!123456");
+}
+
+
+function logoutFromChoice(session){
+    session.click("/html/body/div[2]/nav/div/div[2]/div[3]/div/div/a/span/span/span/span");
+    session.click("/html/body/div[2]/nav/div/div[2]/div[3]/div/div/div/div/div/div/a[7]");
+
+
+}
+
+function logoutAdmin(session){
+    //press on user scroll
+    session.click("/html/body/div[4]/nav/div/div[2]/div[3]/div/div/a/span");
+    //click logout
+    session.click("/html/body/div[4]/nav/div/div[2]/div[3]/div/div/div/div/div/div/a[8]");
+}
+
+function createCourse(session) {
+    session.click("/html/body/div[2]/nav/div/div[1]/nav/ul/li[3]/a");
+    session.click("/html/body/div[2]/div[3]/div/div[2]/div/section/div/aside/section/div/div/div[1]/div/div/div/div[2]/form/button");
+    session.writeText("//*[@id=\"id_fullname\"]", "test_course");
+    session.writeText("//*[@id=\"id_shortname\"]", "test");
+    session.click("//*[@id=\"id_saveanddisplay\"]");
+}
+
+function navigateToCourseFromHomePage(session) {
+    session.click("/html/body/div[2]/nav/div/div[1]/nav/ul/li[3]/a");
+    session.click("/html/body/div[2]/div[3]/div/div[2]/div/section/div/aside/section/div/div/div[1]/div[2]/div/div/div[1]/div/div/div/div/a/div");
+
+
+   //  session.click("/html/body/div[2]/nav/div/div[1]/nav/ul/li[3]/a");
+   //  session.click("/html/body/div[2]/div[3]/div/div[2]/div/section/div/aside/section/div/div/div[1]/div[2]/div/div/div[1]/div/div/div/div/div[1]/div/div/a/span[3]/span[2]");
+
+}
+
+function enrollStudent(session) {
+    session.click("/html/body/div[2]/div[4]/div/div[2]/nav/ul/li[3]/a");
+    session.click( "/html/body/div[2]/div[4]/div/div[3]/div/section/div/div[1]/div/div[2]/div/div/form/div/input[1]");
+    session.click("/html/body/div[5]/div[2]/div/div/div[2]/form/fieldset/div[2]/div[1]/div[2]/div[3]/span");
+    //choose from box
+    session.click("/html/body/div[5]/div[2]/div/div/div[2]/form/fieldset/div[2]/div[1]/div[2]/ul/li/span/img");
+    //choose user
+    session.click("/html/body/div[5]/div[2]/div/div/div[3]/button[2]");
+    //submit enroll
+    session.click("/html/body/div[2]/div[4]/div/div[2]/nav/ul/li[1]/a");
+}
+
+function createActivity(session) {
+    //press editMode
+    session.click("/html/body/div[2]/nav/div/div[2]/form/div/div/input");
+    //add activity
+    session.click("/html/body/div[4]/div[5]/div/div[3]/div/section/div/div/div/ul/li[1]/div[1]/div[2]/div[2]/div/button/div/span");
+    //press choice activity
+    session.click("/html/body/div[7]/div[2]/div/div/div[2]/div/div/div[1]/div/div[2]/div[2]/div[2]/div/div[3]/div/a/div[2]");
+    //write at choice name
+    session.writeText("/html/body/div[5]/div[5]/div/div[3]/div/section/div/form/fieldset[1]/div[2]/div[1]/div[2]/input", "good activity");
+    //write first choice
+    session.writeText("/html/body/div[5]/div[5]/div/div[3]/div/section/div/form/fieldset[2]/div[2]/div[5]/div[2]/input","coolOption1");
+    //write second choice
+    session.writeText("/html/body/div[5]/div[5]/div/div[3]/div/section/div/form/fieldset[2]/div[2]/div[7]/div[2]/input","coolerOption2");
+    //save and display choice added
+    session.click("/html/body/div[5]/div[5]/div/div[3]/div/section/div/form/div[4]/div[2]/div[1]/div/div[2]/span/input");
+
+}
+
+function enterDisabledActivity(session){
+    session.click("/html/body/div[2]/div[4]/div/div[3]/div/section/div/div/div/ul/li[1]/div/div[2]/ul/li[2]/div/div[2]/div[2]");
+}
+
+function studentEnterDisabledActivity(session){
+    session.click("/html/body/div[2]/div[4]/div/div[3]/div/section/div/div/div/ul/li[1]/div/div[2]/ul/li[2]/div/div[2]/div[2]/div/div/a");
+}
+
+function chooseOption(session){
+    //choose option 1
+    session.click("/html/body/div[2]/div[4]/div/div[2]/div/section/div[2]/form/ul/li[1]/label");
+    //save choose
+    session.click("/html/body/div[2]/div[4]/div/div[2]/div/section/div[2]/form/input[4]");
+}
+
+function returnToCourse(session){
+    //click on course name
+    session.click("/html/body/div[2]/div[4]/div/header/div/div[1]/div[1]/nav/ol/li[1]/a");
+
+}
+
+function checkCantChange(session) {
+    //this shouldnt be if its disbaled, so we check its absent
+    return session.click("/html/body/div[2]/div[4]/div/div[2]/div/section/div[2]/div[3]");
 }
