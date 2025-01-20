@@ -33,7 +33,7 @@ public class StepDefinitions {
         String xEditMode = "/html/body/div[2]/nav/div/div[2]/form/div/div";
 
         // Enter edit mode
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xEditMode))).click();
+        seleniumClick(xEditMode);
     }
 
     private void seleniumClick(String xPath) {
@@ -43,6 +43,20 @@ public class StepDefinitions {
             e.printStackTrace();
         }
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xPath))).click();
+    }
+
+    private void seleniumClickTwoXpaths(String xPath1, String xPath2){
+        try {
+            // Wait for the first XPath to be visible and click it
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xPath1))).click();
+        } catch (TimeoutException e1) {
+            try {
+                // If the first XPath fails, try the second XPath
+                wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xPath2))).click();
+            } catch (TimeoutException e2) {
+                System.out.println("Neither XPath was visible.");
+            }
+        }
     }
 
     private void seleniumSendKeys(String xPath, String keys) {
@@ -117,7 +131,7 @@ public class StepDefinitions {
     public static void before_all() {
         System.setProperty("webdriver.chrome.driver", CHROME_DRIVER_PATH);
         driver = new ChromeDriver();
-        wait = new WebDriverWait(driver, Duration.ofSeconds(60));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         driver.manage().window().maximize();
         driver.get("http://localhost/");
 
@@ -132,7 +146,8 @@ public class StepDefinitions {
      {
         // XPaths
         String xAddActivity = "//*[@id=\"coursecontentcollapse0\"]/div[2]/div/button/div/span";
-        String xForumActivity = "/html/body/div[6]/div[2]/div/div/div[2]/div/div/div[1]/div/div[2]/div[2]/div[2]/div/div[8]/div/a";
+        String xForumActivity1 = "/html/body/div[6]/div[2]/div/div/div[2]/div/div/div[1]/div/div[2]/div[2]/div[2]/div/div[8]/div/a";
+        String xForumActivity2 = "/html/body/div[7]/div[2]/div/div/div[2]/div/div/div[1]/div/div[2]/div[2]/div[2]/div/div[8]/div/a";
         String xForumName = "//*[@id=\"id_name\"]";
         String xCreateForum = "//*[@id=\"id_submitbutton2\"]";
 
@@ -146,7 +161,8 @@ public class StepDefinitions {
         enterEditMode();
         
         seleniumClick(xAddActivity); // Add new activity
-        seleniumClick(xForumActivity); // Add new forum
+        //seleniumClick(xForumActivity); // Add new forum
+        seleniumClickTwoXpaths(xForumActivity1, xForumActivity2);
         seleniumSendKeys(xForumName, "forum"); // Set forum name
         seleniumClick(xCreateForum); // Create the forum
 
@@ -208,30 +224,32 @@ public class StepDefinitions {
     }
 
 
-    /**
-     * TODO: teacher deletes forum
-     */
-
-
     @Given("The forum Exists")
     public void forumExists(){
-        String xForum = "/html/body/div[2]/div[4]/div/div[3]/div/section/div/div/div/ul/li[1]/div/div[2]/ul/li[2]/div/div[2]/div[2]/div/div/a/div/a";
+        String xForum = "/html/body/div[2]/div[4]/div/div[3]/div/section/div/div/div/ul/li[1]/div/div[2]/ul/li[2]/div/div[2]/div[2]/div/div/a";
         
         userLogin(teacherUsername, teacherPassword);
 
         enterSQE();
+
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         
         // Check that the forum exists
-        // if (driver.findElements(By.xpath(xForum)).size() == 0) {
-        //     fail("Forum not found");
-        // }
+        if (driver.findElements(By.xpath(xForum)).size() == 0) {
+            fail("Forum not found");
+        }
     }
 
     @When("The teacher deletes the forum")
     public void deleteForum(){
         String xThreePoints = "/html/body/div[4]/div[5]/div/div[3]/div/section/div/div/div/ul/li[1]/div[1]/div[2]/ul/li[2]/div[2]/div[2]/div[4]/div/div/div/div/a/i";
         String xDelete = "/html/body/div[4]/div[5]/div/div[3]/div/section/div/div/div/ul/li[1]/div[1]/div[2]/ul/li[2]/div[2]/div[2]/div[4]/div/div/div/div/div/a[8]";
-        String xSureDelete = "/html/body/div[6]/div[2]/div/div/div[3]/button[2]";
+        String xSureDelete1 = "/html/body/div[6]/div[2]/div/div/div[3]/button[2]";
+        String xSureDelete2 = "/html/body/div[7]/div[2]/div/div/div[3]/button[2]";
 
         enterEditMode();
 
@@ -239,14 +257,20 @@ public class StepDefinitions {
 
         seleniumClick(xDelete);
 
-        seleniumClick(xSureDelete);
+        seleniumClickTwoXpaths(xSureDelete1, xSureDelete2);
 
     }
 
     @Then("The forum is deleted successfully")
     public void checkForumIsDeleted(){
-        String xForum = "*[@id=\"module-2\"]/div/div[2]/div[2]/div/div/a";
+        String xForum = "/html/body/div[2]/div[4]/div/div[3]/div/section/div/div/div/ul/li[1]/div/div[2]/ul/li[2]/div/div[2]/div[2]/div/div/a";
 
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        
         // Check that the forum does not exist after deletion
         if (driver.findElements(By.xpath(xForum)).size() > 0) {
             fail("Forum is not deleted");
