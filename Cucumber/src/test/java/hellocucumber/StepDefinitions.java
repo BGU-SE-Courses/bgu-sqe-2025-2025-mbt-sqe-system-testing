@@ -101,8 +101,6 @@ public class StepDefinitions {
         // xPaths
         String xOpenDropDown = "//*[@id=\"user-menu-toggle\"]";
         String xLogoutButton = "//*[@id=\"carousel-item-main\"]/a[8]";
-
-        //String xLogoutButton = "//*[@id=\"carousel-item-main\"]/a[7]";
         
         // Open the dropdown menu
         seleniumClick(xOpenDropDown);
@@ -161,8 +159,7 @@ public class StepDefinitions {
         enterEditMode();
         
         seleniumClick(xAddActivity); // Add new activity
-        //seleniumClick(xForumActivity); // Add new forum
-        seleniumClickTwoXpaths(xForumActivity1, xForumActivity2);
+        seleniumClickTwoXpaths(xForumActivity2, xForumActivity1);
         seleniumSendKeys(xForumName, "forum"); // Set forum name
         seleniumClick(xCreateForum); // Create the forum
 
@@ -257,7 +254,7 @@ public class StepDefinitions {
 
         seleniumClick(xDelete);
 
-        seleniumClickTwoXpaths(xSureDelete1, xSureDelete2);
+        seleniumClickTwoXpaths(xSureDelete2, xSureDelete1);
 
     }
 
