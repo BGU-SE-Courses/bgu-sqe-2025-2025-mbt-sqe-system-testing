@@ -1,104 +1,78 @@
 function login(session, username, password) {
-    session.click("/html/body/div[2]/nav/div/div[2]/div/div/span/a");
-    session.clear("//*[@id=\"username\"]");
-    session.writeText("//*[@id=\"username\"]", username);
-    session.writeText("//*[@id=\"password\"]", password);
-    session.click( "//*[@id=\"loginbtn\"]");
+    session.click(xpaths.Login.navigateToLogin);
+    session.clear(xpaths.Login.enterUsername);
+    session.writeText(xpaths.Login.enterUsername, username);
+    session.writeText(xpaths.Login.enterPassword, password);
+    session.click(xpaths.Login.loginButton);
 }
 
 function loginStudent(session) {
-    login(session, "shavit", "Aa!123456");
+    login(session, moodleData.Login.studentUsername, moodleData.Login.password);
 }
 
 function loginTeacher(session) {
-    login(session,"admin","Aa!123456");
+    login(session, moodleData.Login.adminUsername, moodleData.Login.password);
 }
 
-
-function logoutFromChoice(session){
-    session.click("/html/body/div[2]/nav/div/div[2]/div[3]/div/div/a/span/span/span/span");
-    session.click("/html/body/div[2]/nav/div/div[2]/div[3]/div/div/div/div/div/div/a[7]");
-
-
+function logoutFromChoice(session) {
+    session.click(xpaths.Logout.fromChoiceArrow);
+    session.click(xpaths.Logout.logoutFromChoice);
 }
 
-function logoutAdmin(session){
-    //press on user scroll
-    session.click("/html/body/div[4]/nav/div/div[2]/div[3]/div/div/a/span");
-    //click logout
-    session.click("/html/body/div[4]/nav/div/div[2]/div[3]/div/div/div/div/div/div/a[8]");
+function logoutAdmin(session) {
+    session.click(xpaths.Logout.userScroll);
+    session.click(xpaths.Logout.logout);
 }
 
 function createCourse(session) {
-    session.click("/html/body/div[2]/nav/div/div[1]/nav/ul/li[3]/a");
-    session.click("/html/body/div[2]/div[3]/div/div[2]/div/section/div/aside/section/div/div/div[1]/div/div/div/div[2]/form/button");
-    session.writeText("//*[@id=\"id_fullname\"]", "test_course");
-    session.writeText("//*[@id=\"id_shortname\"]", "test");
-    session.click("//*[@id=\"id_saveanddisplay\"]");
+    session.click(xpaths.Course.myCourses);
+    session.click(xpaths.Course.createCourseButton);
+    session.writeText(xpaths.Course.enterFullName, moodleData.Course.fullName);
+    session.writeText(xpaths.Course.enterShortName, moodleData.Course.shortName);
+    session.click(xpaths.Course.saveCourseButton);
 }
 
 function navigateToCourseFromHomePage(session) {
-    session.click("/html/body/div[2]/nav/div/div[1]/nav/ul/li[3]/a");
-    session.click("/html/body/div[2]/div[3]/div/div[2]/div/section/div/aside/section/div/div/div[1]/div[2]/div/div/div[1]/div/div/div/div/a/div");
-
-
-   //  session.click("/html/body/div[2]/nav/div/div[1]/nav/ul/li[3]/a");
-   //  session.click("/html/body/div[2]/div[3]/div/div[2]/div/section/div/aside/section/div/div/div[1]/div[2]/div/div/div[1]/div/div/div/div/div[1]/div/div/a/span[3]/span[2]");
-
+    session.click(xpaths.Course.myCourses);
+    session.click(xpaths.Course.chooseCourse);
 }
 
 function enrollStudent(session) {
-    session.click("/html/body/div[2]/div[4]/div/div[2]/nav/ul/li[3]/a");
-    session.click( "/html/body/div[2]/div[4]/div/div[3]/div/section/div/div[1]/div/div[2]/div/div/form/div/input[1]");
-    session.click("/html/body/div[5]/div[2]/div/div/div[2]/form/fieldset/div[2]/div[1]/div[2]/div[3]/span");
-    //choose from box
-    session.click("/html/body/div[5]/div[2]/div/div/div[2]/form/fieldset/div[2]/div[1]/div[2]/ul/li/span/img");
-    //choose user
-    session.click("/html/body/div[5]/div[2]/div/div/div[3]/button[2]");
-    //submit enroll
-    session.click("/html/body/div[2]/div[4]/div/div[2]/nav/ul/li[1]/a");
+    session.click(xpaths.Participants.participantsButton);
+    session.click(xpaths.Participants.enrollUsersButton);
+    session.click(xpaths.Participants.scrollUsers);
+    session.click(xpaths.Participants.chooseFromBox);
+    session.click(xpaths.Participants.chooseUser);
+    session.click(xpaths.Participants.submitEnroll);
 }
 
 function createActivity(session) {
-    //press editMode
-    session.click("/html/body/div[2]/nav/div/div[2]/form/div/div/input");
-    //add activity
-    session.click("/html/body/div[4]/div[5]/div/div[3]/div/section/div/div/div/ul/li[1]/div[1]/div[2]/div[2]/div/button/div/span");
-    //press choice activity
-    session.click("/html/body/div[7]/div[2]/div/div/div[2]/div/div/div[1]/div/div[2]/div[2]/div[2]/div/div[3]/div/a/div[2]");
-    //write at choice name
-    session.writeText("/html/body/div[5]/div[5]/div/div[3]/div/section/div/form/fieldset[1]/div[2]/div[1]/div[2]/input", "good activity");
-    //write first choice
-    session.writeText("/html/body/div[5]/div[5]/div/div[3]/div/section/div/form/fieldset[2]/div[2]/div[5]/div[2]/input","coolOption1");
-    //write second choice
-    session.writeText("/html/body/div[5]/div[5]/div/div[3]/div/section/div/form/fieldset[2]/div[2]/div[7]/div[2]/input","coolerOption2");
-    //save and display choice added
-    session.click("/html/body/div[5]/div[5]/div/div[3]/div/section/div/form/div[4]/div[2]/div[1]/div/div[2]/span/input");
-
+    session.click(xpaths.Activity.editMode);
+    session.click(xpaths.Activity.addActivity);
+    session.click(xpaths.Activity.choiceActivity);
+    session.writeText(xpaths.Activity.writeChoiceName, moodleData.Activity.name);
+    session.writeText(xpaths.Activity.writeFirstChoice, moodleData.Activity.firstChoice);
+    session.writeText(xpaths.Activity.writeSecondChoice, moodleData.Activity.secondChoice);
+    session.click(xpaths.Activity.saveAndDisplayChoice);
 }
 
-function enterDisabledActivity(session){
-    session.click("/html/body/div[2]/div[4]/div/div[3]/div/section/div/div/div/ul/li[1]/div/div[2]/ul/li[2]/div/div[2]/div[2]");
+function enterDisabledActivity(session) {
+    session.click(xpaths.DisabledActivity.enterDisabledActivity);
 }
 
-function studentEnterDisabledActivity(session){
-    session.click("/html/body/div[2]/div[4]/div/div[3]/div/section/div/div/div/ul/li[1]/div/div[2]/ul/li[2]/div/div[2]/div[2]/div/div/a");
+function studentEnterDisabledActivity(session) {
+    session.click(xpaths.DisabledActivity.studentEnterDisabledActivity);
 }
 
-function chooseOption(session){
-    //choose option 1
-    session.click("/html/body/div[2]/div[4]/div/div[2]/div/section/div[2]/form/ul/li[1]/label");
-    //save choose
-    session.click("/html/body/div[2]/div[4]/div/div[2]/div/section/div[2]/form/input[4]");
+function chooseOption(session) {
+    session.click(xpaths.ChooseOption.chooseOption1);
+    session.click(xpaths.ChooseOption.saveChoice);
 }
 
-function returnToCourse(session){
-    //click on course name
-    session.click("/html/body/div[2]/div[4]/div/header/div/div[1]/div[1]/nav/ol/li[1]/a");
-
+function returnToCourse(session) {
+    session.click(xpaths.ReturnToCourse.courseName);
 }
 
 function checkCantChange(session) {
-    //this shouldnt be if its disbaled, so we check its absent
-    return session.click("/html/body/div[2]/div[4]/div/div[2]/div/section/div[2]/div[3]");
+    return session.click(xpaths.CheckChange.shouldBeChanged);
 }
