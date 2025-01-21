@@ -1,19 +1,33 @@
 /* @provengo summon selenium */
 
-/**
- * This story opens a new browser window, goes to google.com, and searches for "Pizza".
- */
-bthread('Search', function () {
-  let s = new SeleniumSession('search').start(URL)
-  composeQuery(s, { text: 'Pizza' })
-  startSearch(s)
-})
+// /**
+//  * This story simulates the admin setting product quantity to 0.
+//  */
+// bthread('Admin sets product quantity to 0', function () {
+//   let s = new SeleniumSession('admin')
+//   s.start(adminURL) // Update with your actual admin URL
+//   adminLogin(s)
+//   setProductQuantity(s, { product: 'Product Name', quantity: '0' })
+//   s.close()
+// })
+
 
 /**
- * This story opens a new browser window, goes to google.com, and searches for "Pasta" using the "I Feel Lucky" feature.
+ * This story registers a new user, logs in, and adds a product to the wishlist.
  */
-bthread('Feeling lucky', function () {
-  let s = new SeleniumSession('lucky').start(URL)
-  composeQuery(s, { text: 'Pasta' })
-  feelLucky(s)
-})
+bthread('Register, Login, and Add Product to Wishlist', function () {
+  let s = new SeleniumSession('user');
+  s.start(URL);
+
+  const userData = {
+    firstname: 'Test',
+    lastname: 'User',
+    email: 'testuser@example.com',
+    password: 'password123',
+  };
+
+  registerUser(s, userData); // Register a new user
+  addToWishlist(s); // Replace '{{PRODUCT_NAME}}' with the actual product name
+
+  s.close();
+});
