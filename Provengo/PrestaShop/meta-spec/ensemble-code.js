@@ -3,16 +3,38 @@
 /**
  * List of events "of interest" that we want test suites to cover.
  */
+
 const GOALS = [
-    any(/Howdy/),
-    any(/Mars/),
-    Ctrl.markEvent("Classic!")
+    any(/end of go to comment/),
+    any(/end of delete product/),
+    Ctrl.markEvent("confirmation")
 ];
 
+// const GOALS = [
+//     any(/"end of delete product"/),
+//     any(/"start delete product"/),
+//     any(/end of go to all products/),
+//     any(/"start go to all products"/),
+//     any(/"end of admin login"/),
+//     any(/"start admin login"/),
+//     any(/"end of go to comment"/),
+//     any(/"start go to comment"/),
+//     any(/"end of user write comment"/),
+//     any(/"start user write comment"/),
+//     any(/"end of select the product"/),
+//     any(/"start select the product"/),
+//     any(/"end user login"/),
+//     any(/"start user login"/),
+//     // Ctrl.markEvent("Classic!")
+//
+// ];
+
+
 const makeGoals = function(){
-    return [ [ any(/Howdy/), any(/Venus/) ],
-        [ any(/Mars/) ],
-        [ Ctrl.markEvent("Classic!") ] ];
+    return [
+        [ any(/end of delete product/) ],  // Goal for adding a comment
+        [ any(/end of go to comment/) ]  // Goal for deleting a product
+    ];
 }
 
 /**
