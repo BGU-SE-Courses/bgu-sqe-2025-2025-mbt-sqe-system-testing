@@ -9,18 +9,19 @@ Feature: User writes a comment on a product and the admin deletes the product
 
     Examples:
       | product_name         | user_username             | user_password | comment_title     | comment_body                    |
-      | Hummingbird Printed T-shirt  | volodavi@post.bgu.ac.il  | 56575453Ab    | Great Shirt    | I love this product!        |
+      | Hummingbird Printed T-shirt  | amittry@example.com  | aa11ss22dd33    | Great Shirt    | I love this product!        |
       | Hummingbird Printed T-shirt  | customer@example.com     | customer123   | Nice Quality  | I love this product!         |
       | Mug The adventure begins   | testuser@example.com     | testpass      | Amazing Mug    | Highly recommend this mug!   |
 
-  Scenario Outline: Admin deletes the product after the user commented
-    Given A product "<product_name>" exists in the store with a comment with title "<comment_title>" and body "<comment_body>"
-    And The admin is logged in with username "<admin_username>" and password "<admin_password>"
-    When The admin deletes the product "<product_name>"
-    And The user logs in with username "<user_username>" and password "<user_password>"
-    Then The product "<product_name>" and the comment with title "<comment_title>" and body "<comment_body>" are no longer visible
+
+  Scenario: Admin deletes a product
+    Given The admin "<admin_username>" is logged into the PrestaShop admin panel with the password "<admin_password>"
+    And The product "<product_name>" exists in the store
+    When The admin selects the product "<product_name>"
+    And The admin clicks the "Delete" button
+    And Confirms the deletion
+    Then The product "<product_name>" should no longer appear in the product list
 
     Examples:
-      | product_name         | user_username      | user_password | comment_title     | comment_body                 | admin_username     | admin_password |
-      | Hummingbird Printed T-shirt  | customer@example.com | customer123  | Nice Quality   | I love this product!      | admin@example.com  | admin123       |
-      | Printed Mug          | testuser@example.com | testpass     | Amazing Mug   | Highly recommend this mug! | admin@example.com  | admin123       |
+      | product_name         | admin_username             | admin_password | 
+      | Hummingbird Printed T-shirt  | amithass@post.bgu.ac.il  | 1256359027    |

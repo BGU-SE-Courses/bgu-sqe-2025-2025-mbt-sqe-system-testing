@@ -12,9 +12,9 @@ public class AddComment {
 
     private WebDriver driver;
     private WebDriverWait wait;
-    final String URL = "http://localhost:8080/en/";
+    final String URL = "http://localhost/prestashop/";
     final private String WEB_DRIVER = "webdriver.chrome.driver";
-    final private String PATH = "/Users/davidvolodarsky/homebrew/bin/chromedriver";
+    final private String PATH = "C:\\Users\\user\\Downloads\\chromedriver-win64\\chromedriver.exe";
 
     public void Init() {
         System.out.println("--------------- OPENING WEBPAGE ---------------");
