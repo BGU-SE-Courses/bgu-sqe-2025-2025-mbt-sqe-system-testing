@@ -2,23 +2,107 @@ package hellocucumber;
 
 import io.cucumber.java.en.*;
 
-import org.junit.jupiter.api.Assertions.*;
-
 public class StepDefinitions {
 
-    // $$*TODO* explain what this step does$$
-    @Given("an example scenario")
-    public void anExampleScenario() {
+    //Scenario Outline: A user writes a comment on a product
+
+    AddComment comment_actuator = new AddComment();
+    DeleteProduct product_actuator = new DeleteProduct();
+
+    @Given("A product {string} exists in the store")
+    public void productExistsInStore(String productName) {
+        comment_actuator.Init();
+        comment_actuator.VerifyProductExists(productName);
     }
 
-    // $$*TODO* explain what this step does$$
-    @When("all step definitions are implemented")
-    public void allStepDefinitionsAreImplemented() {
+    @Given("The user {string} is logged in with the password {string}")
+    public void userLogsIn(String username, String password) {
+        comment_actuator.NavigateToLogin();
+        comment_actuator.Login(username, password);
+        comment_actuator.VerifyLogin();
     }
 
-    // $$*TODO* explain what this step does$$
-    @Then("the scenario passes")
-    public void theScenarioPasses() {
+    @When("The user navigates to the product {string} page")
+    public void userNavigatesToProductPage(String productName) {
+        comment_actuator.NavigateToProduct(productName);
+    }
+    @When("The user writes a comment with title {string} and body {string}")
+    public void userWritesComment(String title, String body) throws InterruptedException {
+        comment_actuator.WriteComment(title, body);
     }
 
+    @Then("The comment with title {string} and body {string} is visible under the product {string}")
+    public void verifyCommentIsVisible(String title, String body, String productName) {
+        comment_actuator.VerifyCommentVisible(productName, title, body);
+    }
+
+    @Given("A product {string} exists in the store with a comment with title {string} and body {string}")
+    public void productExistsWithComment(String productName, String title, String body) {
+        comment_actuator.VerifyProductExists(productName);
+        comment_actuator.VerifyCommentVisible(productName, title, body);
+    }
+
+
+    @Given("The admin is logged in with username {string} and password {string}")
+    public void adminLogsIn(String username, String password) {
+        comment_actuator.NavigateToAdminLogin();
+        comment_actuator.AdminLogin(username, password);
+    }
+
+    @When("The admin deletes the product {string}")
+    public void adminDeletesProduct(String productName) {
+        comment_actuator.DeleteProduct(productName);
+    }
+
+    @When("The user logs in with username {string} and password {string}")
+    public void userLogsInAgain(String username, String password) {
+        comment_actuator.NavigateToLogin();
+        comment_actuator.Login(username, password);
+        comment_actuator.VerifyLogin();
+    }
+
+    @Then("The product {string} and the comment with title {string} and body {string} are no longer visible")
+    public void verifyProductAndCommentNotVisible(String productName, String title, String body) {
+        comment_actuator.VerifyProductDeleted(productName);
+        comment_actuator.VerifyCommentNotVisible(productName, title, body);
+        comment_actuator.Close();
+    }
+
+
+    //Scenario: Admin deletes a product
+
+    @Given("The admin {string} is logged into the PrestaShop admin panel with the password {string}")
+    public void adminLogin(String admin_username, String admin_password) {
+        product_actuator.Init();
+        product_actuator.Login(admin_username, admin_password);
+    }
+
+    @Given("The product {string} exists in the store")
+    public void isProductExist(String product_name) throws Exception {
+        product_actuator.navigateToProducts();
+        if(!product_actuator.isProductPresent(product_name)){
+            throw new Exception("Product not found: " + product_name);
+        }
+    }
+
+    @When("The admin selects the product {string}")
+    public void click3Dots(String product_name) throws Exception {
+        product_actuator.click3Dots(product_name);
+    }
+
+    @When("The admin clicks the \"Delete\" button")
+    public void clickDeleteButton() throws Exception {
+        product_actuator.clickDeleteButton();
+        product_actuator.confirmDeletion();
+    }
+
+    @Then("The product {string} should no longer appear in the product list")
+    public void confirmDeleteProduct(String product_name) throws Exception {
+        if(product_actuator.isProductPresent(product_name)){
+            throw new Exception("Product was found after deletion: " + product_name);
+        }
+        else{
+            System.out.println("Successful deletion of:" + product_name);
+        }
+    }
 }
