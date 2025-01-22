@@ -158,34 +158,34 @@ public void NavigateToProduct(String productName) {
 
 
     public void VerifyProductExists(String productName) {
-    System.out.println("--------------- VERIFYING PRODUCT EXISTS ---------------");
+        System.out.println("--------------- VERIFYING PRODUCT EXISTS ---------------");
 
-    // Locate the search bar
-    WebElement searchBox = wait.until(ExpectedConditions.visibilityOfElementLocated(
-            By.cssSelector("input[placeholder='Search our catalog']")));
+        // Locate the search bar
+        WebElement searchBox = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                By.cssSelector("input[placeholder='Search our catalog']")));
 
-    // Enter the product name and press ENTER
-    searchBox.clear();
-    searchBox.sendKeys(productName + Keys.ENTER);
+        // Enter the product name and press ENTER
+        searchBox.clear();
+        searchBox.sendKeys(productName + Keys.ENTER);
 
-    // Wait for search results to load
-    wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.products")));
+        // Wait for search results to load
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.products")));
 
-    // Updated XPath for case-insensitive match
-    String productXPath = "//h2[contains(@class, 'product-title')]/a[contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '" + productName.toLowerCase() + "')]";
+        // Updated XPath for case-insensitive match
+        String productXPath = "//h2[contains(@class, 'product-title')]/a[contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '" + productName.toLowerCase() + "')]";
 
-    // Wait for the product to appear
-    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(productXPath)));
+        // Wait for the product to appear
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(productXPath)));
 
-    // Verify the product exists
-    boolean productExists = !driver.findElements(By.xpath(productXPath)).isEmpty();
+        // Verify the product exists
+        boolean productExists = !driver.findElements(By.xpath(productXPath)).isEmpty();
 
-    if (!productExists) {
-        throw new AssertionError("Product '" + productName + "' does not exist in the store!");
+        if (!productExists) {
+            throw new AssertionError("Product '" + productName + "' does not exist in the store!");
+        }
+
+        System.out.println("Product '" + productName + "' exists in the store.");
     }
-
-    System.out.println("Product '" + productName + "' exists in the store.");
-}
 
 
 

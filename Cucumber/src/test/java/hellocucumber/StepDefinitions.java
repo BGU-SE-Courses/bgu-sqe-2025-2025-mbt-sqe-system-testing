@@ -74,9 +74,35 @@ public class StepDefinitions {
     @Given("The admin {string} is logged into the PrestaShop admin panel with the password {string}")
     public void adminLogin(String admin_username, String admin_password) {
         product_actuator.Init();
-        //product_actuator.NavigateToLogin();
         product_actuator.Login(admin_username, admin_password);
-        //product_actuator.VerifyLogin();
     }
 
+    @Given("The product {string} exists in the store")
+    public void isProductExist(String product_name) throws Exception {
+        product_actuator.navigateToProducts();
+        if(!product_actuator.isProductPresent(product_name)){
+            throw new Exception("Product not found: " + product_name);
+        }
+    }
+
+    @When("The admin selects the product {string}")
+    public void click3Dots(String product_name) throws Exception {
+        product_actuator.click3Dots(product_name);
+    }
+
+    @When("The admin clicks the \"Delete\" button")
+    public void clickDeleteButton() throws Exception {
+        product_actuator.clickDeleteButton();
+        product_actuator.confirmDeletion();
+    }
+
+    @Then("The product {string} should no longer appear in the product list")
+    public void confirmDeleteProduct(String product_name) throws Exception {
+        if(product_actuator.isProductPresent(product_name)){
+            throw new Exception("Product was found after deletion: " + product_name);
+        }
+        else{
+            System.out.println("Successful deletion of:" + product_name);
+        }
+    }
 }
