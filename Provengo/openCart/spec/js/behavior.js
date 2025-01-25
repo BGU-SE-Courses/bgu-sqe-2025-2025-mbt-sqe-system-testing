@@ -1,5 +1,7 @@
 let eventOccurred = false;
-
+/**
+ * BThread: Admin updates the product quantity to zero and waits for the user to complete their wishlist check.
+ */
 bthread('Admin sets product quantity to 0', function () {
     let session;
     try {
@@ -29,7 +31,9 @@ bthread('Admin sets product quantity to 0', function () {
         }
     }
 });
-
+/**
+ * BThread: User registers, adds a product to the wishlist, and checks its stock status based on the admin's action.
+ */
 bthread('Register, Login, and Add Product to Wishlist', function () {
     let s;
     try {
@@ -39,7 +43,7 @@ bthread('Register, Login, and Add Product to Wishlist', function () {
         registerUser(s, {
             firstname: 'Test',
             lastname: 'User',
-            email: 'pppppp9@example.com',
+            email: 'pppppppp9@example.com',
             password: 'password123',
         });
         addToWishlist(s);
