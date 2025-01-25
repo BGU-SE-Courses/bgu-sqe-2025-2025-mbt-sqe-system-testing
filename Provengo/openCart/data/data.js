@@ -11,7 +11,6 @@ const xpaths = {
     usernameField: '//*[@id="input-username"]',
     passwordField: '//*[@id="input-password"]',
     loginButton: '//*[@id="form-login"]/div[3]/button',
-    modalCloseButton: '//*[@id="modal-security"]/div/div/div[1]/button',
     catalogMenu: '//*[@id="menu-catalog"]/a',
     productsSubmenu: '//*[@id="collapse-1"]/li[2]/a',
     firstProductEdit: '//*[@id="form-product"]/div[1]/table/tbody/tr[1]/td[7]/div/a/i',
@@ -21,23 +20,22 @@ const xpaths = {
   },
   user: {
     myAccountButton:'//div[1]/div[2]/ul[1]/li[2]/div[1]/a[1]',
-    registerLink: '//li[2]/div[1]/ul[1]/li[1]/a[1]', // Link to registration page
+    registerLink: '//li[2]/div[1]/ul[1]/li[1]/a[1]',
     firstnameField: '//*[@id="input-firstname"]',
     lastnameField: '//*[@id="input-lastname"]',
     emailField: '//*[@id="input-email"]',
     passwordField: '//*[@id="input-password"]',
-    confirmPasswordField: '//*[@id="input-confirm"]',
     agreeCheckbox: '//form[1]/div[1]/div[1]/input[1]',
     continueButton: '//form[1]/div[1]/button[1]',
     continueAfterSuccessButton: '//div[2]/div[1]/div[1]/div[1]/a[1]',
   },
   wishlist: {
-    DesktopButton: '//nav[1]/div[2]/ul[1]/li[1]/a[1]',
-    macButton: '//li[1]/div[1]/div[1]/ul[1]/li[2]/a[1]',
-    macEnterToProductButton: '//*[@id="product-list"]/div/div/div[1]/a/img',
-    addTowishListButton: '//*[@id="content"]/div[1]/div[2]/form/div/button[1]',
-    seeWishList: '//li[3]/a[1]/span[1]',
-    productQuantityField: '//*[@id="input-quantity"]',
-    amount: '10'
+    DesktopButton: '//*[@id="narbar-menu"]/ul/li[1]/a',
+    showAllDesktopButton: '//*[@id="narbar-menu"]/ul/li[1]/div/a',
+    macButton: '//*[@id="product-list"]/div[1]/div/div[2]/div/h4/a',
+    addTowishListButton: '//*[@id="content"]/div[1]/div[2]/form/div/button[1]/i',
+    seeWishList: '//*[@id="wishlist-total"]/span',
+    stockStatusField: '//*[@id="wishlist"]/div/table/tbody/tr/td[4]',  // New XPath to check stock status
+    exitSuccessWindow: '//*[@id="alert"]/div/button'
   }
 };

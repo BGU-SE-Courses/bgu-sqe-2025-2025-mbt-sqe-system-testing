@@ -2,6 +2,7 @@
 //@provengo summon textassertion
 // @provengo summon ctrl
 
+// Function to log in as an admin
 function adminLogin(session) {
   session.writeText(xpaths.admin.usernameField, 'admin'); // Adjust for your admin credentials
   session.writeText(xpaths.admin.passwordField, '1234'); // Adjust for your admin credentials
@@ -15,20 +16,19 @@ function setProductQuantity(session, data) {
     session.waitForClickability(xpaths.admin.catalogMenu, 5000);
     session.click(xpaths.admin.catalogMenu);
     session.waitForClickability(xpaths.admin.productsSubmenu, 5000);
-    session.click(xpaths.admin.productsSubmenu); // Navigate to Products
+    session.click(xpaths.admin.productsSubmenu);
 
-    bp.log.info("Navigated to Products page.");
     bp.log.info("Opening first product for editing...");
     session.waitForClickability(xpaths.admin.firstProductEdit, 5000);
-    session.click(xpaths.admin.firstProductEdit); // Click Edit for the first product
+    session.click(xpaths.admin.firstProductEdit);
 
     bp.log.info("Switching to Data tab...");
     session.waitForClickability(xpaths.admin.dataTab, 5000);
-    session.click(xpaths.admin.dataTab); // Navigate to Data
+    session.click(xpaths.admin.dataTab);
 
     bp.log.info("Setting product quantity to: " + data.quantity);
-    session.writeText(xpaths.admin.productQuantityField, data.quantity, true); // Clear before writing
-    session.writeText(xpaths.admin.productQuantityField, "\n"); // Press Enter key - save the value
+    session.writeText(xpaths.admin.productQuantityField, data.quantity, true);
+    session.writeText(xpaths.admin.productQuantityField, "\n");
     bp.log.info("Product quantity updated successfully.");
 
   } catch (error) {
@@ -37,67 +37,55 @@ function setProductQuantity(session, data) {
   }
 }
 
+// Function to register a new user
 function registerUser(session, userData) {
   bp.log.info("Registering a new user...");
 
-  // Click the my account button
-  bp.log.info("Clicking the my account button...");
   session.click(xpaths.user.myAccountButton);
-
-  // Click the registration link
-  bp.log.info("Navigating to the registration page...");
   session.click(xpaths.user.registerLink);
 
-  // seleniumSession.waitForVisibility(xpaths.user.firstnameField, 10000);
-
-  // Fill in the first name
-  bp.log.info(`Entering first name: ${userData.firstname}`);
   session.writeText(xpaths.user.firstnameField, userData.firstname);
-
-  // Fill in the last name
-  bp.log.info(`Entering last name: ${userData.lastname}`);
   session.writeText(xpaths.user.lastnameField, userData.lastname);
-
-  // Fill in the email
-  bp.log.info(`Entering email: ${userData.email}`);
   session.writeText(xpaths.user.emailField, userData.email);
-
-  // Fill in the password
-  bp.log.info("Entering password...");
   session.writeText(xpaths.user.passwordField, userData.password + "\uE00F");
-
-  // Agree to terms and conditions
-  bp.log.info("Ensuring the 'Agree to Terms and Conditions' checkbox is visible...");
   session.click(xpaths.user.agreeCheckbox);
-
-  // Submit the registration form
-  bp.log.info("Submitting the registration form...");
   session.click(xpaths.user.continueButton);
-
-  session.waitForVisibility(xpaths.user.continueAfterSuccessButton, 5000); // Wait for the button to appear
-
-  // Wait for success message
-  bp.log.info("Pressing on continue bottom after registration...");
-  session.click(xpaths.user.continueAfterSuccessButton);
 
   bp.log.info("User registration successful!");
 }
 
-function addToWishlist(session, data) {
+// Function to add a product to the wishlist
+function addToWishlist(session) {
   bp.log.info("Adding product to wishlist...");
-
-  // Press the Desktop category button
-  bp.log.info("Navigating to the Desktop category...");
+  session.waitForVisibility(xpaths.wishlist.DesktopButton, 1000);
   session.click(xpaths.wishlist.DesktopButton);
 
-  // Press the Mac button
-  bp.log.info("Navigating to the Mac category...");
+  session.waitForVisibility(xpaths.wishlist.showAllDesktopButton, 1000);
+  session.click(xpaths.wishlist.showAllDesktopButton);
+
+  session.waitForVisibility(xpaths.wishlist.macButton, 5000);
+  session.scrollToElement(xpaths.wishlist.macButton);
   session.click(xpaths.wishlist.macButton);
 
-  bp.log.info("Enter to the Mac product...");
-  session.click(xpaths.wishlist.macEnterToProductButton);
-
+  session.scrollToElement(xpaths.wishlist.addTowishListButton);
+  session.waitForVisibility(xpaths.wishlist.addTowishListButton, 5000);
   session.click(xpaths.wishlist.addTowishListButton);
-  bp.log.info("Product successfully added to the wishlist!");
 
+  session.waitForVisibility(xpaths.wishlist.exitSuccessWindow, 5000);
+  session.click(xpaths.wishlist.exitSuccessWindow);
+  bp.log.info("Product successfully added to the wishlist!");
 }
+
+// Function to check wishlist stock status
+function checkWishlistStockStatus(session, expectedStatus) {
+  bp.log.info("Checking product stock status in wishlist...");
+
+  // Wait for the wishlist link to be visible before clicking
+  session.scrollToElement(xpaths.wishlist.seeWishList);
+  session.waitForVisibility(xpaths.wishlist.seeWishList, 10000);
+  session.click(xpaths.wishlist.seeWishList);
+
+  // Assert the expected stock status
+  session.assertText(xpaths.wishlist.stockStatusField, expectedStatus);
+}
+
