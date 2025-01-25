@@ -29,7 +29,7 @@ provengo analyze -f PDF helloprovengo
 provengo run --show-sessions helloprovengo
 ```
 5. We repeated steps 1-4 until we were satisfied with the result.
-6. We recorded a video of the running tests and added it to the report. Since more than one browser session was opened, we recorded the entire screen. The link for the video is [https://github.com/BGU-SE-Courses/2025-mbt-teamalpha/blob/main/Provengo/Provengo_Screen_Recording.mp4]($$*TODO* write the link$$).
+6. We recorded a video of the running tests and added it to the report. Since more than one browser session was opened, we recorded the entire screen. The link for the video is https://github.com/BGU-SE-Courses/2025-mbt-teamalpha/blob/main/Provengo/Provengo_Screen_Recording.mp4
 7. We copied the generated graph of the model to a file named [model.pdf](submission-files/model.pdf) inside the submission-files directory.
 
 ### Test files
