@@ -17,7 +17,10 @@ bthread('Student Star', function () {
   studentSession.start(URL)
   login(studentSession, {username: 'student', password: 'studentQ$A1234'})
   goToMyCourses(studentSession)
+  sync({request: Ctrl.markEvent('WentMyCourses')})
   starCourse(studentSession)
+  sync({request: Ctrl.markEvent('EndStarCourse')})
+  sync({ request: bp.Event(`StudentEnd`, {}) })
 })
 
 /**
@@ -29,4 +32,31 @@ bthread('Teacher Hide', function () {
   goToMyCourses(teacherSession)
   goToCourse(teacherSession)
   hideCourse(teacherSession)
+  sync({request: Ctrl.markEvent('EndHideCourse')})
+  sync({ request: bp.Event(`TeacherEnd`, {}) })
+})
+
+/**
+ * This bthread undoes the actions performed in the test, allowing to run multiple tests one after the other
+ */
+bthread('AfterEach', function () {
+  waitForAll(
+    bp.Event(`TeacherEnd`, {}),
+    bp.Event(`StudentEnd`, {})
+  )
+  sync({ request: bp.Event(`AfterEachStart`, {}) })
+  showCourse(teacherSession)
+  unstarCourse(studentSession)
+})
+
+
+/**
+ * This bthread is used for the domain-specific criterion, to mark tests where the student stars the course after it was hidden
+ */
+bthread('Mark WentMyCourses-HideCourse-StarCourse', function () {
+  sync({ waitFor: Ctrl.markEvent('WentMyCourses')})
+  sync({ waitFor: Ctrl.markEvent('EndHideCourse')})
+  sync({ waitFor: Ctrl.markEvent('EndStarCourse')})
+
+  sync({ request: Ctrl.markEvent('MyCoursesHideStar')})
 })

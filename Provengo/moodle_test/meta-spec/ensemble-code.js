@@ -3,17 +3,14 @@
 /**
  * List of events "of interest" that we want test suites to cover.
  */
+/**
+ * Goals for Domain-Specific criterion - We want to test the edge case where the course is hidden by the teacher
+ * after the student loads their courses, but before the student stars the course, so that we can check how the case
+ * is handled by the system.
+ */
 const GOALS = [
-    any(/Howdy/),
-    any(/Mars/),
-    Ctrl.markEvent("Classic!")
+    Ctrl.markEvent("MyCoursesHideStar")
 ];
-
-const makeGoals = function(){
-    return [ [ any(/Howdy/), any(/Venus/) ],
-             [ any(/Mars/) ],
-             [ Ctrl.markEvent("Classic!") ] ];
-}
 
 /**
  * Ranks test suites by how many events from the GOALS array were met.
