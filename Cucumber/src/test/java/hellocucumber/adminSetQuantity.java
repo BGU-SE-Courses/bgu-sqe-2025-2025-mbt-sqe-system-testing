@@ -20,15 +20,15 @@ public class adminSetQuantity {
         driver.get("http://localhost/opencartsite/admin-new");
         
         // Fill username
-        WebElement username = driver.findElement(By.xpath("//*[@id='input-username']"));
-        username.sendKeys("admin");
+        WebElement usernameField = driver.findElement(By.xpath("//*[@id='input-username']"));
+        usernameField.sendKeys("admin");
         
         // Fill password
-        WebElement password = driver.findElement(By.xpath("//*[@id='input-password']"));
-        password.sendKeys("1234");
+        WebElement passwordField = driver.findElement(By.xpath("//*[@id='input-password']"));
+        passwordField.sendKeys("1234");
 
         try {
-            // Wait for 1 seconds
+            // Wait for 1 second
             Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -41,7 +41,7 @@ public class adminSetQuantity {
     @When("the admin navigates to the product list")
     public void navigateToProductList() {
         try {
-            // Wait for 1 seconds
+            // Wait for 1 second
             Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -51,13 +51,12 @@ public class adminSetQuantity {
         driver.findElement(By.xpath("//*[@id='menu-catalog']/a[1]")).click();
 
         try {
-            // Wait for 2 seconds
+            // Wait for 1 second
             Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
-        
         // Click products button
         driver.findElement(By.xpath("//*[@id='collapse-1']/li[2]/a[1]")).click();
     }
@@ -77,7 +76,7 @@ public class adminSetQuantity {
         driver.findElement(By.xpath("//tr[1]/td[7]/div[1]/a[1]/i[1]")).click();
         
         try {
-            // Wait for 2 seconds
+            // Wait for 1 second
             Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -87,13 +86,13 @@ public class adminSetQuantity {
         driver.findElement(By.xpath("//form[1]/ul[1]/li[2]/a[1]")).click();
         
         try {
-            // Wait for 1.5 seconds
+            // Wait for 1 second
             Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
         
-        // Scroll down until the quantity field visible
+        // Scroll down until the quantity field is visible
         WebElement quantityField = driver.findElement(By.xpath("//*[@id='input-quantity']"));
         ((JavascriptExecutor) driver).executeScript("window.scrollBy(0, 350);");
         
@@ -135,7 +134,7 @@ public class adminSetQuantity {
     @Then("the product quantity should be updated successfully")
     public void verifyQuantityUpdate() {
         try {
-            // Wait for 200 milliseconds
+            // Wait for 1 second
             Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -168,15 +167,15 @@ public class adminSetQuantity {
         driver.get("http://localhost/opencartsite/admin-new");
         
         // Fill username
-        WebElement username = driver.findElement(By.xpath("//*[@id='input-username']"));
-        username.sendKeys("admin");
+        WebElement usernameField = driver.findElement(By.xpath("//*[@id='input-username']"));
+        usernameField.sendKeys("admin");
         
         // Fill password
-        WebElement password = driver.findElement(By.xpath("//*[@id='input-password']"));
-        password.sendKeys("1234");
+        WebElement passwordField = driver.findElement(By.xpath("//*[@id='input-password']"));
+        passwordField.sendKeys("1234");
 
         try {
-            // Wait for 1 seconds
+            // Wait for 1 second
             Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -186,7 +185,7 @@ public class adminSetQuantity {
         driver.findElement(By.xpath("//button[1]")).click();
 
         try {
-            // Wait for 1 seconds
+            // Wait for 1 second
             Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -196,7 +195,7 @@ public class adminSetQuantity {
         driver.findElement(By.xpath("//*[@id='menu-catalog']/a[1]")).click();
 
         try {
-            // Wait for 2 seconds
+            // Wait for 1 second
             Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -209,7 +208,7 @@ public class adminSetQuantity {
         driver.findElement(By.xpath("//tr[1]/td[7]/div[1]/a[1]/i[1]")).click();
         
         try {
-            // Wait for 2 seconds
+            // Wait for 1 second
             Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -219,13 +218,13 @@ public class adminSetQuantity {
         driver.findElement(By.xpath("//form[1]/ul[1]/li[2]/a[1]")).click();
         
         try {
-            // Wait for 1.5 seconds
+            // Wait for 1 second
             Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
         
-        // Scroll down until the quantity field visible
+        // Scroll down until the quantity field is visible
         WebElement quantityField = driver.findElement(By.xpath("//*[@id='input-quantity']"));
         ((JavascriptExecutor) driver).executeScript("window.scrollBy(0, 350);");
         
