@@ -1,6 +1,6 @@
 # Testing openCart using Cucumber
 
-This directory contains the cucumber files for testing the $$*TODO* module name$$ module of the openCart application.
+This directory contains the cucumber files for testing the whishlist and products list modules of the openCart application.
 
 ## Running the tests
 

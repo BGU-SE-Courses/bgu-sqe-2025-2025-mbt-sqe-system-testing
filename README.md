@@ -73,24 +73,21 @@ To install OpenCart and prepare the testing environment, follow these [steps](ht
 
 ## What we tested
 
-$$
-*TODO* Add a description of the module and the user stories that you chose to test.
-For example, in the case of the Moodle example, you can write something like this:
+We tested the wishlist module. We chose to test the following user story:
 
-We tested the quiz module that allows for creating and taking quizzes. We chose to test the following user stories:
+_User story:_ A user adds a product to the wishlist with a specified quantity.
 
-*User story:* A teacher adds a new quiz to the course with two yes/no questions
+_Preconditions:_ The user is registered and logged in to their account.
 
-*Preconditions:* There is a course with a teacher
+_Expected outcome:_ The product is added to the wishlist with the specified quantity, and the wishlist displays the correct product details and quantity.
 
-*Expected outcome:* The quiz is added to the course.
+We also tested the product management module. We chose to test the following user story:
 
-*User story:* A students attempts a quiz and answers correctly.
+_User story:_ An admin sets a product quantity to zero.
 
-*Preconditions:* There is a course with a quiz with two yes/no questions and the quiz grade is calculated automatically and the grade is visible to the students upon submission.
+_Preconditions:_ The admin is logged into the OpenCart admin panel.
 
-*Expected outcome:* The student receives 100.
-$$
+_Expected outcome:_ The product quantity is updated successfully.
 
 ## How we tested
 
@@ -104,17 +101,3 @@ Each of the testing methods is elaborated in its own directory.
 ## Results
 
 Update all README.md files (except for d-e, see Section 1). Specifically, replace all $$*TODO*…$$ according to the instructions inside the $$.
-
-## Detected Bugs
-
-We detected the following bugs:
-
-1. Bug 1:
-   1. General description: ...
-   2. Steps to reproduce: ...
-   3. Expected result: ...
-   4. Actual result: ...
-   5. Link to the bug report: (you are encouraged to report the bug to the developers of the software)
-2. Bug 2: ...
-
-$$*TODO* if you did not detect the bug, you should delete this section$$
