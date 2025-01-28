@@ -2,31 +2,48 @@
 This is a repository for the system-testing assignment of the Software Quality Engineering course at the [Ben-Gurion University](https://in.bgu.ac.il/), Israel.
 
 ## Assignment Description
-In this assignment, we tested an open-source software called [$$*TODO* software name$$](https://address-of-the-project.com).
+In this assignment, we tested an open-source software called [Moodle](https://moodle.com/).
+Moodle is an open-source learning platform that makes it easy for educators to create and manage online courses.
+It’s flexible, user-friendly, and widely used in schools, universities, and organizations around the world. 
+One of its standout features is the ability to create interactive lessons, where teachers can easily integrate multimedia content like videos, quizzes, and assignments. 
+Moodle also offers powerful tools for communication, including forums and messaging, so students and teachers can stay connected. 
+Another key feature is its grading system, which allows educators to track student progress and provide feedback. 
+Plus, because it’s open-source, it’s highly customizable to fit the unique needs of any educational institution.
 
-$$*TODO* Add some general description about the software$$
+
 
 ## Installation
-$$*TODO* Write instructions on how to install the software and prepare the testing environment$$
+1. Local Moodle :
+   * We followed the instraction [here](https://docs.moodle.org/405/en/Complete_install_packages_for_Windows?_gl=1*65l900*_ga*MTA1Njg2MDk3Ni4xNzM2NTAyNTM0*_ga_QWYJYEY9P5*MTczNjUwODY0MS4yLjEuMTczNjUwOTQyOC4wLjAuMA).
+   * We download it from [here](https://download.moodle.org/windows/?_gl=1*1x9n0gr*_ga*MTA1Njg2MDk3Ni4xNzM2NTAyNTM0*_ga_QWYJYEY9P5*MTczNjUwODY0MS4yLjEuMTczNjUxMDI0My4wLjAuMA)
+   * We chose to do our tests on 4.5.1+ version
+2. Chrome Driver
+   * We download it from [here](https://googlechromelabs.github.io/chrome-for-testing/)
+   * We Chose the 132 Stable-Version
+3. Graphiz
+   * We download it from  [Graphviz](http://graphviz.org)
 
 ## What we tested
-$$*TODO* Add a description of the module and the user stories that you chose to test.
-For example, in the case of the Moodle example, you can write something like this:
+We chose to focus on examining a situation where a student submits 2 documents for an assignment, and subsequently, the course instructor limits the number of submittable documents to one. We selected this scenario based on the user stories we received.
 
-We tested the quiz module that allows for creating and taking quizzes. We chose to test the following user stories: 
+1. Student submits two files to an assignment with a maximum size of 2
+   * Preconditions:
+      1. There is a student in the system
+      2. The student is enrolled in the instructor's course
+      3. There is an open assignment
+      4. The assignment allows submission of more than one document (specifically, we chose to allow 2 documents)
+      5. The student has 2 documents in their Private Files
+   * Expected outcome:
+      1. The student should successfully submit both documents
 
-*User story:* A teacher adds a new quiz to the course with two yes/no questions
-
-*Preconditions:* There is a course with a teacher
-
-*Expected outcome:* The quiz is added to the course.
-
-*User story:* A students attempts a quiz and answers correctly.
-
-*Preconditions:* There is a course with a quiz with two yes/no questions and the quiz grade is calculated automatically and the grade is visible to the students upon submission.
-
-*Expected outcome:* The student receives 100.
-$$
+2. Teacher reduces the maximum size of the file to submit to 1
+   * Preconditions:
+      1. The instructor is part of the teaching staff in the course where the student is enrolled
+      2. There is an open assignment within the instructor's course
+      3. The assignment allows enrolled students to submit up to 2 documents
+   * Expected outcome - We anticipated two possible scenarios:
+      1. The action would be prevented for the instructor - since a student has already submitted 2 documents
+      2. The action would delete the student's submission that no longer meets the new restrictions
 
 ## How we tested
 We used two different testing methods:
@@ -36,17 +53,30 @@ We used two different testing methods:
 Each of the testing methods is elaborated in its own directory. 
 
 ## Results
-Update all README.md files (except for d-e, see Section 1). Specifically, replace all $$*TODO*…$$ according to the instructions inside the $$.
+* Cucumber Results:
+   
 
-## Detected Bugs
-We detected the following bugs:
+* Provengo Results:
+   The model was analyzed to generate a concise state-space graph, and various test suites were run to ensure comprehensive coverage of the user stories. All tests passed with no unexpected behaviors.
 
-1. Bug 1: 
-   1. General description: ...
-   2. Steps to reproduce: ...
-   3. Expected result: ...
-   4. Actual result: ...
-   5. Link to the bug report: (you are encouraged to report the bug to the developers of the software)
-2. Bug 2: ...
 
-$$*TODO* if you did not detect the bug, you should delete this section$$  
+
+
+## ⚠️ ATTENTION - Test Configuration:
+For The Provengo Only
+To run the tests correctly, you must select the appropriate TEST_TYPE in data.js.
+
+* The system supports three modes:
+    1. DOMAIN_SPECIFIC: Tests the basic student submission and teacher limitation flow
+    2. TWO_WAY: Tests the interaction between teacher limitations and student submissions
+    3. RESET: Resets the system to its initial state after running DOMAIN_SPECIFIC tests (Note: This is not a test type, but rather a system reset mechanism)
+
+* To select a test type:
+    1. Uncomment the desired TEST_TYPE line in data.js
+    2. Comment out the other TEST_TYPE lines
+    3. The RESET type should only be used after running DOMAIN_SPECIFIC tests
+
+* For example:
+        //let TEST_TYPE = TEST_TYPES.DOMAIN_SPECIFIC; 
+        let TEST_TYPE = TEST_TYPES.TWO_WAY;  // Currently testing TWO_WAY
+        //let TEST_TYPE = TEST_TYPES.RESET;
