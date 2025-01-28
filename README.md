@@ -19,7 +19,7 @@ OpenCart is widely used due to its flexibility, ease of use, and extensive commu
 
 ## Installation
 
-To install OpenCart and prepare the testing environment, follow these steps:
+To install OpenCart and prepare the testing environment, follow these [steps](https://www.youtube.com/watch?v=GftTTFm58d8):
 
 1. **Download and install XAMPP:**
 
@@ -35,30 +35,42 @@ To install OpenCart and prepare the testing environment, follow these steps:
 
 4. **Extract Files:**
 
-   - Extract the downloaded zip file to your web server's root directory (e.g., `C:/xampp/htdocs` for XAMPP).
+   - Extract the downloaded zip file to your web server's root directory.
 
-5. **Set Up Database:**
+5. **Create new folder:**
+
+   - Go to `C:/xampp/htdocs` and create a new folder for you OpenCart project.
+
+6. **Create new folder:**
+
+   - Move all the files from "Upload" folder in the openCart extracted files to the new folder you just created.
+
+7. **Create new folder:**
+
+   - Copy the new name folder, open the browser and type localhost/{the name you coppied}.
+
+8. **Set Up Database:**
 
    - Open your web browser and navigate to `http://localhost/phpmyadmin`.
    - Create a new database (e.g., `opencart_db`).
 
-6. **Install OpenCart:**
+9. **Install OpenCart:**
 
    - Open your web browser and navigate to `http://localhost/opencart/upload`.
    - Follow the on-screen instructions to complete the installation. You will need to provide the database details created in the previous step.
 
-7. **Configure OpenCart:**
+10. **Configure OpenCart:**
 
-   - After installation, rename the `config-dist.php` files to `config.php` in both the root directory and the `admin` directory.
-   - Update the `config.php` files with your server details.
+    - After installation, rename the `config-dist.php` files to `config.php` in both the root directory and the `admin` directory.
+    - Update the `config.php` files with your server details.
 
-8. **Prepare Testing Environment:**
+11. **Prepare Testing Environment:**
 
-   - Ensure you have PHP, MySQL, and a web server (e.g., Apache) installed and running.
-   - Install [Cucumber](https://cucumber.io/docs/installation/) and [Provengo](https://provengo.tech/docs/installation/) for testing.
+    - Ensure you have PHP, MySQL, and a web server (e.g., Apache) installed and running.
+    - Install [Cucumber](https://cucumber.io/docs/installation/) and [Provengo](https://provengo.tech/docs/installation/) for testing.
 
-9. **Verify Installation:**
-   - Navigate to `http://localhost/opencart` to verify that OpenCart is installed and running correctly.
+12. **Verify Installation:**
+    - Navigate to `http://localhost/opencart` to verify that OpenCart is installed and running correctly.
 
 ## What we tested
 
