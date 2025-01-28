@@ -45,29 +45,28 @@ To install OpenCart and prepare the testing environment, follow these [steps](ht
 
    - Move all the files from "Upload" folder in the openCart extracted files to the new folder you just created.
 
-7. **Create new folder:**
-
-   - Copy the new name folder, open the browser and type localhost/{the name you coppied}.
-
-8. **Set Up Database:**
+7. **Set Up Database:**
 
    - Open your web browser and navigate to `http://localhost/phpmyadmin`.
    - Create a new database (e.g., `opencart_db`).
 
+8. **Create new folder:**
+
+   - Copy the new name folder, open the browser and type `localhost/{the name you coppied}` and hit Enter.
+
 9. **Install OpenCart:**
 
-   - Open your web browser and navigate to `http://localhost/opencart/upload`.
    - Follow the on-screen instructions to complete the installation. You will need to provide the database details created in the previous step.
 
 10. **Configure OpenCart:**
 
     - After installation, rename the `config-dist.php` files to `config.php` in both the root directory and the `admin` directory.
-    - Update the `config.php` files with your server details.
+    - Update the `config.php` files with your server details and uncomment the missing extension.
+    - Stop and start again the Apache and the MySQL in the XAMPP.
 
-11. **Prepare Testing Environment:**
+11. **Install OpenCart:**
 
-    - Ensure you have PHP, MySQL, and a web server (e.g., Apache) installed and running.
-    - Install [Cucumber](https://cucumber.io/docs/installation/) and [Provengo](https://provengo.tech/docs/installation/) for testing.
+- Delete the install directory from your project folder.
 
 12. **Verify Installation:**
     - Navigate to `http://localhost/opencart` to verify that OpenCart is installed and running correctly.
