@@ -16,6 +16,7 @@ const teacherSession = new SeleniumSession("teacher");
 bthread('Student Star', function () {
   studentSession.start(URL)
   login(studentSession, {username: 'student', password: 'studentQ$A1234'})
+  sync({request: Ctrl.markEvent('EndLoginStudent')})
   goToMyCourses(studentSession)
   sync({request: Ctrl.markEvent('WentMyCourses')})
   starCourse(studentSession)
@@ -29,8 +30,11 @@ bthread('Student Star', function () {
 bthread('Teacher Hide', function () {
   teacherSession.start(URL)
   login(teacherSession, {username: 'teacher', password: 'teacherQ$A1234'})
+  sync({request: Ctrl.markEvent('EndLoginTeacher')})
   goToMyCourses(teacherSession)
+  sync({request: Ctrl.markEvent('TeacherWentToMyCourses')})
   goToCourse(teacherSession)
+  sync({request: Ctrl.markEvent('TeacherWentToCourse')})
   hideCourse(teacherSession)
   sync({request: Ctrl.markEvent('EndHideCourse')})
   sync({ request: bp.Event(`TeacherEnd`, {}) })
@@ -59,4 +63,33 @@ bthread('Mark WentMyCourses-HideCourse-StarCourse', function () {
   sync({ waitFor: Ctrl.markEvent('EndStarCourse')})
 
   sync({ request: Ctrl.markEvent('MyCoursesHideStar')})
+})
+
+// let events = [login(studentSession, {username: 'student', password: 'studentQ$A1234'}),
+//   login(teacherSession, {username: 'teacher', password: 'teacherQ$A1234'}),
+//   goToMyCourses(teacherSession),
+//   goToMyCourses(studentSession),
+//   goToCourse(teacherSession),
+//   starCourse(studentSession),
+//   hideCourse(teacherSession)
+// ]
+
+let studentEvents = ['EndLoginStudent', 'WentMyCourses', 'EndStarCourse']
+let teacherEvents = ['EndLoginTeacher', 'TeacherWentToMyCourses', 'TeacherWentToCourse', 'EndHideCourse']
+
+let pairs = [];
+studentEvents.forEach(event1 => {
+  teacherEvents.forEach(event2 => {
+    pairs.push([event1,event2]);
+    pairs.push([event2,event1]);
+  })
+})
+
+pairs.forEach(([event1, event2]) => {
+  bthread(`Mark Two-Way ${event1} ${event2}`, function() {
+    sync({ waitFor: Ctrl.markEvent(event1)})
+    sync({ waitFor: Ctrl.markEvent(event2)})
+
+    sync({ request: Ctrl.markEvent(`${event1}${event2}`)})
+  })
 })

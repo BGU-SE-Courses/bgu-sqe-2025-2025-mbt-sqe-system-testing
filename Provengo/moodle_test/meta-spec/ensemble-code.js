@@ -8,9 +8,25 @@
  * after the student loads their courses, but before the student stars the course, so that we can check how the case
  * is handled by the system.
  */
-const GOALS = [
-    Ctrl.markEvent("MyCoursesHideStar")
-];
+// const GOALS = [
+//     Ctrl.markEvent("MyCoursesHideStar")
+// ];
+
+
+/**
+ * Goals for Two-Way criterion - We want to test the combination in different order of each two actions in the system.
+ */
+
+let studentEvents = ['EndLoginStudent', 'WentMyCourses', 'EndStarCourse']
+let teacherEvents = ['EndLoginTeacher', 'TeacherWentToMyCourses', 'TeacherWentToCourse', 'EndHideCourse']
+
+const GOALS = [];
+studentEvents.forEach(event1 => {
+  teacherEvents.forEach(event2 => {
+    GOALS.push(Ctrl.markEvent(`${event1}${event2}`));
+    GOALS.push(Ctrl.markEvent(`${event2}${event1}`));
+  })
+})
 
 /**
  * Ranks test suites by how many events from the GOALS array were met.
@@ -83,7 +99,7 @@ function rankSingleTestByMetGoals(test) {
  * @param {Event[][]} ensemble the test suite/ensemble to be ranked
  * @returns the percentage of goals covered by `ensemble`.
  */
-/*
+
 function rankingFunction(ensemble) {
 
     // How many goals did `ensemble` hit?
@@ -93,7 +109,6 @@ function rankingFunction(ensemble) {
 
     return metGoalsPercent * 100; // convert to human-readable percentage
 }
-*/
 
 
 /**
@@ -105,7 +120,7 @@ function rankingFunction(ensemble) {
  * @returns the percentage of goals covered by `ensemble`.
  */
 //For Domain-Specific criterion
-function rankingFunction(ensemble) {
+/*function rankingFunction(ensemble) {
     let sum = 0;
     let amount = 0;
     for(let testIdx = 0; testIdx < ensemble.length; testIdx++){
@@ -117,5 +132,5 @@ function rankingFunction(ensemble) {
     }
     const percentageAverage = sum / amount; // calculate percentage as the average of the percentage for each test
     return percentageAverage * 100; // convert to human-readable percentage
-}
+}*/
 
