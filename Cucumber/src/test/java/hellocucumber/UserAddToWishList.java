@@ -54,7 +54,6 @@ public class UserAddToWishList {
     @And("the user is on the OpenCart homepage")
     public void userIsOnOpenCartHomepage() {
         driver.get("http://localhost/openCartSite");
-
     }
 
     @And("the user is logged in to their account")
@@ -97,18 +96,17 @@ public class UserAddToWishList {
         // Register a new user
         driver.findElement(By.xpath("//li[2]/div[1]/a[1]/span[1]")).click();
         driver.findElement(By.xpath("//li[2]/div[1]/ul[1]/li[1]/a[1]")).click();
-        //fill in the registration form
+        // Fill in the registration form
         driver.findElement(By.xpath("//*[@id='input-firstname']")).sendKeys("user");
         driver.findElement(By.xpath("//*[@id='input-lastname']")).sendKeys("user");
         driver.findElement(By.xpath("//*[@id='input-email']")).sendKeys(Config.TEST_EMAIL.getString());
         driver.findElement(By.xpath("//*[@id='input-password']")).sendKeys(Config.TEST_PASSWORD.getString());
 
         // Scroll down until button visible
-        WebElement tuggElement = driver.findElement(By.xpath("//form[1]/div[1]/div[1]/input[1]"));
+        WebElement registerButton = driver.findElement(By.xpath("//form[1]/div[1]/div[1]/input[1]"));
         ((JavascriptExecutor) driver).executeScript("window.scrollBy(0, 350);");
 
-        tuggElement.click();
-    
+        registerButton.click();
         driver.findElement(By.xpath("//form[1]/div[1]/button[1]")).click();
     }
 
@@ -126,7 +124,7 @@ public class UserAddToWishList {
     }
 
     public void searchAndAddToWishlist(String productName, int quantity) {
-        // go to homepage
+        // Go to homepage
         driver.findElement(By.xpath("//header[1]/div[1]/div[1]/div[1]/div[1]/a[1]/img[1]")).click();
         // Search for the product
         driver.findElement(By.xpath("//div[2]/div[1]/input[1]")).sendKeys(productName);
@@ -145,36 +143,35 @@ public class UserAddToWishList {
         }
     }
 
-@Test
-public void verifyProductInWishlist(String productName, int expectedQuantity) {
-    // Navigate to wishlist page
-    driver.findElement(By.xpath("//li[3]/a[1]/span[1]")).click();
+    @Test
+    public void verifyProductInWishlist(String productName, int expectedQuantity) {
+        // Navigate to wishlist page
+        driver.findElement(By.xpath("//li[3]/a[1]/span[1]")).click();
 
-            // Wait briefly for the wishlist update
+        // Wait briefly for the wishlist update
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
-    // Locate product details in the wishlist
-    WebElement wishlistProduct = driver.findElement(By.xpath("//*[@id='wishlist']/div[1]/table[1]/tbody[1]/tr[1]/td[2]"));
+        // Locate product details in the wishlist
+        WebElement wishlistProduct = driver.findElement(By.xpath("//*[@id='wishlist']/div[1]/table[1]/tbody[1]/tr[1]/td[2]"));
 
-    // Check if the product name appears in the specified element
-    if (wishlistProduct.getText().contains(productName)) {
-        System.out.println("Wishlist verified: " + productName + " is present.");
-    } else {
-        System.out.println("Wishlist verification failed: " + productName + " is not present.");
+        // Check if the product name appears in the specified element
+        if (wishlistProduct.getText().contains(productName)) {
+            System.out.println("Wishlist verified: " + productName + " is present.");
+        } else {
+            System.out.println("Wishlist verification failed: " + productName + " is not present.");
+        }
     }
-}
 
     public void logoutFromAccount() {
-    // Navigate to logout page
-    driver.findElement(By.xpath("//li[2]/div[1]/a[1]/span[1]")).click();
-    driver.findElement(By.xpath("//li[2]/div[1]/ul[1]/li[5]/a[1]")).click(); 
-    System.out.println("User logged out successfully.");
+        // Navigate to logout page
+        driver.findElement(By.xpath("//li[2]/div[1]/a[1]/span[1]")).click();
+        driver.findElement(By.xpath("//li[2]/div[1]/ul[1]/li[5]/a[1]")).click(); 
+        System.out.println("User logged out successfully.");
     }
-
 
     public void closeSession() {
         logoutFromAccount();
@@ -184,5 +181,4 @@ public void verifyProductInWishlist(String productName, int expectedQuantity) {
         }
         System.out.println("Browser session closed.");
     }
-
 }
