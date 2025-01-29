@@ -12,7 +12,7 @@ public class StepDefinitions {
     private static GroupSubmission moodleStudent;
     // private static List<MoodleChangeSubmissionType> allopenCarts;
     private String webDriver = "webdriver.chrome.driver";
-    private String path = "C:\\Users\\Daniel\\Documents\\University\\QA\\2025-mbt-ag\\Selenium\\chromedriver.exe";
+    private String path = "C:\\Users\\Gigabyte\\University\\Year4\\QA\\Final Project\\2025-mbt-ag\\Selenium\\chromedriver.exe";
 
     public void MoodleInitUser() {
         System.out.println("--------------- INITIALIZING MOODLE TEST - OPENING WEBPAGE ---------------");
@@ -84,19 +84,24 @@ public class StepDefinitions {
        moodleStudent.enterLoginInfo(username, password);
    }
 
-   @And("I navigate to the course {string}")
-   public void iNavigateToTheCourse(String courseName) {
-        moodleStudent.goToCourse(courseName);
-    }
+//   @And("I navigate to the assignment {string}")
+//   public void iNavigateToTheCourse(String assignmentName) {
+//        moodleStudent.goToAssignment(assignmentName);
+//    }
 
    @And("I navigate to the assignment {string}")
    public void iNavigateToTheAssignment(String assignmentName) {
       moodleStudent.goToAssignment(assignmentName);
    }
 
-   @And("I upload a file named {string}")
-   public void iUploadAFile(String fileName) {
-      moodleStudent.uploadFile(fileName);
+   @And("I click Add submission")
+   public void iClickAddSubmission(){
+        moodleStudent.addSubmission();
+   }
+
+   @And("I write {string} as the answer")
+   public void writeText(String text) {
+      moodleStudent.writeText("hello");
    }
 
    @And("I click the submit button")
@@ -109,10 +114,10 @@ public class StepDefinitions {
       moodleStudent.confirmSubmissionSuccess();
    }
 
-   @And("the submission should be visible for all group members of {GroupName}")
-   public void theSubmissionShouldBeVisibleForAllGroupMembers(String groupName) {
-      moodleStudent.confirmGroupSubmissionVisibility(groupName);
-   }
+//   @And("the submission should be visible for all group members of {string}")
+//   public void theSubmissionShouldBeVisibleForAllGroupMembers(String groupName) {
+//      moodleStudent.confirmGroupSubmissionVisibility(groupName);
+//   }
 
 //    @Then("the group submission option should no longer be available")
 //    public void theGroupSubmissionOptionShouldNoLongerBeAvailable() {
