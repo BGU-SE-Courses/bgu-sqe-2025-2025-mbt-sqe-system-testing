@@ -58,6 +58,7 @@ Each of the testing methods is elaborated in its own directory.
 
 ## Results
 * Cucumber Results:
+    We ran a script that checks the use-cases from both teacher and student sides. The tests ran well and returned results as expected.
    
 
 * Provengo Results:
