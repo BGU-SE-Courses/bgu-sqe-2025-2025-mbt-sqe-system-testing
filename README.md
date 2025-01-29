@@ -2,31 +2,27 @@
 This is a repository for the system-testing assignment of the Software Quality Engineering course at the [Ben-Gurion University](https://in.bgu.ac.il/), Israel.
 
 ## Assignment Description
-In this assignment, we tested an open-source software called [$$*TODO* software name$$](https://address-of-the-project.com).
+In this assignment, we tested an open-source software called moodle(https://moodle.com/).
 
-$$*TODO* Add some general description about the software$$
+Moodle is a website for managing online courses.
 
 ## Installation
-$$*TODO* Write instructions on how to install the software and prepare the testing environment$$
+Go to https://download.moodle.org/ and download it from there according to regular instructions
 
 ## What we tested
-$$*TODO* Add a description of the module and the user stories that you chose to test.
-For example, in the case of the Moodle example, you can write something like this:
+We tested the role changing of participants and adding new content in a moodle course. We chose to test the following user stories: 
 
-We tested the quiz module that allows for creating and taking quizzes. We chose to test the following user stories: 
+*User story:* Teacher downgrades a user permissions from TA to student
 
-*User story:* A teacher adds a new quiz to the course with two yes/no questions
+*Preconditions:* There is a course with at least two participants, one is Manager and Teacher simulating our lecturer Ahiya, the other one is Teacher simulating our TA Keren
 
-*Preconditions:* There is a course with a teacher
+*Expected outcome:* Keren becomes a regular student just like us.
 
-*Expected outcome:* The quiz is added to the course.
+*User story:* The user tries to add new content to the course.
 
-*User story:* A students attempts a quiz and answers correctly.
+*Preconditions:* There is a course with at least two participants, one is Manager and Teacher simulating our lecturer Ahiya, the other one is doesn't matter simulating our TA Keren
 
-*Preconditions:* There is a course with a quiz with two yes/no questions and the quiz grade is calculated automatically and the grade is visible to the students upon submission.
-
-*Expected outcome:* The student receives 100.
-$$
+*Expected outcome:* if Keren was TA then she can succesfully addd new content else if Keren was changed to Student by Ahiya the test will fail.
 
 ## How we tested
 We used two different testing methods:
@@ -36,17 +32,4 @@ We used two different testing methods:
 Each of the testing methods is elaborated in its own directory. 
 
 ## Results
-Update all README.md files (except for d-e, see Section 1). Specifically, replace all $$*TODO*…$$ according to the instructions inside the $$.
-
-## Detected Bugs
-We detected the following bugs:
-
-1. Bug 1: 
-   1. General description: ...
-   2. Steps to reproduce: ...
-   3. Expected result: ...
-   4. Actual result: ...
-   5. Link to the bug report: (you are encouraged to report the bug to the developers of the software)
-2. Bug 2: ...
-
-$$*TODO* if you did not detect the bug, you should delete this section$$  
+The system ran is it should :D  
