@@ -17,10 +17,10 @@ Plus, because it’s open-source, it’s highly customizable to fit the unique n
    * We followed the instraction [here](https://docs.moodle.org/405/en/Complete_install_packages_for_Windows?_gl=1*65l900*_ga*MTA1Njg2MDk3Ni4xNzM2NTAyNTM0*_ga_QWYJYEY9P5*MTczNjUwODY0MS4yLjEuMTczNjUwOTQyOC4wLjAuMA).
    * We download it from [here](https://download.moodle.org/windows/?_gl=1*1x9n0gr*_ga*MTA1Njg2MDk3Ni4xNzM2NTAyNTM0*_ga_QWYJYEY9P5*MTczNjUwODY0MS4yLjEuMTczNjUxMDI0My4wLjAuMA)
    * We chose to do our tests on 4.5.1+ version
-   * We created an administrator user with the username: "admin" and the password: ""
-   * Under <code>Site administration->Users->Accounts->Add a new user</code>, we created new user with the <code>username</code>: "stdent" and the <code>password</code>: ""
+   * We created an administrator user with the <code>username</code>: "admin" and the <code>password</code>: "Gilandlidor123!"
+   * Under <code>Site administration->Users->Accounts->Add a new user</code>, we created new user with the <code>username</code>: "student" and the <code>password</code>: "Student123!"
    * Under <code>Site administration->Courses->Courses->Add a new course</code>, we created new course with <code>course full name</code>: "QA_course" and <code>course short name</code>: "QA_course"
-   * On course page, after turn on the "Edit mode", we added a section "Assignment_1". On this section we added new assignment by Add content->Activity or resource->Assignment with the name "assignment1" and Due date of 30.1.2050 12:00 AM.
+   * On course page, after turn on the <code>Edit mode</code>, we added a section "Assignment_1". On this section we added new assignment by <code>Add content->Activity or resource->Assignment</code> with the name "assignment1" and Due date of 30.1.2050 12:00 AM.
 2. Chrome Driver
    * We download it from [here](https://googlechromelabs.github.io/chrome-for-testing/)
    * We Chose the 132 Stable-Version
