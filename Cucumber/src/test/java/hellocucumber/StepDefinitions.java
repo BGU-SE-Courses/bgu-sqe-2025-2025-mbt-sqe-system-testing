@@ -9,7 +9,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.junit.jupiter.api.Assertions.*;
 
 public class StepDefinitions {
-
+    
     WebDriver driver;
     String password = "Essa14325!";
     String teacher1 = "athelta";
