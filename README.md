@@ -18,8 +18,8 @@ Plus, because it’s open-source, it’s highly customizable to fit the unique n
    * We download it from [here](https://download.moodle.org/windows/?_gl=1*1x9n0gr*_ga*MTA1Njg2MDk3Ni4xNzM2NTAyNTM0*_ga_QWYJYEY9P5*MTczNjUwODY0MS4yLjEuMTczNjUxMDI0My4wLjAuMA)
    * We chose to do our tests on 4.5.1+ version
    * We created an administrator user with the username: "admin" and the password: ""
-   * Under Site administration->Users->Accounts->Add a new user, we created new user with the username: "stdent" and the password: ""
-   * Under Site administration->Courses->Courses->Add a new course, we created new course with corse full name: "QA_course" and course short name: "QA_course"
+   * Under <code>Site administration->Users->Accounts->Add a new user</code>, we created new user with the <code>username</code>: "stdent" and the <code>password</code>: ""
+   * Under <code>Site administration->Courses->Courses->Add a new course</code>, we created new course with <code>course full name</code>: "QA_course" and <code>course short name</code>: "QA_course"
    * On course page, after turn on the "Edit mode", we added a section "Assignment_1". On this section we added new assignment by Add content->Activity or resource->Assignment with the name "assignment1" and Due date of 30.1.2050 12:00 AM.
 2. Chrome Driver
    * We download it from [here](https://googlechromelabs.github.io/chrome-for-testing/)
