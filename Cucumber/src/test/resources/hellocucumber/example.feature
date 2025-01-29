@@ -1,6 +1,12 @@
-Feature: A set of scenarios for testing the "example" module
+Feature: Downgrade User Permissions
 
-  Scenario: Testing how a case where a user adds a product to the cart
-    Given an example scenario
-    When all step definitions are implemented
-    Then the scenario passes
+  Scenario: Downgrade TA to Student and verify content restriction
+    Given a user with TA permissions exists
+    When the teacher downgrades the user's permissions to Student
+    Then the user role in the course is student
+
+
+  Scenario: the previous TA Tries to edit but no edit option
+    Given logging in with the user after making him student
+    When going to course and try but no edit option
+    Then no edit option
