@@ -4,15 +4,15 @@
  * List of events "of interest" that we want test suites to cover.
  */
 const GOALS = [
-    any(/Howdy/),
-    any(/Mars/),
-    Ctrl.markEvent("Classic!")
+  Event("ENDchooseOption2"),
+  Event("ENDChangeNotUpdateAbleActivity"),
 ];
 
 const makeGoals = function(){
-    return [ [ any(/Howdy/), any(/Venus/) ],
-             [ any(/Mars/) ],
-             [ Ctrl.markEvent("Classic!") ] ];
+    return [
+      [Ctrl.markEvent("ENDchooseOption2")],
+      [Ctrl.markEvent("ENDChangeNotUpdateAbleActivity")],
+    ];
 }
 
 /**
@@ -26,8 +26,8 @@ const makeGoals = function(){
  */
 function rankByMetGoals( ensemble ) {
     const unreachedGoals = [];
-    for ( let idx=0; idx<GOALS.length; idx++ ) {
-        unreachedGoals.push(GOALS[idx]);
+    for (let idx = 0; idx < TWO_WAY_GOALS.length; idx++) {
+      unreachedGoals.push(TWO_WAY_GOALS[idx]);
     }
 
     for (let testIdx = 0; testIdx < ensemble.length; testIdx++) {
@@ -43,8 +43,35 @@ function rankByMetGoals( ensemble ) {
         }
     }
 
-    return GOALS.length-unreachedGoals.length;
+    return TWO_WAY_GOALS.length - unreachedGoals.length;
 }
+
+// Two-Way Interaction Goals
+const TWO_WAY_GOALS = [
+  Event("loginStudent"),
+  Event("navigateToCourse"),
+  Event("enterActivity"),
+  Event("chooseOption2"),
+  Event("logoutStudent"),
+  Event("loginTeacher"),
+  Event("teacherNavigateToCourse"),
+  Event("ChangeNotUpdateAbleActivity"),
+  Event("logoutTeacher"),
+];
+
+const makeTwoWayGoals = function () {
+    return [
+      [Ctrl.markEvent("loginStudent")],
+      [Ctrl.markEvent("navigateToCourse")],
+      [Ctrl.markEvent("enterActivity")],
+      [Ctrl.markEvent("chooseOption2")],
+      [Ctrl.markEvent("logoutStudent")],
+      [Ctrl.markEvent("loginTeacher")],
+      [Ctrl.markEvent("teacherNavigateToCourse")],
+      [Ctrl.markEvent("ChangeNotUpdateAbleActivity")],
+      [Ctrl.markEvent("logoutTeacher")]
+    ];
+};
 
 /**
  * Ranks potential test suites based on the percentage of goals they cover.
