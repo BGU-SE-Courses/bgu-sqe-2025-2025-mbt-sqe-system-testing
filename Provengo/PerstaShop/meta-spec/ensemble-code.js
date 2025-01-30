@@ -12,6 +12,7 @@ const GOALS = [
     any("End(adminVerifyQuantity)"),
  
 ];
+//commit push
 const GOALS_two_way = [
     any("Begin(UserLogin)"),
     any("Begin(adminVerifyQuantity)"),
