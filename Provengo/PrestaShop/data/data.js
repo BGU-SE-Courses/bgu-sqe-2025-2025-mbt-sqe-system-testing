@@ -13,15 +13,17 @@ const xpaths = {
     submit_login: "//*[@id=\'submit-login\']"
   },
   write_comment: {
+    search_win: "//*[@id='search_widget']/form/input[2]",
+    press_on_shirt: "//*[@id='js-product-list']/div[1]/div/article/div/div[1]/a/picture/img",
     shirt: "//*[@id='content']/section[1]/div/div[1]",
-    add_comment_button: "//*[@id=\'product-comments-list-footer\']/button",
+    add_comment_button: "//*[@id='product-comments-list-footer']/button",
     stars : "//*[@id='criterions_list']/li/div/div/div[2]/div[5]",
     title_field: "//*[@id=\'comment_title\']",
     description: "//*[@id='comment_content']",
     submit_comment: "//*[@id=\'post-product-comment-form\']/div[2]/div[2]/button[2]"
   },
   goToComment:{
-    ok_button : "//*[@id='product-comment-posted-modal']/div/div/div[2]/div[2]/button",
+    // ok_button : "//*[@id=\'product-comment-posted-modal\']/div/div/div[2]/div[2]/button",
     comments: "//*[@id=\'product-comments-list-header\']/div[1]"
   },
   admin_login: {
@@ -44,6 +46,15 @@ const xpaths = {
     submit_deletion: "//*[@id=\'product-grid-confirm-modal\']/div/div/div[3]/button[2]",
     product : "//*[@id=\"product_grid_table\"]/tbody/tr[17]/td[4]/a",
     product_hide :"//*[@id=\"product_grid_table\"]/tbody/tr[17]/td[10]/div/div/span"
+  },
+
+  before:{
+    add_prod :"//*[@id=\"page-header-desc-configuration-add\"]",
+    add_prod_second : "//*[@id=\"create_product_create\"]",
+    prod_name: "//*[@id=\"product_header_name_2\"]",
+    save_button:"//*[@id=\"product_footer_save\"]",
+    back_to_catalog:"//*[@id='product_footer_actions_catalog']/span",
+    online : "//*[@id=\"product_header_active_0\"]"
   }
 }
 
@@ -51,7 +62,7 @@ const scrolling = {
   down: function () {window.scrollTo(0,document.body.scrollHeight); pvg.success("yes");},
   up: function () {window.scrollTo(0,0); pvg.success("yes");},
   toComments: function () {
-    xpath = "//*[@id=\'product-comments-list-header\']/div[1]"
+    xpath = "//*[@id='product-comments-list']"
     var element = document.evaluate(xpath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });

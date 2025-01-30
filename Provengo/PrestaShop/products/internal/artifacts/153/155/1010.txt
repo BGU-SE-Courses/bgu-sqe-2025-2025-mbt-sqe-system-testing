@@ -1,0 +1,9 @@
+element not interactable
+  (Session info: chrome=132.0.6834.111)
+Build info: version: '4.25.0', revision: '8a8aea2337'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.10'
+Driver info: org.openqa.selenium.remote.RemoteWebDriver
+Command: [91d8bc2c1c9cda874bbd6d7c6224ad8f, clickElement {id=f.DCE9258A227620047B9EF504D9703950.d.E06864A5CBB3A7DD37E72F78C029689E.e.164}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 132.0.6834.111, chrome: {chromedriverVersion: 131.0.6778.266 (b25b66d9738..., userDataDir: C:\Users\ktnad\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:52339}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: Windows 11, proxy: Proxy(), se:bidiEnabled: false, se:cdp: ws://10.100.102.6:4444/sess..., se:cdpVersion: 132.0.6834.111, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Element: [[RemoteWebDriver: chrome on Windows 11 (91d8bc2c1c9cda874bbd6d7c6224ad8f)] -> xpath: //*[@id='product-comment-posted-modal']/div/div/div[2]/div[2]/button]
+Session ID: 91d8bc2c1c9cda874bbd6d7c6224ad8f
