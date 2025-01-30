@@ -11,13 +11,25 @@ allows store owners to extend functionality with plugins and modules.
 ## Installation
 In order to install PrestaShop and prepare the testing environment, do the following:
 
-1. Download and install XAMPP.
-      Visit the XAMPP website , download and install the latest version of XAMPP.
+### 1. Download and install XAMPP
    
-2. Start XAMPP Server.
-      Open the XAMPP server and click the "start buttons of the Apache and the MySQL modules.
+   Enter the XAMPP website, download and install the latest version of XAMPP.
+   
+### 2. Start XAMPP Server
+   
+   Open the XAMPP server, and click the "start buttons of the Apache and the MySQL modules.
 
-3.
+### 3. Download PrestaShop
+
+### 4. Create Database
+
+### 5. Setup IDE
+
+### 6. Setup Selenium Server
+
+### 7. Download Proper chromedriver
+
+### 8. Install PrestaShop
 
 ## What we tested
 Add a description of the module and the user stories that you chose to test.
