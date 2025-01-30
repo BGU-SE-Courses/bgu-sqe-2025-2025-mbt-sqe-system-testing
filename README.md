@@ -23,9 +23,9 @@ Moodle is a free and open-source learning management system written in PHP. It i
 5. Click **Add a new user**.
 6. Create a user for the student:
 
-| Username | Password | First Name | Last Name | Email Address    |
-| -------- | -------- | ---------- | --------- | -------------    |
-| shavit   | Aa!123456 | Student    | Shavit    | student@test.com |
+Provengo user:
+| Student_Username | Teacher_Username | Password   | Course_Name | Test_Title | Choice_Option1 | Choice_Option2 |
+| moodleuser       | teacher          | Password1! | course1     | choice2    | choice_1       | choice_2       |
 
 ## What We Tested
 We tested the **Choice Activity Module**, which allows students to make a selection and teachers to configure choice settings. We focused on the following user stories:
