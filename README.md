@@ -9,7 +9,15 @@ It provides a user-friendly interface, a wide range of customizable themes, and 
 allows store owners to extend functionality with plugins and modules.
 
 ## Installation
-$$*TODO* Write instructions on how to install the software and prepare the testing environment$$
+In order to install PrestaShop and prepare the testing environment, do the following:
+
+1. Download and install XAMPP:
+   Visit the XAMPP website , download and install the latest version of XAMPP.
+   
+2. Start XAMPP Server:
+   Open the XAMPP server and click the "start buttons of the Apache and the MySQL modules.
+
+3.
 
 ## What we tested
 Add a description of the module and the user stories that you chose to test.
