@@ -12,7 +12,7 @@ allows store owners to extend functionality with plugins and modules.
 $$*TODO* Write instructions on how to install the software and prepare the testing environment$$
 
 ## What we tested
-$$*TODO* Add a description of the module and the user stories that you chose to test.
+Add a description of the module and the user stories that you chose to test.
 For example, in the case of the Moodle example, you can write something like this:
 
 We tested the quiz module that allows for creating and taking quizzes. We chose to test the following user stories: 
