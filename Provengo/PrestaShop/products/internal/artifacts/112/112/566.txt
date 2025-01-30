@@ -1,0 +1,38 @@
+element click intercepted: Element <div id="product-comments-list" data-list-comments-url="http://localhost/nadav/module/productcomments/ListComments?id_product=1" data-update-comment-usefulness-url="http://localhost/nadav/module/productcomments/UpdateCommentUsefulness" data-report-comment-url="http://localhost/nadav/module/productcomments/ReportComment" data-comment-item-prototype="<div class=&quot;product-comment-list-item row&quot; data-product-comment-id=&quot;@COMMENT_ID@&quot; data-product-id=&quot;@PRODUCT_ID@&quot;>
+  <div class=&quot;col-sm-3 comment-infos&quot;>
+    <div class=&quot;grade-stars&quot; data-grade=&quot;@COMMENT_GRADE@&quot;></div>
+    <div class=&quot;comment-date&quot;>
+      @COMMENT_DATE@
+    </div>
+    <div class=&quot;comment-author&quot;>
+      By @CUSTOMER_NAME@
+    </div>
+  </div>
+
+  <div class=&quot;col-sm-9 comment-content&quot;>
+    <p class=&quot;h4&quot;>@COMMENT_TITLE@</p>
+    <p>@COMMENT_COMMENT@</p>
+    <div class=&quot;comment-buttons btn-group&quot;>
+              <a class=&quot;useful-review&quot;>
+          <i class=&quot;material-icons thumb_up&quot; data-icon=&quot;thumb_up&quot;></i>
+          <span class=&quot;useful-review-value&quot;>@COMMENT_USEFUL_ADVICES@</span>
+        </a>
+        <a class=&quot;not-useful-review&quot;>
+          <i class=&quot;material-icons thumb_down&quot; data-icon=&quot;thumb_down&quot;></i>
+          <span class=&quot;not-useful-review-value&quot;>@COMMENT_NOT_USEFUL_ADVICES@</span>
+        </a>
+            <a class=&quot;report-abuse&quot; title=&quot;Report abuse&quot;>
+        <i class=&quot;material-icons flag&quot; data-icon=&quot;flag&quot;></i>
+      </a>
+    </div>
+  </div>
+</div>
+" data-current-page="1" data-total-pages="1">...</div> is not clickable at point (631, 510). Other element would receive the click: <div id="product-comment-posted-modal" class="modal fade product-comment-modal in" role="dialog" style="display: block;">...</div>
+  (Session info: chrome=131.0.6778.266)
+Build info: version: '4.25.0', revision: '8a8aea2337'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.10'
+Driver info: org.openqa.selenium.remote.RemoteWebDriver
+Command: [d7001db91d1a3767fcb7ed761a5e780b, clickElement {id=f.AE9B9B67E5B22FF0F2485C4BD8336453.d.88BCB90244ED235E0A958E5032E4C8EC.e.129}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 131.0.6778.266, chrome: {chromedriverVersion: 131.0.6778.266 (b25b66d9738..., userDataDir: C:\Users\ktnad\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:62397}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: Windows 11, proxy: Proxy(), se:bidiEnabled: false, se:cdp: ws://172.25.192.1:4444/sess..., se:cdpVersion: 131.0.6778.266, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Element: [[RemoteWebDriver: chrome on Windows 11 (d7001db91d1a3767fcb7ed761a5e780b)] -> xpath: //*[@id='product-comments-list']]
+Session ID: d7001db91d1a3767fcb7ed761a5e780b

@@ -2,9 +2,11 @@
 This is a repository for the system-testing assignment of the Software Quality Engineering course at the [Ben-Gurion University](https://in.bgu.ac.il/), Israel.
 
 ## Assignment Description
-In this assignment, we tested an open-source software called PrestaShop (https://demo.prestashop.com/#/en/front).
+In this assignment, we tested an open-source software called Presta Shop (https://demo.prestashop.com/#/en/front).
 
-$$*TODO* Add some general description about the software$$
+PrestaShop is a free and open-source e-commerce platform that enables users to create and manage online stores.
+It provides a user-friendly interface, a wide range of customizable themes, and a modular architecture that 
+allows store owners to extend functionality with plugins and modules.
 
 ## Installation
 $$*TODO* Write instructions on how to install the software and prepare the testing environment$$
@@ -15,18 +17,17 @@ For example, in the case of the Moodle example, you can write something like thi
 
 We tested the quiz module that allows for creating and taking quizzes. We chose to test the following user stories: 
 
-*User story:* A teacher adds a new quiz to the course with two yes/no questions
+*User story:* A admin delete a product from his store
 
-*Preconditions:* There is a course with a teacher
+*Preconditions:* There is admin and user in the store
 
-*Expected outcome:* The quiz is added to the course.
+*Expected outcome:* The product removed from the website
 
-*User story:* A students attempts a quiz and answers correctly.
+*User story:* A user add comment to a product in the store
 
-*Preconditions:* There is a course with a quiz with two yes/no questions and the quiz grade is calculated automatically and the grade is visible to the students upon submission.
+*Preconditions:* There is product in the store website accessible to the user
 
-*Expected outcome:* The student receives 100.
-$$
+*Expected outcome:* The comment is added to the product
 
 ## How we tested
 We used two different testing methods:
@@ -38,15 +39,6 @@ Each of the testing methods is elaborated in its own directory.
 ## Results
 Update all README.md files (except for d-e, see Section 1). Specifically, replace all $$*TODO*…$$ according to the instructions inside the $$.
 
-## Detected Bugs
-We detected the following bugs:
 
-1. Bug 1: 
-   1. General description: ...
-   2. Steps to reproduce: ...
-   3. Expected result: ...
-   4. Actual result: ...
-   5. Link to the bug report: (you are encouraged to report the bug to the developers of the software)
-2. Bug 2: ...
 
-$$*TODO* if you did not detect the bug, you should delete this section$$  
+ 

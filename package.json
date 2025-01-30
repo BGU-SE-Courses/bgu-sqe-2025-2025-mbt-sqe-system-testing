@@ -10,5 +10,8 @@
     "type": "git",
     "url": "https://github.com/BGU-SE-Courses/2025-mbt-w.git"
   },
-  "private": true
+  "private": true,
+  "dependencies": {
+    "selenium-webdriver": "^4.27.0"
+  }
 }
