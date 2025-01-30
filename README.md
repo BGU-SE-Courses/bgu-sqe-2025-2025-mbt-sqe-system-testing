@@ -15,17 +15,32 @@ Moodle is a free and open-source learning management system written in PHP. It i
 3. Open your browser and navigate to `localhost`.
 4. Follow the instructions to set up the project and database. Use the MySQL port configured on your machine (default is 3306).
 
-### Adding Student User
+### Adding Users
 1. Log in as **admin** (with the details provided during setup).
 2. Navigate to **Site Administration** from the top toolbar.
 3. Click **Users**.
 4. Inside **Accounts**, click **Browse list of users**.
 5. Click **Add a new user**.
-6. Create a user for the student:
+6. Create a user for the teacher:
+   
+```
+| Teacher_Username | Password   |
+| teacher          | Password1! |
+```
+7. Create a user for the student:
+```
+| Student_Username | Password   |
+| moodleuser       | Password1! |
+```
 
-Provengo user:
-| Student_Username | Teacher_Username | Password   | Course_Name | Test_Title | Choice_Option1 | Choice_Option2 |
-| moodleuser       | teacher          | Password1! | course1     | choice2    | choice_1       | choice_2       |
+<br/>
+
+### Add a course and a choice test
+
+```
+| Course_Name | Test_Title | Choice_Option1 | Choice_Option2 |
+| course1     | choice2    | choice_1       | choice_2       |
+```
 
 ## What We Tested
 We tested the **Choice Activity Module**, which allows students to make a selection and teachers to configure choice settings. We focused on the following user stories:
