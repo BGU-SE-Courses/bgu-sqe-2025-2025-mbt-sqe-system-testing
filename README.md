@@ -1,40 +1,67 @@
 # Software Quality Engineering - System Testing
-This is a repository for the system-testing assignment of the Software Quality Engineering course at the [Ben-Gurion University](https://in.bgu.ac.il/), Israel.
+
+This is a repository for the system-testing assignment of the Software Quality Engineering course at Ben-Gurion University, Israel.
 
 ## Assignment Description
-In this assignment, we tested an open-source software called [$$*TODO* software name$$](https://address-of-the-project.com).
+In this assignment, we tested an open-source software called [Moodle](https://moodle.org).
 
-$$*TODO* Add some general description about the software$$
+Moodle is a free and open-source learning management system written in PHP. It is used to create custom websites with online courses for online learning projects in schools, universities, workplaces, and other sectors.
 
 ## Installation
-$$*TODO* Write instructions on how to install the software and prepare the testing environment$$
 
-## What we tested
-$$*TODO* Add a description of the module and the user stories that you chose to test.
-For example, in the case of the Moodle example, you can write something like this:
+### Initial setup
+1. Download the [Moodle packages for Windows](https://download.moodle.org/windows/?utm_source=chatgpt.com).
+2. Extract the contents of the zip folder and run `Start Moodle.exe`.
+3. Open your browser and navigate to `localhost`.
+4. Follow the instructions to set up the project and database. Use the MySQL port configured on your machine (default is 3306).
 
-We tested the quiz module that allows for creating and taking quizzes. We chose to test the following user stories: 
+### Adding Student User
+1. Log in as **admin** (with the details provided during setup).
+2. Navigate to **Site Administration** from the top toolbar.
+3. Click **Users**.
+4. Inside **Accounts**, click **Browse list of users**.
+5. Click **Add a new user**.
+6. Create a user for the student:
 
-*User story:* A teacher adds a new quiz to the course with two yes/no questions
+| Username | Password | First Name | Last Name | Email Address    |
+| -------- | -------- | ---------- | --------- | -------------    |
+| shavit   | Aa!123456 | Student    | Shavit    | student@test.com |
 
-*Preconditions:* There is a course with a teacher
+## What We Tested
+We tested the **Choice Activity Module**, which allows students to make a selection and teachers to configure choice settings. We focused on the following user stories:
 
-*Expected outcome:* The quiz is added to the course.
+### **User Story 1: Student Tries to Change Their Choice in the Choice Activity**
+#### **Preconditions:**
+- A course exists with a teacher and a student enrolled.
+- A choice activity exists and allows students to update their choice.
 
-*User story:* A students attempts a quiz and answers correctly.
+#### **Expected Outcome:**
+- The student should be able to change their choice and save the new selection.
 
-*Preconditions:* There is a course with a quiz with two yes/no questions and the quiz grade is calculated automatically and the grade is visible to the students upon submission.
+### **User Story 2: Teacher Disables Choice Updating**
+#### **Preconditions:**
+- A course exists with a teacher and a student enrolled.
+- A choice activity exists and allows students to update their choice.
 
-*Expected outcome:* The student receives 100.
-$$
+#### **Expected Outcome:**
+- After the teacher changes the setting to **NOT Allow Choice to be Updated**, the student should no longer be able to change their selection.
 
-## How we tested
+## How We Tested
 We used two different testing methods:
 1. [Cucumber](https://cucumber.io/), a behavior-driven testing framework.
 2. [Provengo](https://provengo.tech/), a story-based testing framework.
 
-Each of the testing methods is elaborated in its own directory. 
+Each of the testing methods is elaborated in its own directory.
 
+## Results
+After executing the tests, we verified that:
+- Students were initially able to change their choice in the activity.
+- Once the teacher disabled choice updates, students could no longer modify their selection.
+- The system behaved as expected, with no unexpected errors or inconsistencies.
 
-## No Bugs Detected Bugs
+## Detected Bugs
+No critical bugs were detected during testing. All functionality performed as expected.
+
+---
+This report provides a structured approach to documenting the test cases and methodology, ensuring clarity and completeness in the testing process.
 
