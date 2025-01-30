@@ -3,16 +3,22 @@
 /**
  * List of events "of interest" that we want test suites to cover.
  */
+// const GOALS = [
+//     any(/Howdy/),
+//     any(/Mars/),
+//     Ctrl.markEvent("Classic!")
+// ];
+
 const GOALS = [
-    any(/Howdy/),
-    any(/Mars/),
-    Ctrl.markEvent("Classic!")
+    Event("QuizSubmitted"), 
+    Event("QuizHidden")
 ];
 
 const makeGoals = function(){
-    return [ [ any(/Howdy/), any(/Venus/) ],
-             [ any(/Mars/) ],
-             [ Ctrl.markEvent("Classic!") ] ];
+    return [
+        [ Ctrl.markEvent("QuizSubmitted") ],
+        [ Ctrl.markEvent("QuizHidden") ]
+    ];
 }
 
 /**
@@ -67,4 +73,13 @@ function rankByMetGoals( ensemble ) {
 
     return metGoalsPercent * 100; // convert to human-readable percentage
 }
+
+
+// rankingFunction for domain specific ensemble
+// function rankingFunction(ensemble) {
+// }
+
+// rankingFunction for 2way ensemble
+// function rankingFunction(ensemble) {
+// }
 
