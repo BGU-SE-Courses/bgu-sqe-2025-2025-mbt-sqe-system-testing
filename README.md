@@ -2,31 +2,46 @@
 This is a repository for the system-testing assignment of the Software Quality Engineering course at the [Ben-Gurion University](https://in.bgu.ac.il/), Israel.
 
 ## Assignment Description
-In this assignment, we tested an open-source software called [$$*TODO* software name$$](https://address-of-the-project.com).
+In this assignment, we tested an open-source software called PrestaShop (https://localhost:8080).
 
-$$*TODO* Add some general description about the software$$
+PrestaShop is an open-source e-commerce platform written in PHP that allows users to create and manage online stores.
+It provides a flexible and customizable solution with a wide range of themes, modules, and integrations.
+PrestaShop supports multiple payment gateways, languages, and currencies, making it ideal for international businesses.
+It has a user-friendly admin panel for managing products, orders, customers, and marketing tools.
 
 ## Installation
-$$*TODO* Write instructions on how to install the software and prepare the testing environment$$
+Download PrestaShop from PrestaShop.com, extract the files, and upload them to your server or set up a Docker container using the official PrestaShop image.
+Ensure support for Apache/Nginx, PHP 7.1+, and MySQL 5.6+.
+Create a database via phpMyAdmin or a Docker MySQL container, then run the installer at http://localhost/prestashop.
+Enable Debug Mode in config/defines.inc.php, install Selenium (npm install -g selenium-webdriver), and download ChromeDriver.
+Create test data and run tests using Selenium, PHPUnit, or Behat.
 
 ## What we tested
-$$*TODO* Add a description of the module and the user stories that you chose to test.
-For example, in the case of the Moodle example, you can write something like this:
+We tested the shopping cart and inventory management functionalities of our e-commerce system.
+The following user stories were chosen for testing:
 
-We tested the quiz module that allows for creating and taking quizzes. We chose to test the following user stories: 
+User Story 1: A user adds a product to the cart twice.
 
-*User story:* A teacher adds a new quiz to the course with two yes/no questions
+Preconditions:
+The user is logged in.
+The product is available in stock with at least two units.
 
-*Preconditions:* There is a course with a teacher
+Expected Outcome:
+The cart displays the product with a quantity of two.
 
-*Expected outcome:* The quiz is added to the course.
+User Story 2: The admin updates product availability to one.
 
-*User story:* A students attempts a quiz and answers correctly.
+Preconditions:
+There is a cart with the same product twice.
+The admin has access to the product inventory settings.
 
-*Preconditions:* There is a course with a quiz with two yes/no questions and the quiz grade is calculated automatically and the grade is visible to the students upon submission.
+Expected Outcome:
+The cart updates to reflect the new product availability,
+reducing the quantity to one if necessary.
 
-*Expected outcome:* The student receives 100.
-$$
+To implement these tests, we used Selenium-based behavioral threads (bthreads).
+The user scenario simulates adding a product to the cart and verifying the quantity,
+while the admin scenario updates the inventory and verifies the changes.
 
 ## How we tested
 We used two different testing methods:
@@ -37,16 +52,3 @@ Each of the testing methods is elaborated in its own directory.
 
 ## Results
 Update all README.md files (except for d-e, see Section 1). Specifically, replace all $$*TODO*…$$ according to the instructions inside the $$.
-
-## Detected Bugs
-We detected the following bugs:
-
-1. Bug 1: 
-   1. General description: ...
-   2. Steps to reproduce: ...
-   3. Expected result: ...
-   4. Actual result: ...
-   5. Link to the bug report: (you are encouraged to report the bug to the developers of the software)
-2. Bug 2: ...
-
-$$*TODO* if you did not detect the bug, you should delete this section$$  
