@@ -24,30 +24,19 @@ Moodle is a free and open-source learning management system written in PHP. It i
 6. Create a user for the teacher:
    
 ```
- for Cucumber:
 
 | Teacher_Username | Password   |
 | ---------------- | ---------- |
 | teacher          | Password1! |
 
- for Provengo:
-
-| Teacher_Username | Password  |
-| ---------------- | --------- |
-| teacher          | Aa!123456 |
 
 ```
 7. Create a user for the student:
 ```
- for Cucumber:
 
 | Student_Username | Password   |
 | ---------------- | ---------- |
 | moodleuser       | Password1! |
-
- for Provengo:
-
-| Student_Username | Password  |
 | ---------------- | --------- |
 | shavit           | Aa!123456 |
 
@@ -57,17 +46,7 @@ Moodle is a free and open-source learning management system written in PHP. It i
 
 ### Add a course and a choice test
 
-```
- for Cucumber:
 
-| Course_Name | Test_Title | Choice_Option1 | Choice_Option2 |
-| ----------- | ---------- | -------------- | -------------- |
-| course1     | choice2    | choice_1       | choice_2       |
-
- for Provengo:
-
-
-```
 
 ## What We Tested
 We tested the **Choice Activity Module**, which allows students to make a selection and teachers to configure choice settings. We focused on the following user stories:
