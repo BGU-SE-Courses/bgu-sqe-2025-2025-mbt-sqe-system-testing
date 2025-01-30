@@ -14,6 +14,7 @@ In order to install PrestaShop and prepare the testing environment, do the follo
 ### 1. Download and install XAMPP
    
    Enter the XAMPP website, download and install the latest version of XAMPP.
+   Go to C:/xampp/htdocs and create a new folder for your Presta Shop project.
    
 ### 2. Start XAMPP Server
    
@@ -23,11 +24,23 @@ In order to install PrestaShop and prepare the testing environment, do the follo
 
 ### 4. Create Database
 
+   Open your web browser and navigate to http://localhost/phpmyadmin, then create the database.
+
 ### 5. Setup IDE
+
+   As we chose Java as the main programming language, inststall any relevant IDE, with JDK Java 17.
 
 ### 6. Setup Selenium Server
 
+   Download Selenium from https://www.selenium.dev/downloads/
+  
+   Add the JAR file to the java project dependencies built with Maven
+
 ### 7. Download Proper chromedriver
+
+   Download proper version chromedriver according to your google chrome version, and locate it in the Selenium directory.
+      
+   Download Page: https://chromedriver.chromium.org/downloads
 
 ### 8. Install PrestaShop
 
@@ -55,9 +68,6 @@ We used two different testing methods:
 2. [Provengo](https://provengo.tech/), a story-based testing framework.
 
 Each of the testing methods is elaborated in its own directory. 
-
-## Results
-Update all README.md files (except for d-e, see Section 1). Specifically, replace all $$*TODO*…$$ according to the instructions inside the $$.
 
 
 
