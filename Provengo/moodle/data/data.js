@@ -27,8 +27,8 @@ const xpaths = {
 
   //User story 2 start
   ,editModePage:{
-    addContentButton:"/html/body/div[4]/div[5]/div/div[3]/div/section/div/div/div/ul/li[1]/div[1]/div[2]/div[2]/div/div/button/i",
-    subsectionButton:"/html/body/div[4]/div[5]/div/div[3]/div/section/div/div/div/ul/li[1]/div[1]/div[2]/div[2]/div/div/div/a",
+    addContentButton:"/html/body/div[4]/div[5]/div/div[3]/div/section/div/div/div/ul/li[1]/div[1]/div[2]/ul/li/div[2]/div[2]/div[4]/div/div/div/div/div/a/i",
+    subsectionButton:"/html/body/div[4]/div[5]/div/div[3]/div/section/div/div/div/ul/li[1]/div[1]/div[2]/ul/li/div[2]/div[2]/div[4]/div/div/div/div/div/div/a[5]/span",
     optionsForSubsectionButton:"/html/body/div[4]/div[5]/div/div[3]/div/section/div/div/div/ul/li[1]/div[1]/div[2]/ul/li[2]/div[2]/div/div/ul/li/div/div[1]/div[3]/div/div/div/div/a/i",
     deleteSubsectionButton:"/html/body/div[4]/div[5]/div/div[3]/div/section/div/div/div/ul/li[1]/div[1]/div[2]/ul/li[2]/div[2]/div/div/ul/li/div/div[1]/div[3]/div/div/div/div/div/a[6]/span",
     confirmDeletionButton:"/html/body/div[8]/div[2]/div/div/div[3]/button[2]"

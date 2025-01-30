@@ -4,16 +4,17 @@
  * List of events "of interest" that we want test suites to cover.
  */
 const GOALS = [
-    any(/Howdy/),
-    any(/Mars/),
-    Ctrl.markEvent("Classic!")
+    any(/AddNewContent/),       // Ensure content is always added
+    any(/ConfirmDestruction/)   // Ensure confirmation always happens
 ];
 
-const makeGoals = function(){
-    return [ [ any(/Howdy/), any(/Venus/) ],
-             [ any(/Mars/) ],
-             [ Ctrl.markEvent("Classic!") ] ];
-}
+const makeGoals = function() {
+    return [
+        // Both goals must happen, but order does not matter
+        [any(/AddNewContent/), any(/ConfirmDestruction/)]
+    ];
+};
+
 
 /**
  * Ranks test suites by how many events from the GOALS array were met.
@@ -65,6 +66,6 @@ function rankByMetGoals( ensemble ) {
     // What percentage of the goals did `ensemble` cover?
     const metGoalsPercent = metGoalsCount/GOALS.length;
 
-    return metGoalsPercent * 100; // convert to human-readable percentage
+    return metGoalsCount * 100; // convert to human-readable percentage
 }
 
