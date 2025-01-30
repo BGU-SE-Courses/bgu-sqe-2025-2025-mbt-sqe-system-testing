@@ -10,24 +10,25 @@ $$*TODO* Add some general description about the software$$
 $$*TODO* Write instructions on how to install the software and prepare the testing environment$$
 
 ## What we tested
-$$*TODO* Add a description of the module and the user stories that you chose to test.
-For example, in the case of the Moodle example, you can write something like this:
+$$*TODO* Add a description of the module and the user stories that you chose to test.$$
 
-We tested the quiz module that allows for creating and taking quizzes. We chose to test the following user stories: 
+User story #1: A student try to answer and subbmit a quiz in a course in Moodle website.
+   Precondition:
+      - The student in logged in to the system.
+      - This course exist in Moodle.
+      - The quiz exist in the course.
+   Expected outcome:
+      - The student subbmit the quiz successfully.
 
-*User story:* A teacher adds a new quiz to the course with two yes/no questions
-
-*Preconditions:* There is a course with a teacher
-
-*Expected outcome:* The quiz is added to the course.
-
-*User story:* A students attempts a quiz and answers correctly.
-
-*Preconditions:* There is a course with a quiz with two yes/no questions and the quiz grade is calculated automatically and the grade is visible to the students upon submission.
-
-*Expected outcome:* The student receives 100.
-$$
-
+User story #2: A teacher hides the quiz in the course for the students.
+   Precondition:
+      - The teacher in logged in to the system.
+      - This course exist in Moodle.
+      - The quiz exist in the course.
+      - The teacher in edit mode in the course.
+   Expected outcome:
+      - The teacher hides the quiz successfully - quiz is not longer visible for students.
+      
 ## How we tested
 We used two different testing methods:
 1. [Cucumber](https://cucumber.io/), a behavior-driven testing framework.
