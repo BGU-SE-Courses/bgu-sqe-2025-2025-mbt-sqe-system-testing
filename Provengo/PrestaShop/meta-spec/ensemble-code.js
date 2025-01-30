@@ -63,17 +63,17 @@ function myRankingFunction(ensemble){
  * @returns the percentage of goals covered by `ensemble`.
  * **/
 
-function rankingFunction(ensemble) {
-
-    // How many goals did `ensemble` hit?
-    const max_oc = myRankingFunction(ensemble);
-    // What percentage of the goals did `ensemble` cover?
-    //const bestVal = ensemble.length/count_length
-    // const relative_oc  = max_oc - bestVal
-    const max_ocPercent =  100-max_oc ;
-
-    return max_ocPercent ; // convert to human-readable percentage
-}
+// function rankingFunction(ensemble) {
+//
+//     // How many goals did `ensemble` hit?
+//     const max_oc = myRankingFunction(ensemble);
+//     // What percentage of the goals did `ensemble` cover?
+//     //const bestVal = ensemble.length/count_length
+//     // const relative_oc  = max_oc - bestVal
+//     const max_ocPercent =  100-max_oc ;
+//
+//     return max_ocPercent ; // convert to human-readable percentage
+// }
 
 
 // const endOfEvent = EventSet("", e.)
@@ -189,18 +189,18 @@ function twoWayRankingFunction(ensemble) {
 
 
 
-// function rankingFunction(ensemble) {
-//
-//     // How many goals did `ensemble` hit?
-//     const occ = twoWayRankingFunction(ensemble);
-//     // What percentage of the goals did `ensemble` cover?
-//     //const bestVal = ensemble.length/count_length
-//     // const relative_oc  = max_oc - bestVal
-//     const ocPercent = 100 - (1-occ)*100;
-//
-//     return ocPercent; // convert to human-readable percentage
-//
-// }
+function rankingFunction(ensemble) {
+
+    // How many goals did `ensemble` hit?
+    const occ = twoWayRankingFunction(ensemble);
+    // What percentage of the goals did `ensemble` cover?
+    //const bestVal = ensemble.length/count_length
+    // const relative_oc  = max_oc - bestVal
+    const ocPercent = 100 - (1-occ)*100;
+
+    return ocPercent; // convert to human-readable percentage
+
+}
 
 
 
