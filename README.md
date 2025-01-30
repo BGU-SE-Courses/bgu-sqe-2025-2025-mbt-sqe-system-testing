@@ -11,11 +11,11 @@ allows store owners to extend functionality with plugins and modules.
 ## Installation
 In order to install PrestaShop and prepare the testing environment, do the following:
 
-1. Download and install XAMPP:
-   Visit the XAMPP website , download and install the latest version of XAMPP.
+1. Download and install XAMPP.
+      Visit the XAMPP website , download and install the latest version of XAMPP.
    
-2. Start XAMPP Server:
-   Open the XAMPP server and click the "start buttons of the Apache and the MySQL modules.
+2. Start XAMPP Server.
+      Open the XAMPP server and click the "start buttons of the Apache and the MySQL modules.
 
 3.
 
