@@ -1,19 +1,23 @@
 Feature: A set of scenarios for testing the "PrestaShop" module
+  Scenario Outline: Testing a case where a user changes their name
+    Given User is not logged in and on homepage
+    When User fills in login details "<Email>" and "<Password>"
+    And User is logged in and on homepage
+    And User is on user information
+    And User changes his first name to "<newFirstName>" with password "<Password>"
+    Then user scenario passes
 
-  Scenario Outline: Testing how a case where a user adds a product to the cart
-    Given an example scenario
-    When all step definitions are implemented
-    Then the scenario passes
     Examples:
-      |  |
+      | firstName | lastName | Email            | Password  | newFirstName |
+      | Tom       | Harel    | tomH@gmail.com   | Tt123456! | TomH         |
 
+ Scenario Outline: Admin deactivates a user
+    Given the Admin enters the login page
+    When the Admin logs in with "<Email>" and "<Password>"
+    And navigates to the customers page
+    And deactivates the user with email "<UserEmail>"
+    Then the user should be successfully deactivated
 
-  Scenario Outline: Testing how a case where an admin deactivates a user
-    Given admin is in the login page
-    When user logged in admin accunt using
-    And
-    And
-    Then
     Examples:
-      | Email          | Password | UserEmail |
-      | idokra@post.bgu.ac.il | Aa777777! | rottomer@gmail.com |
+      | Email                 | Password        | UserEmail       |
+      | demo@prestashop.com   | prestashop_demo | tomh@gmail.com  |
