@@ -32,7 +32,7 @@ provengo run --show-sessions PrestaShop
 6. We recorded a video of the running tests and added it to the report. Since more than one browser session was opened, we recorded the entire screen. The link for the video is [here](https://drive.google.com/drive/u/0/folders/1A5k5quK5jim32PyddAdo7Y1iGFC0QFwL).
 7. We copied the generated graph of the model to a file named [model.pdf](submission-files/model.pdf) inside the submission-files directory.
 
-### Test files
+### Test files-test
 The test data is in [data.js](PrestaShop/data/data.js), the set of possible actions is in [actions.js](PrestaShop/spec/js/actions.js), and the behavior of the system is in [behavior.js](PrestaShop/spec/js/behavior.js).
 See the files for a detailed description.
 
