@@ -1,9 +1,0 @@
-element click intercepted: Element <input type="radio" name="input-admin_customers_toggle_status-4" id="input-false-admin_customers_toggle_status-4" value="0" checked=""> is not clickable at point (836, 579). Other element would receive the click: <input type="radio" name="input-admin_customers_toggle_status-4" id="input-true-admin_customers_toggle_status-4" value="1">
-  (Session info: chrome=132.0.6834.84)
-Build info: version: '4.25.0', revision: '8a8aea2337'
-System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '23.0.1'
-Driver info: org.openqa.selenium.remote.RemoteWebDriver
-Command: [6320a48d5dde8a09e75cc677f1c0f2de, clickElement {id=f.8F12481C7D4CBD8343E7CFB35B7B233B.d.CD5F1BBC5FE7B0F49645AC5700FCD24E.e.272}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 132.0.6834.84, chrome: {chromedriverVersion: 132.0.6834.83 (03d59cf5ecf1..., userDataDir: C:\Users\yuval\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:52404}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: Windows 11, proxy: Proxy(), se:bidiEnabled: false, se:cdp: ws://132.73.220.215:4444/se..., se:cdpVersion: 132.0.6834.84, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Element: [[RemoteWebDriver: chrome on Windows 11 (6320a48d5dde8a09e75cc677f1c0f2de)] -> xpath: //*[@id='input-false-admin_customers_toggle_status-4']]
-Session ID: 6320a48d5dde8a09e75cc677f1c0f2de
